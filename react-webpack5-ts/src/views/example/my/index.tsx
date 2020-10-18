@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import {AxiosResponse} from "axios";
 
-import {useObserved} from "@c/utils/useHooks";
-import {useAxios} from "@c/utils/ajax";
+import {useObserved} from "@c/useHooks";
+import {useAxios} from "@c/ajax";
 import {MemoText} from "./memoText";
 
 export const SRect = styled.div`

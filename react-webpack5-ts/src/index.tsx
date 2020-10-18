@@ -7,19 +7,21 @@ import {Provider} from "react-redux";
 import {ConfigProvider} from "antd";
 import zhCN from "antd/es/locale/zh_CN";
 
-import {UesAxiosConfig} from "@c/utils/ajax";
+import {UseAxiosConfig} from "@c/ajax";
+import {axiosGlobalConfig, store, Subscription} from "@/config";
 import App from "@/app";
-import {axiosGlobalConfig, store} from "@/config";
 
 ReactDOM.render(
-    <ConfigProvider locale={zhCN} componentSize={"middle"}>
-        <UesAxiosConfig value={axiosGlobalConfig}>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </Provider>
-        </UesAxiosConfig>
-    </ConfigProvider>
+    <Provider store={store}>
+        <BrowserRouter>
+            <Subscription>
+                <UseAxiosConfig value={axiosGlobalConfig}>
+                    <ConfigProvider locale={zhCN} componentSize={"middle"}>
+                        <App />
+                    </ConfigProvider>
+                </UseAxiosConfig>
+            </Subscription>
+        </BrowserRouter>
+    </Provider>
     , document.getElementById("root")
 );

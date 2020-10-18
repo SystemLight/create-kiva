@@ -9,7 +9,6 @@
     "eslint:check": "eslint --ext .tsx,.ts src/",
     "eslint:fix": "eslint --fix --ext .tsx,.ts src/",
     "gen:views": "node scripts/genViews.js",
-    "gen:layout": "node scripts/genLayout.js",
     "update:package": "node scripts/updatePackage.js",
     "help:antd": "start https://ant.design/components/overview-cn/"
   },

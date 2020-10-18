@@ -11,8 +11,11 @@ module.exports = class AgreedRoutingPlugin {
             // 是否启用约定式路由
             enable: false,
 
+            // 项目需要部署到CDN或者非根目录时，指定该项，使路由匹配增加前缀
+            base: "",
+
             // 入口文件路径
-            filePath: "src/route.tsx",
+            filePath: "src/config.tsx",
 
             // 约定式路由结构文件夹路径
             viewsPath: "src/views",
@@ -72,7 +75,7 @@ module.exports = class AgreedRoutingPlugin {
                 const absPath = [...depth, p];
                 const routePath = this.convertOption(absPath);
 
-                result += `{key: "${p}",path: "/${routePath.join("/")}"`;
+                result += `{key: "${p}",path: "${this.base}/${routePath.join("/")}"`;
                 result += `,component: dynamic(() => import(/* webpackChunkName: "${absPath.join("-")}" */"@v/${absPath.join("/")}"))`;
 
                 if (this.getDirLength(fPath) !== 0) {

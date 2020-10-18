@@ -1,8 +1,8 @@
 import React from "react";
 
-import RouteView from "@c/components/routeView";
-import {useObserved} from "@c/utils/useHooks";
-import routes from "@/route";
+import {RouteView} from "@c/routeView";
+import {useObserved} from "@c/useHooks";
+import {routes} from "@/config";
 
 function App() {
     useObserved("App");

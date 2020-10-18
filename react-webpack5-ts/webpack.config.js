@@ -1,6 +1,6 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -181,6 +181,8 @@ module.exports = function(env, argv) {
                     }
                 ]
             }),
+            // css 会被打到 js 里，而不是以单独的 css 文件出现，
+            // 因为 mini-css-extract-plugin 和 webpack@5 的物理缓存有冲突
             new MiniCssExtractPlugin({
                 filename: "css/[name].[contenthash:8].css",
                 chunkFilename: "css/[name].[contenthash:8].css"
@@ -194,7 +196,8 @@ module.exports = function(env, argv) {
             }),
             // 启用约定式路由，手动配置的路由将会被替换
             new AgreedRoutingPlugin({
-                filePath: "src/route.tsx", // 入口文件路径
+                base: "", // 项目需要部署到CDN或者非根目录时，指定该项，使路由匹配增加前缀
+                filePath: "src/config.tsx", // 入口文件路径
                 viewsPath: "src/views", // 约定式路由结构文件夹路径
                 enable: true,
                 ignore: []

@@ -3,17 +3,16 @@ import {useSelector, useDispatch} from "react-redux";
 import {PageHeader, Button, Descriptions} from "antd";
 import {Link, useLocation} from "react-router-dom";
 
-import RouteView from "@c/components/routeView";
-import {useObserved} from "@c/utils/useHooks";
-import {asyncSetDate} from "@/models/common.model";
-import {dataSelector} from "@/models/common.selector";
-import {qr} from "@/route";
+import {RouteView} from "@c/routeView";
+import {useObserved} from "@c/useHooks";
+import {asyncSetDate, exampleSelector} from "@/models";
+import {qr} from "@/config";
 
 export default function ExamplePage() {
     useObserved("ExamplePage");
 
     const {pathname} = useLocation();
-    const {date} = useSelector(dataSelector);
+    const date = useSelector(exampleSelector);
     const dispatch = useDispatch();
 
     const onClick = () => {

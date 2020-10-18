@@ -2,13 +2,12 @@ import React from "react";
 import {Button, Divider} from "antd";
 import styled from "styled-components";
 
-import {DummyPhantom} from "@c/components/dummy";
-import {useDummyDataSource} from "@c/components/dummy/utils";
-import {imageRender, decimalRender, useRowSelection, cacheWrap} from "@c/components/dummy/part";
 import {
+    useDummyDataSource, imageRender,
+    decimalRender, cacheWrap, SortableDummy,
     IDummyColumns, IDummyRecord
-} from "@c/components/dummy/interface";
-import {useObserved} from "@c/utils/useHooks";
+} from "@c/dummy";
+import {useObserved} from "@c/useHooks";
 
 interface IRecord extends IDummyRecord {
     name: string,
@@ -48,7 +47,6 @@ export default function EditTablePage() {
     useObserved("EditTablePage");
 
     const [sourceDataSource, dataSource, setDataSource] = useDummyDataSource<IRecord>("name");
-    const [selectedRows, setSelectedRows, rowSelection] = useRowSelection<IRecord>();
 
     const handleFillData = () => {
         setDataSource([
@@ -74,13 +72,7 @@ export default function EditTablePage() {
         <SWrap>
             <Button onClick={handleFillData}>填充数据</Button>
             <Divider />
-            <DummyPhantom<IRecord>
-                defaultColumns={globalColumns} dataSource={dataSource}
-                rowSelection={rowSelection}
-                onSave={(record) => {
-                    console.log(record);
-                }}
-            />
+            <SortableDummy<IRecord> initColumns={globalColumns} dataSource={dataSource} />
         </SWrap>
     );
 }

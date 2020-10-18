@@ -188,9 +188,9 @@ function doSomething(path) {
     }
     fs.writeFileSync(filePath, `import React from "react";
 
-import RouteView from "@core/components/routeView";
-import R404Page from "@core/components/reason/404";
-import {qr} from "@/route";
+import {RouteView} from "@core/routeView";
+import {R404Page} from "@core/errorBoundary/404";
+import {qr} from "@/config";
 
 export default function() {
     return (

@@ -1,14 +1,31 @@
-import React from "react";
+import React, {memo} from "react";
 import {useLocation} from "react-router-dom";
+import {Alert} from "antd";
 
-import RouteView from "@c/components/routeView";
-import R404Page from "@c/components/reason/404";
-import {Workbench} from "@c/components/workbench";
-import {useUrlBreadcrumbItems, RootBreadcrumb} from "@c/components/workbench/breadcrumb";
-import {RootMenus} from "@c/components/workbench/menus";
-import {useObserved} from "@c/utils/useHooks";
-import {navs} from "@/navs";
-import {routes} from "@/route";
+import {RouteView} from "@c/routeView";
+import {R404Page} from "@c/errorBoundary/404";
+import {useUrlBreadcrumbItems, RootBreadcrumb, RootMenus, Workbench} from "@c/workbench";
+import {useObserved} from "@c/useHooks";
+import {navs, routes} from "@/config";
+
+export const Welcome = memo(function() {
+    return (
+        <div style={{padding: 15}}>
+            <Alert
+                message="管理首页"
+                description="欢迎进入管理首页 !"
+                type="info"
+            />
+        </div>
+    );
+}, () => true);
+
+const welcomeRoute = {
+    key: "welcome",
+    path: "/",
+    exact: true,
+    component: Welcome
+};
 
 export default function RootPage() {
     useObserved("RootPage");
@@ -21,7 +38,7 @@ export default function RootPage() {
             breadcrumb={<RootBreadcrumb items={breadcrumbItems} />}
             menus={<RootMenus navs={navs} />} logoUrl={"/logo.png"}
         >
-            <RouteView routes={routes[0].subRoute}>{R404Page}</RouteView>
+            <RouteView before={welcomeRoute} routes={routes[0].subRoute}>{R404Page}</RouteView>
         </Workbench>
     );
 }
