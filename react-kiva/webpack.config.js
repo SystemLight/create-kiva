@@ -98,7 +98,7 @@ module.exports = function(env, argv) {
             extensions: [".js", ".ts", ".jsx", ".tsx"],
             alias: {
                 "@": ph.join(__dirname, "src"),
-                "@v": ph.join(__dirname, "src/views"),
+                "@p": ph.join(__dirname, "src/pages"),
                 "config": ph.join(__dirname, "entry/config.tsx"),
                 "kiva": ph.join(__dirname, "kiva")
             }
@@ -199,7 +199,7 @@ module.exports = function(env, argv) {
             new AgreedRoutingPlugin({
                 base: "", // 项目需要部署到CDN或者非根目录时，指定该项，使路由匹配增加前缀
                 filePath: "entry/config.tsx", // 入口文件路径
-                viewsPath: "src/views", // 约定式路由结构文件夹路径
+                viewsPath: "src/pages", // 约定式路由结构文件夹路径
                 enable: true,
                 ignore: []
             })

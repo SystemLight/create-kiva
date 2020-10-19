@@ -1,4 +1,4 @@
-# @kiva/react-webpack5-ts
+# create-kiva
 
 相比@systemlight/react-webpack-ts删减了些许配置内容，秉承着
 约定大于配置的思想，@kiva/react-webpack5-ts定位为不支持多页应用，
@@ -71,11 +71,11 @@ example
 
 |  文件名   | 作用  |
 |  :----  | :----  |
-| core  | 包含内置核心组件、工具函数等，导入路径为@c |
-| draft  | 用于webpack的HTML模板存放位置 |
+| entry  | webpack入口，一般情况无须更改这些内容 |
+| kiva  | 包含内置核心组件、工具函数等，导入路径为kiva |
 | public  | 静态文件 |
 | script  | 项目脚本文件 |
-| src  | 源码目录 |
+| src  | 源码目录，views文件夹被注册成约定路由观测位置 |
 | test  | 测试文件目录 |
 | package.json  | 前端工程化依赖管理配置文件 |
 | pages.config.js  | react多页面或者单页面核心配置文件 |

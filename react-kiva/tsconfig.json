@@ -108,8 +108,8 @@
       "@/*": [
         "src/*"
       ],
-      "@v/*": [
-        "src/views/*"
+      "@p/*": [
+        "src/pages/*"
       ],
       "config": [
         "entry/config.tsx"

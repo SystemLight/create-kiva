@@ -17,7 +17,7 @@ export interface ISoulImmer<S> {
 
 export interface ISoulModel<S> {
     namespace: string,
-    state: S,
+    state: Readonly<S>,
     mutation: ISoulMutation<S>,
     immer: ISoulImmer<S>,
 }
@@ -32,9 +32,9 @@ export class Soul {
     public reducers: ReducersMapObject<any, ISoulActionContent> = {};
 
     register<S>(model: ISoulModel<S>) {
-        this.reducers[model.namespace] = function(state: S, action) {
+        this.reducers[model.namespace] = function(state: S, action): S {
             if (state === undefined) {
-                return model.state;
+                return {...model.state};
             }
 
             if (action.type === "$/clear") {

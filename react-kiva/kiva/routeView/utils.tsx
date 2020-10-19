@@ -25,10 +25,10 @@ export function createSubscription(subscription: ISubscription): ComponentType {
 
         const callback: IChangeRouteCallback = useCallback(({pathname}) => {
             const cb = subscription[pathname];
-            cb && cb(dispatch);
+            cb && cb(dispatch, pathname);
 
             const cb2 = subscription["*"];
-            cb2 && cb2(dispatch);
+            cb2 && cb2(dispatch, pathname);
         }, [dispatch]);
 
         useChangeRoute(callback);

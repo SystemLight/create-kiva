@@ -4,7 +4,7 @@ import {Dispatch} from "redux";
 import * as H from "history";
 
 export interface ISubscription {
-    [key: string]: (dispatch: Dispatch<any>) => void
+    [key: string]: (dispatch: Dispatch<any>, pathname: string) => void
 }
 
 export interface IRoutesContent {

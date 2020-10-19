@@ -15,10 +15,10 @@ module.exports = class AgreedRoutingPlugin {
             base: "",
 
             // 入口文件路径
-            filePath: "src/config.tsx",
+            filePath: "entry/config.tsx",
 
             // 约定式路由结构文件夹路径
-            viewsPath: "src/views",
+            viewsPath: "src/pages",
 
             // 忽略的文件夹名称，不进行约定式路由计算
             ignore: []
@@ -76,7 +76,7 @@ module.exports = class AgreedRoutingPlugin {
                 const routePath = this.convertOption(absPath);
 
                 result += `{key: "${p}",path: "${this.base}/${routePath.join("/")}"`;
-                result += `,component: dynamic(() => import(/* webpackChunkName: "${absPath.join("-")}" */"@v/${absPath.join("/")}"))`;
+                result += `,component: dynamic(() => import(/* webpackChunkName: "${absPath.join("-")}" */"@p/${absPath.join("/")}"))`;
 
                 if (this.getDirLength(fPath) !== 0) {
                     result += `,subRoute: [${this.generateRoute(fPath, absPath, true)}]`;

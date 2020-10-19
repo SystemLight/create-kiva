@@ -7,7 +7,7 @@ import {
     ISoulDispatch, IRootNav, R404Page, IRoutes,
     QueryRoute, createSubscription, dynamic
 } from "kiva";
-import RootPage from "@v/index";
+import RootPage from "@p/index";
 import soul from "@/models";
 
 /*
@@ -45,6 +45,7 @@ export const routes: IRoutes = [
         component: RootPage,
         subRoute: [
             /* <AgreedRouting> */
+            {key: "example",path: "/example",component: dynamic(() => import(/* webpackChunkName: "example" */"@p/example")),subRoute: [{key: "edittable",path: "/example/edittable",component: dynamic(() => import(/* webpackChunkName: "example-edittable" */"@p/example/edittable")),exact: true},{key: "my",path: "/example/my",component: dynamic(() => import(/* webpackChunkName: "example-my" */"@p/example/my")),exact: true},{key: "[users]",path: "/example/:users",component: dynamic(() => import(/* webpackChunkName: "example-[users]" */"@p/example/[users]")),exact: true}],exact: false},
             /* </AgreedRouting> */
         ]
     },

@@ -11,12 +11,20 @@ export const FormWrap = styled.div`
 
   .ant-row.ant-form-item{
     margin-bottom: 5px;
+
+    .ant-col.ant-form-item-label{
+        ${({$width}: {$width?: number}) => $width && `width: ${$width}px;`}
+    }
   }
 `;
 
 export const SmallForm = styled(Form)`
   .ant-row.ant-form-item{
     margin-bottom: 5px;
+
+    .ant-col.ant-form-item-label{
+        ${({$width}: {$width?: number}) => $width && `width: ${$width}px;`}
+    }
   }
 `;
 
