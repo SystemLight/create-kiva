@@ -3,13 +3,13 @@ import {Switch, Route} from "react-router-dom";
 
 import {IRouteViewProps} from "./interface";
 
-export const RouteView = memo(function({routes, location, before, children}: IRouteViewProps) {
+export const RouteView = memo(function({routes, location, before, after}: IRouteViewProps) {
     return (
         <Switch location={location}>
             {before && (<Route {...before} />)}
             {/* eslint-disable-next-line react/jsx-key */}
             {routes ? routes.map((r) => (<Route {...r} />)) : undefined}
-            {children && (<Route component={children} />)}
+            {after && (<Route component={after} />)}
         </Switch>
     );
 }, (oldProp, newProp) => {

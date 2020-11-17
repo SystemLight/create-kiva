@@ -1,88 +1,23 @@
-import React, {Dispatch, Key, ReactNode, SetStateAction, useCallback, useMemo, useState} from "react";
-import {Button, Checkbox, Dropdown, Image, Menu, Modal, Table} from "antd";
+import React, {Key, ReactNode, useCallback, useMemo, useState} from "react";
+import {Button, Checkbox, Dropdown, Menu, Table} from "antd";
 import {RowSelectionType, TableRowSelection} from "antd/es/table/interface";
-import {ExclamationCircleOutlined, FilterOutlined} from "@ant-design/icons";
+import {FilterOutlined} from "@ant-design/icons";
 import styled from "styled-components";
 
-import {IActionBtn, IComButtonProps, IDelButtonProps, IDummyColumns, IFilterColumnProps} from "./interface";
-
-/*
-    -_-列渲染类型函数
- */
-const ImageWrap = styled(Image)`
-    .ant-image-img{
-        max-width: 30px;
-        max-height: 30px;
-        object-fit: cover;
-    }
-`;
-
-export function imageRender() {
-    return (value: any) => value ? (
-        <ImageWrap style={{maxWidth: 30, maxHeight: 30}} src={value} alt={"图片"} />
-    ) : "";
-}
-
-export function decimalRender(digits: number = 0) {
-    return (value: any) => <div style={{textAlign: "right"}}>{value.toFixed(digits)}</div>;
-}
-
-/*
-    默认激活按钮
- */
-export function DelButton({btn, onRowActivate, prompt}: IDelButtonProps) {
-    return (
-        <Button
-            style={{padding: "0 5px"}} type="link" danger={true}
-            onClick={(e) => {
-                e.stopPropagation();
-                Modal.confirm({
-                    title: "提示",
-                    icon: <ExclamationCircleOutlined />,
-                    content: `是否确认删除${prompt}？`,
-                    okText: "确认",
-                    cancelText: "取消",
-                    okButtonProps: {size: "large"},
-                    cancelButtonProps: {size: "large"},
-                    onOk() {
-                        onRowActivate(btn.key);
-                    }
-                });
-            }}
-        >{btn.title}</Button>
-    );
-}
-
-export function ComButton({btn, onRowActivate}: IComButtonProps) {
-    return (
-        <Button
-            style={{padding: "0 5px"}} type="link"
-            onClick={(e) => {
-                e.stopPropagation();
-                onRowActivate(btn.key);
-            }}
-        >{btn.title}</Button>
-    );
-}
-
-export const defaultActionBtn: IActionBtn[] = [
-    {key: "edit", title: "编辑", type: "btn"},
-    {key: "delete", title: "删除", type: "del", promptKey: "Name"}
-];
+import {IDummyColumn, IFilterColumnProps, IUseRowSelectionResult} from "./interface";
 
 /*
     -_-表格顶部部件，包含title和其它操作按钮
  */
-const AntTableTopBar = styled.div`
+export const AntTableTopBar = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .title-item-left{
-
     }
 
     .title-item-right{
-      margin-right: 16px;
     }
 `;
 
@@ -94,6 +29,17 @@ export function topBar(title?: ReactNode, operator?: ReactNode) {
         </AntTableTopBar>
     );
 }
+
+export const ButtonGroup = styled(Button.Group)`
+  .ant-btn{
+    background-color: #FFFFFF;
+    color: #6E7783;
+  }
+
+  .anticon{
+    font-size: 20px;
+  }
+`;
 
 /*
     -_-筛选列按钮组件
@@ -126,12 +72,15 @@ export function FilterColumn({columns, onChange}: IFilterColumnProps) {
 /*
     -_-选中行操作属性配置对象
  */
-export type IUseRowSelectionReturn<RecordType> = [Key[], Dispatch<SetStateAction<Key[]>>, TableRowSelection<RecordType>];
-
-export function useRowSelection<RecordType>(type: RowSelectionType = "checkbox"): IUseRowSelectionReturn<RecordType> {
+export function useRowSelection<RecordType>(type: RowSelectionType = "checkbox"): IUseRowSelectionResult<RecordType> {
     const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
+    const [selectedRows, setSelectedRows] = useState<RecordType[]>([]);
+
     const rowSelection: TableRowSelection<RecordType> = useMemo(() => {
-        const onChange = (selectedRowKeys: Key[], selectedRows: RecordType[]) => setSelectedRowKeys(selectedRowKeys);
+        const onChange = (selectedRowKeys: Key[], selectedRows: RecordType[]) => {
+            setSelectedRowKeys(selectedRowKeys);
+            setSelectedRows(selectedRows);
+        };
         switch (type) {
             case "checkbox":
                 return {
@@ -152,13 +101,17 @@ export function useRowSelection<RecordType>(type: RowSelectionType = "checkbox")
                 return {};
         }
     }, [selectedRowKeys, type]);
-    return [selectedRowKeys, setSelectedRowKeys, rowSelection];
+
+    return useMemo(
+        () => [selectedRowKeys, setSelectedRowKeys, rowSelection, selectedRows],
+        [rowSelection, selectedRowKeys, selectedRows]
+    );
 }
 
 /*
-    -_-定义合计拓展，用于summary属性
+    -_-定义合计拓展，用于summary属性，start定义开头空几列，end定义结尾空几列
  */
-export function useSummary<RecordType>(columns: IDummyColumns<RecordType>, start: number = 2, end: number = 1) {
+export function useSummary<RecordType>(columns: IDummyColumn<RecordType>[], start: number = 2, end: number = 1) {
     return useCallback((pageData: RecordType[]) => {
         if (!columns) {
             return undefined;

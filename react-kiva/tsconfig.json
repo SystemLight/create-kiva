@@ -1,6 +1,7 @@
 {
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "custom.d.ts"
   ],
   "exclude": [
     "node_modules",
@@ -108,11 +109,11 @@
       "@/*": [
         "src/*"
       ],
-      "@p/*": [
+      "@@/*": [
         "src/pages/*"
       ],
       "config": [
-        "entry/config.tsx"
+        "src/config.tsx"
       ],
       "kiva/*": [
         "kiva/*"

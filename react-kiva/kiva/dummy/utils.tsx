@@ -1,13 +1,9 @@
-import React, {useMemo, useState} from "react";
-import {ColumnType} from "antd/lib/table/interface";
+import React, {useMemo} from "react";
+import {Button, Dropdown, Menu, Popconfirm} from "antd";
+import {DownOutlined} from "@ant-design/icons";
 
-import {
-    IDummyRecord, IDummySortableHeaderCellProps,
-    IDummyColumn, IDummyColumns, IOperator,
-    IDummyBodyCellProps, IActionBtn, IOnRowActivate,
-    IUseDummyDataSourceReturn, IUseDummyColumnsReturn
-} from "./interface";
-import {DelButton, ComButton} from "./part";
+import {DelButton, ComButton} from "./action";
+import {IDummyRecord, IActionBtn, IOnRowActivate} from "./interface";
 
 /*
     根据rowKeys过滤数据内容
@@ -23,36 +19,17 @@ export function catchRowKeyData<RecordType>(rowKeys: any[], data: RecordType[], 
 }
 
 /*
-    -_-将列对象附件shouldCellUpdate方法
- */
-export function cacheWrap<RecordType>(columns: IDummyColumns<RecordType>) {
-    return columns.map((c) => {
-        return {
-            ...c,
-            shouldCellUpdate(record: RecordType, preRecord: RecordType) {
-                return record !== preRecord;
-            }
-        };
-    });
-}
-
-/*
     映射dataSource添加key和index属性值
  */
-export function mapDataSource<RecordType extends object = any>(dataSource: RecordType[], keyName: keyof RecordType): (RecordType & IDummyRecord)[] {
-    return dataSource.map((v, i) => {
-        return {...v, key: v[keyName], index: i + 1};
-    });
-}
-
-export function useMapDataSource<RecordType extends object = any>(dataSource: RecordType[], keyName: keyof RecordType): (RecordType & IDummyRecord)[] {
-    return useMemo(() => mapDataSource<RecordType>(dataSource, keyName), [dataSource, keyName]);
-}
-
-export function useDummyDataSource<RecordType extends object = any>(keyName: keyof RecordType): IUseDummyDataSourceReturn<RecordType> {
-    const [pureDataSource, setDataSource] = useState<RecordType[]>([]);
-    const dataSource = useMapDataSource<RecordType>(pureDataSource, keyName);
-    return [pureDataSource, dataSource, setDataSource];
+export function useMapDataSource<RecordType extends object = any>(dataSource: RecordType[], keyName?: keyof RecordType): (RecordType & IDummyRecord)[] {
+    return useMemo(() => {
+        if (keyName) {
+            return dataSource.map((v, i) => {
+                return {...v, key: v[keyName], index: i + 1};
+            });
+        }
+        return dataSource;
+    }, [dataSource, keyName]);
 }
 
 /*
@@ -70,28 +47,17 @@ export function sorter(a: any, b: any, dataIndex: any) {
     }
 }
 
-export function upgradeColumn<RecordType = any>(v: IDummyColumn<RecordType>, i: number): ColumnType<RecordType> {
-    if (v.isSort) {
-        v.sortDirections = ["descend", "ascend"];
-        v.sorter = (a: any, b: any) => sorter(a, b, v.dataIndex);
-    }
-
-    v.onHeaderCell = (): IDummySortableHeaderCellProps => ({__index: i});
-    v.onCell = (data): IDummyBodyCellProps => ({columns: v, record: data});
-
-    return v;
-}
-
 export const lineNumColumns = {
     key: "index",
     dataIndex: "index",
-    title: "行号",
+    title: "#",
     width: 46,
     render(value: string) {
         return (<p className="line-number">{value}</p>);
     }
 };
 
+// 渲染操作列
 export function getRender(actionBtn: IActionBtn[], onRowActivate: IOnRowActivate) {
     return (text: any, record: any) => (
         <div>
@@ -118,33 +84,43 @@ export function getRender(actionBtn: IActionBtn[], onRowActivate: IOnRowActivate
     );
 }
 
-export function useColumnsPlus<RecordType>(columns: IDummyColumns<RecordType>, operator: IOperator<RecordType>) {
-    return useMemo<IDummyColumns<RecordType>>(() => {
-        let newColumns = [...columns];
-
-        newColumns = newColumns.filter((v) => !v.isHide);
-        newColumns = newColumns.map(upgradeColumn);
-        newColumns.unshift(lineNumColumns);
-
-        const {actionBtn, onRowActivate} = operator;
-        if (actionBtn.length === 0) {
-            return newColumns;
-        }
-
-        newColumns.push({
-            key: "operator",
-            dataIndex: "operator",
-            title: "操作",
-            width: 25 * actionBtn.reduce((v1, v2) => v1 + v2.title.length, 0),
-            render: getRender(actionBtn, onRowActivate)
-        });
-
-        return newColumns;
-    }, [columns, operator]);
-}
-
-export function useDummyColumns<RecordType>(initColumns: IDummyColumns<RecordType>, operator: IOperator<RecordType>): IUseDummyColumnsReturn<RecordType> {
-    const [pureColumns, setColumns] = useState<IDummyColumns<RecordType>>(initColumns);
-    const columns = useColumnsPlus<RecordType>(pureColumns, operator);
-    return [pureColumns, columns, setColumns];
+export function getDropdownRender(actionBtn: IActionBtn[], onRowActivate: IOnRowActivate) {
+    return (text: any, record: any) => {
+        const overlay = (
+            <Menu>
+                {
+                    actionBtn.map((btn) => {
+                        switch (btn.type) {
+                            case "btn":
+                                return (
+                                    <Menu.Item key={btn.key}>
+                                        <Button type={"link"} onClick={() => onRowActivate(record, btn.key)}>
+                                            {btn.title}
+                                        </Button>
+                                    </Menu.Item>
+                                );
+                            case "del":
+                                return (
+                                    <Menu.Item key={btn.key}>
+                                        <Popconfirm
+                                            title={`是否删除${record[btn.promptKey]}？`}
+                                            onConfirm={() => onRowActivate(record, btn.key)}
+                                        >
+                                            <Button danger={true} type={"link"}>{btn.title}</Button>
+                                        </Popconfirm>
+                                    </Menu.Item>
+                                );
+                            default:
+                                return undefined;
+                        }
+                    })
+                }
+            </Menu>
+        );
+        return (
+            <Dropdown overlay={overlay} trigger={["click"]}>
+                <Button type={"link"}>选项<DownOutlined /></Button>
+            </Dropdown>
+        );
+    };
 }

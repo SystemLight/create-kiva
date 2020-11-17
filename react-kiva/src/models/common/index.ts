@@ -1,42 +1,36 @@
-import {ISoulModel, ISoulDispatch} from "kiva";
-import {createSelector} from "reselect";
+import {ISoulModel, ITabs} from "kiva";
 
-import {IStates} from "@/models";
-
-export interface ICommonState {
-    $example: string,
-    hello?: boolean
-}
-
-export type ICommonDispatch = ISoulDispatch<ICommonState>;
-
+// 注意：如果启用约定状态自注册插件，命名需要满足以下规则
 const commonModel: ISoulModel<ICommonState> = {
     namespace: "common",
     state: {
-        $example: ""
+        tabs: {}
     },
     mutation: {
-        saveDate2Example(state, action) {
-            state.$example = new Date().toString();
-            return {$example: new Date().toString()};
+        addTabs(state, action: {type: string, payload?: {key: string, data: any}}) {
+            if (action.payload) {
+                const {tabs} = state;
+                const {payload: {key, data}} = action;
+                const tabItem = tabs[key];
+                if (!tabItem) {
+                    state.tabs = {...tabs, [key]: data};
+                }
+            }
+            return state;
+        },
+        removeTabs(state, action: {payload?: string}) {
+            const {payload} = action;
+            if (payload) {
+                delete state.tabs[payload];
+                state.tabs = {...state.tabs};
+            }
+            return state;
         }
-    },
-    immer: {}
+    }
 };
 
-export const exampleSelector = createSelector<IStates, ICommonState, string>(
-    (states) => {
-        return states.common;
-    },
-    (state) => {
-        return state.$example;
-    }
-);
-
-export function asyncSetDate(dispatch: ICommonDispatch) {
-    setTimeout(function() {
-        dispatch({type: "common/saveDate2Example"});
-    }, 3000);
+export interface ICommonState {
+    tabs: ITabs
 }
 
 export default commonModel;

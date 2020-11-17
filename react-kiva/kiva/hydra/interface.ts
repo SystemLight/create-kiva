@@ -4,7 +4,6 @@ export interface IHydraProps extends SelectProps<any> {
 }
 
 export interface IAsyncHydraProps extends SelectProps<any> {
-    defaultOptions?: ISelectOptions,
     fetchOptions?: (searchValue: string) => Promise<ISelectOptions>,
 }
 
@@ -13,4 +12,6 @@ export interface IAsyncHydraState {
     fetching: boolean,
 }
 
-export type ISelectOptions<V = any> = {label: any, value: V}[];
+export type ISelectOption<V = any> = {label: any, value: V}
+
+export type ISelectOptions<V = any> = ISelectOption<V>[];

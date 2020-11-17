@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "Generate `T-react-webpack-ts`, build tool based on webpack5.",
   "main": "build/index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SystemLight/kiva.git"
@@ -24,5 +23,7 @@
   "author": "SystemLight",
   "license": "MIT",
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "webpack-cli": "^4.2.0"
+  }
 }

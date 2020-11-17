@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {Spin} from "antd";
 import styled from "styled-components";
 
-import {IRoutes, IRoutesContent, IChangeRouteCallback, ISubscription} from "./interface";
+import {IRoutes, IRoutesContent, IChangeRouteCallback, ISubscription, IPlugin} from "./interface";
 
 /*
     监听路由变化
@@ -20,7 +20,7 @@ export function useChangeRoute(callback: IChangeRouteCallback) {
     创建路由订阅顶级组件
  */
 export function createSubscription(subscription: ISubscription): ComponentType {
-    return (props) => {
+    return (props: any) => {
         const dispatch = useDispatch();
 
         const callback: IChangeRouteCallback = useCallback(({pathname}) => {
@@ -50,15 +50,37 @@ export const SpinWrap = styled.div`
 `;
 
 /*
-    高阶组件，用于异步加载组件，这样可以让不同路由地址的组件分开加载
+    高阶组件，用于异步加载组件，这样可以让不同路由地址的组件分开加载，
+    当导出组件设置access参数时将升级组件为鉴权组件
  */
 export function dynamic(factory: () => Promise<{default: any}>): ComponentType {
+    const _factory = () => {
+        return factory().then((data) => {
+            let resultData = data;
+            for (const key of Object.keys(data.default)) {
+                resultData = meta.plugins[key](resultData.default, data.default[key], data.default);
+            }
+            return resultData;
+        });
+    };
     return () => (
         <React.Suspense fallback={<SpinWrap><Spin size="large" tip={"加载中..."} /></SpinWrap>}>
-            {React.createElement(React.lazy(factory))}
+            {React.createElement(React.lazy(_factory))}
         </React.Suspense>
     );
 }
+
+class MetaMiddleware {
+    public plugins: {[key: string]: IPlugin} = {};
+
+    public use<P = any>(key: string, plugin: IPlugin<P>) {
+        this.plugins[key] = plugin;
+        return this;
+    }
+}
+
+const meta = new MetaMiddleware();
+dynamic.meta = meta;
 
 /*
     路由查询器
@@ -76,7 +98,7 @@ export class QueryRoute {
 
     findRoute(findKey: string): IRoutes {
         let rootRoutes: IRoutes = this.routes;
-        for (const p of findKey.split(".")) {
+        for (const p of findKey.split("/")) {
             rootRoutes = this.findSubRoute(rootRoutes, p);
             if (!rootRoutes.length) {
                 break;

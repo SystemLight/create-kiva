@@ -32,8 +32,8 @@ export function DragModal({title, ...restProps}: PropsWithChildren<ModalProps>) 
     return (
         <Modal
             title={modalTitle} okButtonProps={{size: "large"}} cancelButtonProps={{size: "large"}}
-            // @ts-ignore
             modalRender={(modal) => <Draggable disabled={disabled}>{modal}</Draggable>}
+            maskClosable={false}
             {...restProps}
         />
     );

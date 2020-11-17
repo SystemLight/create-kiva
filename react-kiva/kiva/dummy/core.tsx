@@ -3,7 +3,7 @@ import {Table} from "antd";
 import {TableProps} from "antd/lib/table/Table";
 import styled from "styled-components";
 
-export const DummyWrap = styled.div`
+const DummyWrap = styled.div`
   thead.ant-table-thead {
     tr {
       th.ant-table-cell {
@@ -50,13 +50,14 @@ export const DummyWrap = styled.div`
   }
 `;
 
-export const defaultProps: TableProps<any> = {
-    className: "dummy-table", bordered: true, size: "small", scroll: {x: "max-content"},
+const defaultProps: TableProps<any> = {
+    bordered: true, size: "small", scroll: {x: "max-content"},
     rowClassName(record, index?: number) {
         return index ? index % 2 === 0 ? "dummy-even-row" : "dummy-odd-row" : "dummy-even-row";
     }
 };
 
+// 最基础的表格控件，在antd-table基础上设置默认样式和属性
 export function Dummy<RecordType extends object = any>(props: TableProps<RecordType>) {
     return (
         <DummyWrap>

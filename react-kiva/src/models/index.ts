@@ -1,17 +1,11 @@
-import {Soul} from "kiva";
-
-const soul = new Soul();
-
-// region 注册CommonModel
-import CommonModel, {ICommonState} from "@/models/common";
-
-export * from "./common";
-soul.register(CommonModel);
-
-// endregion
+// 注意当前文件启用约定模型，请不要在这里编码任何内容
+import {IAccessState} from "@/models/access";
+import {ICommonState} from "@/models/common";
 
 export interface IStates {
-    common: ICommonState
-}
+access: IAccessState,
+common: ICommonState,
 
-export default soul;
+}
+export * from "./access";
+export * from "./common";
