@@ -1,0 +1,23 @@
+{
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "jsxBracketSameLine": true,
+  "endOfLine": "crlf",
+  "semi": true,
+  "bracketSpacing": false,
+  "arrowParens": "always",
+  "htmlWhitespaceSensitivity": "strict",
+  "insertPragma": false,
+  "printWidth": 120,
+  "proseWrap": "preserve",
+  "singleQuote": false,
+  "useTabs": false,
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
+}

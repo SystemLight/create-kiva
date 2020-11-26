@@ -1,0 +1,25 @@
+{
+  "name": "vue-kiva",
+  "version": "1.2.0",
+  "keywords": [
+    "vue",
+    "create-kiva",
+    "template"
+  ],
+  "description": "The base template for Create Kiva App.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/vue-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}
