@@ -1,0 +1,37 @@
+{
+  "name": "create-kiva",
+  "version": "1.2.0",
+  "keywords": [
+    "react",
+    "kiva",
+    "vue",
+    "cli",
+    "template"
+  ],
+  "description": "Create Kiva apps with no build configuration.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/create-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "index.js"
+  ],
+  "bin": {
+    "create-kiva": "./index.js"
+  },
+  "scripts": {},
+  "dependencies": {
+    "commander": "^6.2.0",
+    "fs-extra": "^9.0.1",
+    "react-kiva": "^1.2.0"
+  },
+  "devDependencies": {}
+}
