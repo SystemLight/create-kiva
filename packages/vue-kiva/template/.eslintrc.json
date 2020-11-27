@@ -18,6 +18,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "vue/comment-directive": "off",
     "quotes": [
       "error",
       "double"

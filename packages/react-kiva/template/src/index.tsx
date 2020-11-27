@@ -1,4 +1,5 @@
-import "./global.less";
+import "config/global.less";
+import "kiva/kiva.less";
 
 import React from "react";
 import ReactDOM from "react-dom";

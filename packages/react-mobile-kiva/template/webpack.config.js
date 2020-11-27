@@ -117,7 +117,9 @@ module.exports = function(env, argv) {
             extensions: [".js", ".ts", ".jsx", ".tsx"],
             alias: {
                 "@": ph.join(__dirname, "src"),
-                "@@": ph.join(__dirname, "src/pages")
+                "@@": ph.join(__dirname, "src/pages"),
+                "config": ph.join(__dirname, "src/config"),
+                "kiva": ph.join(__dirname, "kiva")
             }
         },
         devServer: getDevServer,
@@ -250,7 +252,7 @@ module.exports = function(env, argv) {
             new HtmlWebpackPlugin({
                 hash: false,
                 filename: "index.html",
-                template: "./src/index.html",
+                template: "./src/config/index.html",
                 inject: true,
                 minify: getMinify
             })

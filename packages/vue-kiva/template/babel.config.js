@@ -22,7 +22,15 @@ module.exports = function(api) {
         ]
     ];
 
-    const plugins = [];
+    const plugins = [
+        [
+            "component",
+            {
+                "libraryName": "element-ui",
+                "styleLibraryName": "theme-chalk"
+            }
+        ]
+    ];
 
     return {comments: true, presets, plugins};
 };

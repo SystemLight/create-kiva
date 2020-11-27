@@ -1,12 +1,11 @@
 {
-  "name": "public-client",
-  "version": "0.1.9",
-  "description": "kiva is a React development template that integrates automatic routing, state management, remote request and other functions.",
+  "name": "react-mobile-kiva",
+  "version": "0.1.10",
+  "description": "Kiva's React mobile development template.",
   "private": true,
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production --progress",
-    "gen:pages": "node kiva/scripts/genPages.js"
+    "build": "webpack --mode production --progress"
   },
   "author": "SystemLight",
   "license": "MIT",
@@ -18,9 +17,7 @@
     "@types/lodash": "^4.14.162",
     "@types/qs": "^6.9.5",
     "@types/react-dom": "^16.9.8",
-    "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.6",
-    "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
     "autoprefixer": "^10.0.1",
@@ -52,6 +49,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
+    "antd-mobile": "^2.3.4",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",

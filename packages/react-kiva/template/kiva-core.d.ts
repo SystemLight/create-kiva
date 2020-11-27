@@ -5,6 +5,11 @@ declare module "*.svg" {
     export default dataURL;
 }
 
+declare module "*.module.less" {
+    const classes: {readonly [key: string]: string};
+    export default classes;
+}
+
 declare namespace React {
     export interface FunctionComponent<P = {}> {
         // 注入页处理中间属性声明类型

@@ -56,7 +56,7 @@ module.exports = function(env, argv) {
             alias: {
                 "@": ph.join(__dirname, "src"),
                 "@@": ph.join(__dirname, "src/pages"),
-                "config": ph.join(__dirname, "src/config.tsx"),
+                "config": ph.join(__dirname, "src/config"),
                 "kiva": ph.join(__dirname, "kiva")
             }
         },
@@ -100,7 +100,6 @@ module.exports = function(env, argv) {
                 },
                 {
                     test: /\.css$/,
-                    exclude: /node_modules/,
                     use: [
                         isProduction ? MiniCssExtractPlugin.loader : "vue-style-loader",
                         "css-loader",
@@ -109,7 +108,6 @@ module.exports = function(env, argv) {
                 },
                 {
                     test: /\.less$/,
-                    exclude: /node_modules/,
                     use: [
                         MiniCssExtractPlugin.loader,
                         "css-loader",
@@ -124,7 +122,6 @@ module.exports = function(env, argv) {
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg)$/,
-                    exclude: /node_modules/,
                     use: [
                         {
                             loader: "url-loader",
@@ -140,7 +137,6 @@ module.exports = function(env, argv) {
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf|otf)$/,
-                    exclude: /node_modules/,
                     use: [
                         {
                             loader: "file-loader",
@@ -175,7 +171,7 @@ module.exports = function(env, argv) {
             new HtmlWebpackPlugin({
                 hash: false,
                 filename: "index.html",
-                template: "./src/index.html",
+                template: "./src/config/index.html",
                 inject: true,
                 minify: getMinify
             })

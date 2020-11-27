@@ -43,7 +43,7 @@ export const store = soul.createStore();
  */
 export const qr = new QueryRoute([
     /* <AgreedRouting> */
-    {key: "admin",path: "/admin",component: dynamic(() => import(/* webpackChunkName: "admin" */"@@/admin")),exact: true},
+    {key: "admin",path: "/admin",component: dynamic(() => import(/* webpackChunkName: "admin" */"@@/admin")),subRoute: [{key: "trial",path: "/admin/trial",component: dynamic(() => import(/* webpackChunkName: "admin-trial" */"@@/admin/trial")),exact: true}],exact: false},
     /* </AgreedRouting> */
     {
         key: "notFound",

@@ -1,11 +1,12 @@
-import "./global.less";
+import "config/global.less";
 
 import Vue from "vue";
+import {Button} from "element-ui";
 
 import RootPage from "@@/index.vue";
 
-const vm = new Vue({
-    render: (createElement) => createElement(RootPage)
-});
+Vue.use(Button);
 
-vm.$mount("#root");
+new Vue({
+    render: (createElement) => createElement(RootPage)
+}).$mount("#root");

@@ -13,6 +13,14 @@
   <meta name="description" content="" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="bookmark" type="image/x-icon" href="/favicon.ico" />
+  <script src="/lib/fastclick.js"></script>
+  <script>
+      if ('addEventListener' in document) {
+          document.addEventListener('DOMContentLoaded', function() {
+              FastClick.attach(document.body);
+          }, false);
+      }
+  </script>
 </head>
 <body>
 <div id="root"></div>

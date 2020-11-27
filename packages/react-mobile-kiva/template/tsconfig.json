@@ -111,6 +111,12 @@
       ],
       "@@/*": [
         "src/pages/*"
+      ],
+      "config": [
+        "src/config"
+      ],
+      "kiva/*": [
+        "kiva/*"
       ]
     },
     /* List of root folders whose combined content represents the structure of the project at runtime. */

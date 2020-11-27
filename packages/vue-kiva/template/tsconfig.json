@@ -1,7 +1,7 @@
 {
   "include": [
     "src/**/*",
-    "custom.d.ts"
+    "kiva-core.d.ts"
   ],
   "exclude": [
     "node_modules",
@@ -113,7 +113,7 @@
         "src/pages/*"
       ],
       "config": [
-        "src/config.tsx"
+        "src/config"
       ],
       "kiva/*": [
         "kiva/*"

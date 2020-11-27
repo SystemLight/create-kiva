@@ -1,6 +1,6 @@
 <template>
     <div>
-        hello vue-kiva
+        <el-button>hello kiva</el-button>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 # react-kiva
 
-react-kiva是集成自动路由，状态管理，远程请求等功能的React开发模板
+react-kiva是集成自动路由，状态管理，远程请求等功能的React PC端开发模板
 
 ## DEMO
 
@@ -403,16 +403,16 @@ export default function() {
 
 ```javascript
 import React, {memo} from "react";
+import {useLocation} from "react-router-dom";
 import {Button, Alert} from "antd";
 import {FullscreenOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
-import {useLocation} from "react-router-dom";
 
 import {
     LightWorkbench, LightMenus, LightBreadcrumb,
     useUrlBreadcrumbItems, RouteView, R404Page
 } from "kiva";
 import {navs, qr} from "config";
-import {useTabs} from "@/models/common/utils";
+import {useTabs} from "@/models/common/hooks";
 
 const welcomeRoute = {
     key: "welcome",
