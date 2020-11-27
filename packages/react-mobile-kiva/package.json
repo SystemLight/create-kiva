@@ -1,0 +1,26 @@
+{
+  "name": "react-mobile-kiva",
+  "version": "1.2.0",
+  "keywords": [
+    "react",
+    "mobile",
+    "create-kiva",
+    "template"
+  ],
+  "description": "The base template for Create Kiva App.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/react-mobile-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}
