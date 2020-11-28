@@ -1,4 +1,4 @@
 export * from "./avatar";
 export * from "./condition";
 
-export const VERSION = "0.1.10";
+export const VERSION = "1.2.11";

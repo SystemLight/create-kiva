@@ -139,7 +139,7 @@ export function useSoulDispatch<S = any, Payload = any>(): ISoulDispatch<Payload
 export function delay(ms: number) {
     return new Promise((resolve) => {
         setTimeout(function() {
-            resolve();
+            resolve(null);
         }, ms);
     });
 }
