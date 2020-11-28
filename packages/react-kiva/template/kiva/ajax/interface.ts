@@ -17,6 +17,7 @@ export interface IUseRemoteStateOptions<S = any, SS = any> {
     setConfig?: string | AxiosRequestConfig | ((req: AxiosInstance, sState: SS, extra: any[]) => Promise<any>),
     setAfter?: (sData: any, sState: SS, extra: any[]) => false | any[],
     mapSetState?: (state: S) => void,
+    onError?: (e: any, stage: "set" | "get") => void
 }
 
 export type IUseRemoteStateResult<S, SS> = [

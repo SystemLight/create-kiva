@@ -2,19 +2,27 @@
 
 @import "./vars";
 
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+
 html {
   font-size: 37.5px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body, #root {
   font-size: 16/@px;
-}
-
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
 }
 
 div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
@@ -30,6 +38,14 @@ nav, output, ruby, section, summary, time, mark, audio, video {
   vertical-align: baseline;
 }
 
+a, button, input, textarea {
+  -webkit-tap-highlight-color: rgba(0, 0, 0,);
+}
+
+button {
+  -webkit-appearance: none;
+}
+
 ul, dl, ol {
   list-style: none;
 }
@@ -40,4 +56,39 @@ ul, dl, ol {
   height: 0;
   visibility: hidden;
   clear: both;
+}
+
+// 固定标题头部
+.fixed-navbar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .navbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 45px;
+    background: #38ADFF;
+    z-index: 100;
+  }
+
+  .scroll-area {
+    padding-top: 45px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &:after {
+      content: "";
+      display: block;
+      height: 80px;
+    }
+  }
 }

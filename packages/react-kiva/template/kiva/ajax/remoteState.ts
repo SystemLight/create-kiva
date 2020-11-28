@@ -1,8 +1,8 @@
-import {useCallback, useEffect, useRef} from "react";
+import {useCallback, useContext, useEffect, useRef} from "react";
 import get from "lodash/get";
 
 import {useImmerState} from "../useHooks";
-import {useAxios} from "./core";
+import {useAxios, Context} from "./core";
 import {IUseRemoteStateOptions, IUseRemoteStateResult} from "./interface";
 
 interface IState<S> {
@@ -19,7 +19,8 @@ export function useRemoteState<S = any, SS = any>(options: IUseRemoteStateOption
     if (typeof options === "string") {
         options = {getConfig: options};
     }
-    const {getConfig, setConfig, setAfter, auto, autoInitExtra, key, mapSetState} = options;
+    const {getConfig, setConfig, setAfter, auto, autoInitExtra, key, mapSetState, onError} = options;
+    const globalConfig = useContext(Context);
 
     const [state, setState] = useImmerState<IState<S>>({data: null, loading: !!auto});
     const loading = useRef(!!auto);
@@ -39,6 +40,10 @@ export function useRemoteState<S = any, SS = any>(options: IUseRemoteStateOption
             } else {
                 return req(getConfig);
             }
+        },
+        onError(e) {
+            setState({loading: false});
+            onError ? onError(e, "get") : (globalConfig.onError && globalConfig.onError(e));
         }
     });
 
@@ -67,6 +72,10 @@ export function useRemoteState<S = any, SS = any>(options: IUseRemoteStateOption
             } else {
                 return req({...setConfig, data: data});
             }
+        },
+        onError(e) {
+            setState({loading: false});
+            onError ? onError(e, "set") : (globalConfig.onError && globalConfig.onError(e));
         }
     });
 

@@ -112,6 +112,28 @@ module.exports = function(env, argv) {
         minifyCSS: true
     } : undefined;
 
+    // 生产环境提取CSS代码到文件中
+    const getCssUseLoader = function(less = false) {
+        const basic = [
+            "css-loader",
+            "postcss-loader"
+        ];
+        if (isProduction) {
+            basic.unshift(MiniCssExtractPlugin.loader);
+        } else {
+            basic.unshift("style-loader");
+        }
+        if (less) {
+            basic.push({
+                loader: "less-loader",
+                options: {
+                    lessOptions: {javascriptEnabled: true}
+                }
+            });
+        }
+        return basic;
+    };
+
     return {
         mode: mode,
         devtool: isProduction ? false : "cheap-module-source-map",
@@ -157,26 +179,12 @@ module.exports = function(env, argv) {
                 {
                     test: /\.css$/,
                     exclude: /node_modules/,
-                    use: [
-                        MiniCssExtractPlugin.loader,
-                        "css-loader",
-                        "postcss-loader"
-                    ]
+                    use: getCssUseLoader()
                 },
                 {
                     test: /\.less$/,
                     exclude: /node_modules/,
-                    use: [
-                        MiniCssExtractPlugin.loader,
-                        "css-loader",
-                        "postcss-loader",
-                        {
-                            loader: "less-loader",
-                            options: {
-                                lessOptions: {javascriptEnabled: true},
-                            }
-                        }
-                    ]
+                    use: getCssUseLoader(true)
                 },
                 {
                     issuer: /\.tsx?$/,

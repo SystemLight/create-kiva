@@ -20,22 +20,22 @@ const LightHeader = styled(Header)`
     background-color: #03A9F4;
     display: flex;
 
-    .header-left{
+    .kiva-header__left{
         flex-shrink:0;
 
-        .logo-section{
+        .kiva-logo-section{
             float: left;
             box-shadow: 0 0 4px rgba(0,0,0,.26), 0 -1px 0 rgba(0,0,0,.02);
             padding-right: 5px;
 
-            .logo{
+            .kiva-logo{
                 float: left;
                 width: 40px;
                 height: 40px;
                 margin: 5px 11px;
             }
 
-            .title{
+            .kiva-title{
                 vertical-align: baseline;
                 float: left;
                 font-size: 20px;
@@ -44,7 +44,7 @@ const LightHeader = styled(Header)`
             }
         }
 
-        .toggle-btn{
+        .kiva-toggle-btn{
             cursor: pointer;
             float: left;
             font-size: 20px;
@@ -54,7 +54,7 @@ const LightHeader = styled(Header)`
             text-align: center;
         }
 
-        .ant-breadcrumb{
+        & > .ant-breadcrumb{
             float: left;
             line-height: 50px;
             height: 50px;
@@ -73,11 +73,11 @@ const LightHeader = styled(Header)`
         }
     }
 
-    .header-right{
+    .kiva-header__right{
         flex-grow:1;
         color: #FFFFFF;
 
-        .ant-btn-group{
+        & > .ant-btn-group{
             float: right;
 
             .ant-btn.ant-btn-text{
@@ -93,7 +93,7 @@ const LightPanel = styled(Layout)`
   height: 100vh;
   padding-top: 50px;
 
-  .ant-layout-sider{
+  & > .ant-layout-sider{
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -117,21 +117,27 @@ const LightPanel = styled(Layout)`
 
   }
 
-  .ant-layout-content{
-    .ant-tabs{
+  .ant-layout-content.kiva-light{
+    background-color: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+
+    & > .ant-tabs{
       .ant-tabs-nav{
         margin: 0;
+
         .ant-tabs-nav-wrap{
           padding: 4px 6px;
           background-color: #EBF1F6;
         }
+
         .ant-tabs-tab{
           color: #909399;
         }
       }
     }
 
-    .main-panel{
+    .kiva-content{
       height: 100%;
       flex-grow: 1;
       padding: 5px;
@@ -210,19 +216,19 @@ export function LightWorkbench({logoUrl, breadcrumb, menus, children, topBar, ta
     return (
         <Layout>
             <LightHeader>
-                <div className={"header-left"}>
+                <div className={"kiva-header__left"}>
                     <Link to="/">
-                        <div className={"logo-section"}>
-                            <div className={"logo"} style={{background: `url("${logoUrl}")`}} />
-                            <div className={"title"}>后台管理系统</div>
+                        <div className={"kiva-logo-section"}>
+                            <div className={"kiva-logo"} style={{background: `url("${logoUrl}")`}} />
+                            <div className={"kiva-title"}>后台管理系统</div>
                         </div>
                     </Link>
-                    <div className={"toggle-btn"} onClick={() => setCollapsed(!collapsed)}>
+                    <div className={"kiva-toggle-btn"} onClick={() => setCollapsed(!collapsed)}>
                         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                     </div>
                     {breadcrumb}
                 </div>
-                <div className={"header-right"}>
+                <div className={"kiva-header__right"}>
                     {topBar}
                 </div>
             </LightHeader>
@@ -231,7 +237,7 @@ export function LightWorkbench({logoUrl, breadcrumb, menus, children, topBar, ta
                     {menus}
                 </Sider>
                 <Layout>
-                    <Content style={{backgroundColor: "#F0F0F0", display: "flex", flexDirection: "column"}}>
+                    <Content className="kiva-light">
                         <Tabs
                             type="editable-card" hideAdd={true} size={"small"} activeKey={pathname}
                             onChange={handleSwitchRoute} onEdit={handleEditTabs} destroyInactiveTabPane={false}
@@ -240,7 +246,7 @@ export function LightWorkbench({logoUrl, breadcrumb, menus, children, topBar, ta
                                 return (<TabPane key={key} tab={tabs[key].title} />);
                             })}
                         </Tabs>
-                        <div className={"main-panel"}>
+                        <div className="kiva-content">
                             {children}
                         </div>
                     </Content>

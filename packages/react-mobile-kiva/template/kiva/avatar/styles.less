@@ -1,0 +1,40 @@
+.kiva-avatar {
+  display: flex;
+  padding: 16px;
+  background-color: #FFFFFF;
+
+  .kiva-avatar__header {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .kiva-avatar__info {
+    flex: 1;
+    margin-left: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .kiva-avatar__info-wrap {
+      .kiva-avatar__title {
+        font-size: 21px;
+        color: #333333;
+        line-height: 30px;
+        margin-bottom: 6px;
+      }
+
+      .kiva-avatar__subtitle {
+        font-size: 13px;
+        color: #999999;
+      }
+    }
+  }
+}

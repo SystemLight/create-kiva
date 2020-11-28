@@ -6,7 +6,7 @@ import axios, {AxiosRequestConfig} from "axios";
 
 import {IRequestConfig, IRequestLocalConfig} from "./interface";
 
-const Context = React.createContext<IRequestConfig>({});
+export const Context = React.createContext<IRequestConfig>({});
 
 export function UseAxiosConfig({value, children}: PropsWithChildren<{value: IRequestConfig}>) {
     return React.createElement(Context.Provider, {value},

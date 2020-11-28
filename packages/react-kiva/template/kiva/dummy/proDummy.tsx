@@ -1,3 +1,5 @@
+import "./proDummy.style.less";
+
 import React, {useContext, useMemo, useState, useEffect, useRef} from "react";
 import {Card, Popover, Space, Table, Tooltip, Checkbox, Form} from "antd";
 import {TableComponents} from "rc-table/lib/interface";
@@ -224,7 +226,7 @@ export function ProDummy<RecordType extends object = any>(
         let newColumns = [...pureColumns];
 
         newColumns = newColumns.filter((v) => !v.isHide);
-        newColumns = newColumns.map(function(v, i) {
+        newColumns = newColumns.map(function (v, i) {
             if (v.isSort) {
                 v.sortDirections = ["descend", "ascend"];
                 v.sorter = (a: any, b: any) => sorter(a, b, v.dataIndex);
