@@ -7,7 +7,7 @@ import {
     IDispatch, INavData, R404Page, QueryRoute,
     createSubscription, soul, access, dynamic
 } from "kiva";
-import {useTab} from "@/models/common/hooks";
+import {useTab} from "@/models/common/utils";
 
 /*
     网络请求全局配置

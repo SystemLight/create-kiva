@@ -8,7 +8,7 @@ import {
     useUrlBreadcrumbItems, RouteView, R404Page
 } from "kiva";
 import {navs, qr} from "config";
-import {useTabs} from "@/models/common/hooks";
+import {useTabs} from "@/models/common/utils";
 
 const welcomeRoute = {
     key: "welcome",
@@ -37,7 +37,7 @@ export default function() {
             menus={<LightMenus navs={navs} />} logoUrl={"/light-logo.png"}
             tabs={tabs} onTabRemove={onTabRemove}
             breadcrumb={<LightBreadcrumb items={breadcrumbItems} />}
-            topBar={topBar}
+            topBar={topBar} title={"后台管理系统asdfasd"}
         >
             <RouteView before={welcomeRoute} routes={qr.getRoute("admin")} after={R404Page} />
         </LightWorkbench>

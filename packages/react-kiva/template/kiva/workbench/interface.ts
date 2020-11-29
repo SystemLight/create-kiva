@@ -7,6 +7,7 @@ export interface IWorkbenchProps {
     menus: ReactNode,
     footer?: ReactNode,
     logoUrl: string,
+    title?: string,
     tabs?: ITabs,
     onTabRemove?: (activeKey: string) => void
 }

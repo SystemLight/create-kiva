@@ -1,5 +1,6 @@
 import React from "react";
-import {Page} from "kiva/workbench";
+
+import {Page} from "kiva";
 
 export default function View() {
     return (<Page>hello kiva</Page>);

@@ -1,4 +1,4 @@
-const errorOverlayMiddleware = require("react-dev-utils/errorOverlayMiddleware");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -14,8 +14,11 @@ const ph = require("path");
     获取开发服务器配置信息
  */
 const getDevServer = {
+    compress: true,
     contentBase: "build",
     index: "index.html",
+    port: 8080,
+    overlay: true,
     open: false,
     openPage: "",
     inline: true,
@@ -25,6 +28,20 @@ const getDevServer = {
     disableHostCheck: false,
     writeToDisk: false,
     transportMode: "ws",
+    quiet: false,
+    noInfo: false,
+    stats: {
+        assets: false,
+        children: false,
+        chunks: false,
+        chunkModules: false,
+        colors: true,
+        entrypoints: false,
+        hash: false,
+        modules: false,
+        timings: false,
+        version: false
+    },
     proxy: {
         "/proxy": {
             target: "http://127.0.0.1",
@@ -114,6 +131,11 @@ module.exports = function(env, argv) {
 
         // FIX: webpack5 process is undefined
         const developmentPlugin = [
+            new FriendlyErrorsWebpackPlugin({
+                compilationSuccessInfo: {
+                    messages: ["Your application is running here: http://localhost:8080"]
+                }
+            }),
             new webpack.DefinePlugin({
                 "process.platform": JSON.stringify(process.platform),
                 "process.env.TERM": JSON.stringify(process.env.TERM),
@@ -185,6 +207,7 @@ module.exports = function(env, argv) {
 
     return {
         mode: mode,
+        stats: "errors-only",
         devtool: isProduction ? false : "cheap-module-source-map",
         context: __dirname,
         resolve: {

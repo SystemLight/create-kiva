@@ -11,6 +11,4 @@ const toIndex = {
     component: () => <Redirect to={"/admin"} />
 };
 
-export default function() {
-    return (<RouteView before={toIndex} routes={qr.routes} after={R404Page} />);
-}
+export default () => (<RouteView before={toIndex} routes={qr.routes} after={R404Page} />);

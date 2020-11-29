@@ -5,6 +5,8 @@ import {useHistory, useLocation} from "react-router-dom";
 import {IDispatch, ITabs} from "kiva";
 import {IStates} from "@/models";
 
+import types from "./types";
+
 /*
     注册动态Tabs到组件中
  */
@@ -23,7 +25,7 @@ export function useTabs(pathname: string): [ITabs, (key: string) => void] {
                 history.replace("/");
             }
         }
-        dispatch({type: "common/removeTabs", payload: key});
+        dispatch({type: types.COMMON_REMOVE_TABS, payload: key});
     };
 
     return [tabs, onTabRemove];
@@ -37,6 +39,6 @@ export function useTab(title: string) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({type: "common/addTabs", payload: {key: pathname, data: {title: title}}});
+        dispatch({type: types.COMMON_ADD_TABS, payload: {key: pathname, data: {title: title}}});
     }, []);
 }

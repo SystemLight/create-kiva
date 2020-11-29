@@ -42,3 +42,5 @@ export function createAccessModel<S = any>(state: S): ISoulModel<S> {
         state: state
     };
 }
+
+createAccessModel.namespace = "@@access";

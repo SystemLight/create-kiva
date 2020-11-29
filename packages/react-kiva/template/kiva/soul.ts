@@ -1,5 +1,5 @@
 import {useCallback} from "react";
-import {Action, applyMiddleware, combineReducers, createStore, ReducersMapObject} from "redux";
+import {createStore, applyMiddleware, combineReducers, compose, ReducersMapObject, Action} from "redux";
 import {useDispatch} from "react-redux";
 import thunk, {ThunkDispatch} from "redux-thunk";
 
@@ -105,7 +105,8 @@ class Soul {
     }
 
     createStore() {
-        return createStore(combineReducers(this.reducers), applyMiddleware(thunk));
+        const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+        return createStore(combineReducers(this.reducers), composeEnhancers(applyMiddleware(thunk)));
     }
 }
 

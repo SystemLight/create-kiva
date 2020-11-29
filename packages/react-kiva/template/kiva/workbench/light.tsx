@@ -200,7 +200,7 @@ export const LightMenus = memo(function({navs}: IMenusProps) {
 /*
     明亮系风格后台管理外层结构组件
  */
-export function LightWorkbench({logoUrl, breadcrumb, menus, children, topBar, tabs = {}, onTabRemove}: IWorkbenchProps) {
+export function LightWorkbench({logoUrl, title, breadcrumb, menus, children, topBar, tabs = {}, onTabRemove}: IWorkbenchProps) {
     const [collapsed, setCollapsed] = useState(false);
     const {pathname} = useLocation();
     const history = useHistory();
@@ -220,7 +220,7 @@ export function LightWorkbench({logoUrl, breadcrumb, menus, children, topBar, ta
                     <Link to="/">
                         <div className={"kiva-logo-section"}>
                             <div className={"kiva-logo"} style={{background: `url("${logoUrl}")`}} />
-                            <div className={"kiva-title"}>后台管理系统</div>
+                            <div className={"kiva-title"}>{title}</div>
                         </div>
                     </Link>
                     <div className={"kiva-toggle-btn"} onClick={() => setCollapsed(!collapsed)}>
