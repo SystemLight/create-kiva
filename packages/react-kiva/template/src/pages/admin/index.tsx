@@ -34,10 +34,10 @@ export default function() {
 
     return (
         <LightWorkbench
-            menus={<LightMenus navs={navs} />} logoUrl={"/light-logo.png"}
+            menus={<LightMenus navs={navs} />} logoUrl={"/media/light-logo.png"}
             tabs={tabs} onTabRemove={onTabRemove}
             breadcrumb={<LightBreadcrumb items={breadcrumbItems} />}
-            topBar={topBar} title={"后台管理系统asdfasd"}
+            topBar={topBar} title={"后台管理系统"}
         >
             <RouteView before={welcomeRoute} routes={qr.getRoute("admin")} after={R404Page} />
         </LightWorkbench>

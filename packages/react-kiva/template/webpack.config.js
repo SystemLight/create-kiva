@@ -14,7 +14,7 @@ const AgreedRoutePlugin = require("./kiva/scripts/agreed-route-plugin");
 const AgreedModelPlugin = require("./kiva/scripts/agreed-model-plugin");
 
 /*
-    获取开发服务器配置信息
+    获取开发服务器配置信息，如果希望局域网IP访问可以添加参数 host: "0.0.0.0"
  */
 const getDevServer = {
     compress: true,
@@ -72,7 +72,7 @@ const getDevServer = {
 };
 
 /*
-    手动分割代码块
+    切割代码块规则配置
  */
 const splitChunks = {
     chunks: "async",
@@ -125,6 +125,7 @@ module.exports = function(env, argv) {
         根据开发环境获取相对插件
      */
     const getPlugin = function() {
+        // 生产环境插件
         const productPlugin = [
             new MiniCssExtractPlugin({
                 filename: "css/[name].[contenthash:8].css",
@@ -132,6 +133,7 @@ module.exports = function(env, argv) {
             })
         ];
 
+        // 开发环境插件
         const developmentPlugin = [
             new FriendlyErrorsWebpackPlugin({
                 compilationSuccessInfo: {
@@ -148,6 +150,7 @@ module.exports = function(env, argv) {
             })
         ];
 
+        // 通用插件
         let basic = [
             new CleanWebpackPlugin(),
             new CopyWebpackPlugin({
