@@ -113,7 +113,7 @@
         "src/pages/*"
       ],
       "config": [
-        "src/config"
+        "config/index.tsx"
       ],
       "kiva/*": [
         "kiva/*"

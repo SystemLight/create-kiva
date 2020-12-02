@@ -167,14 +167,14 @@ module.exports = function(env, argv) {
             new HtmlWebpackPlugin({
                 hash: false,
                 filename: "index.html",
-                template: "./src/config/index.html",
+                template: "./src/pages/index.ejs",
                 inject: true,
                 minify: getMinify
             }),
             // 启用约定式路由，手动配置的路由将会被替换
             new AgreedRoutePlugin({
                 base: "", // 项目需要部署到CDN或者非根目录时，指定该项，使路由匹配增加前缀
-                filePath: "src/config/index.tsx", // 入口文件路径
+                filePath: "config/index.tsx", // 入口文件路径
                 viewsPath: "src/pages", // 约定式路由结构文件夹路径
                 enable: true,
                 ignore: []
@@ -234,7 +234,7 @@ module.exports = function(env, argv) {
             alias: {
                 "@": ph.join(__dirname, "src"),
                 "@@": ph.join(__dirname, "src/pages"),
-                "config": ph.join(__dirname, "src/config"),
+                "config": ph.join(__dirname, "config/index.tsx"),
                 "kiva": ph.join(__dirname, "kiva")
             }
         },

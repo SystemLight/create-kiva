@@ -63,7 +63,6 @@ dynamic.meta.use("access", function(component, args) {
 }).use("tab", function(component, args: string) {
     return {
         default() {
-            // eslint-disable-next-line react-hooks/rules-of-hooks
             useTab(args);
             return React.createElement(component);
         }

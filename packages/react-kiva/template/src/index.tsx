@@ -1,4 +1,4 @@
-import "config/global.less";
+import "./global.less";
 
 import React from "react";
 import ReactDOM from "react-dom";

@@ -10,7 +10,7 @@ module.exports = class AgreedModelPlugin {
 
             enable: true,
 
-            filePath: "src/config/index.tsx",
+            filePath: "config/index.tsx",
 
             modelsPath: "src/models"
 

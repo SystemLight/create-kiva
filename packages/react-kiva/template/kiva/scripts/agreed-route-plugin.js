@@ -15,7 +15,7 @@ module.exports = class AgreedRoutePlugin {
             base: "",
 
             // 入口文件路径
-            filePath: "src/config/index.tsx",
+            filePath: "config/index.tsx",
 
             // 约定式路由结构文件夹路径
             viewsPath: "src/pages",
