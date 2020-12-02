@@ -21,11 +21,13 @@ export interface INavData {
     title: string,
     path?: string,
     icon?: ReactNode,
+    meta?: any,
     items?: INavData[]
 }
 
 export interface IMenusProps {
-    navs: INavData[]
+    navs: INavData[],
+    prefix?: string,
 }
 
 export interface IBreadcrumbItem {

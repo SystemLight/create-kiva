@@ -20,22 +20,22 @@ const LightHeader = styled(Header)`
     background-color: #03A9F4;
     display: flex;
 
-    .kiva-header__left{
-        flex-shrink:0;
+    .kiva-header__left {
+        flex-shrink: 0;
 
-        .kiva-logo-section{
+        .kiva-logo-section {
             float: left;
-            box-shadow: 0 0 4px rgba(0,0,0,.26), 0 -1px 0 rgba(0,0,0,.02);
+            box-shadow: 0 0 4px rgba(0, 0, 0, .26), 0 -1px 0 rgba(0, 0, 0, .02);
             padding-right: 5px;
 
-            .kiva-logo{
+            .kiva-logo {
                 float: left;
                 width: 40px;
                 height: 40px;
                 margin: 5px 11px;
             }
 
-            .kiva-title{
+            .kiva-title {
                 vertical-align: baseline;
                 float: left;
                 font-size: 20px;
@@ -44,7 +44,7 @@ const LightHeader = styled(Header)`
             }
         }
 
-        .kiva-toggle-btn{
+        .kiva-toggle-btn {
             cursor: pointer;
             float: left;
             font-size: 20px;
@@ -54,33 +54,33 @@ const LightHeader = styled(Header)`
             text-align: center;
         }
 
-        & > .ant-breadcrumb{
+        & > .ant-breadcrumb {
             float: left;
             line-height: 50px;
             height: 50px;
 
-            & > span:first-child>.ant-breadcrumb-link{
-              font-weight: 600;
+            & > span:first-child > .ant-breadcrumb-link {
+                font-weight: 600;
             }
 
-            .ant-breadcrumb-link{
-              color: #FFFFFF;
+            .ant-breadcrumb-link {
+                color: #FFFFFF;
             }
 
-            .ant-breadcrumb-separator{
-              color: #FFFFFF;
+            .ant-breadcrumb-separator {
+                color: #FFFFFF;
             }
         }
     }
 
-    .kiva-header__right{
-        flex-grow:1;
+    .kiva-header__right {
+        flex-grow: 1;
         color: #FFFFFF;
 
-        & > .ant-btn-group{
+        & > .ant-btn-group {
             float: right;
 
-            .ant-btn.ant-btn-text{
+            .ant-btn.ant-btn-text {
                 height: 50px;
                 color: #FFFFFF;
                 padding: 0 10px;
@@ -90,73 +90,73 @@ const LightHeader = styled(Header)`
 `;
 
 const LightPanel = styled(Layout)`
-  height: 100vh;
-  padding-top: 50px;
+    height: 100vh;
+    padding-top: 50px;
 
-  & > .ant-layout-sider{
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: hsla(0,7%,9%,0.15);
-      border-radius: 3px;
-      -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
-    }
-
-    &::-webkit-scrollbar-track {
-      background: hsla(0, 0%, 100%, .15);
-      border-radius: 3px;
-      -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
-    }
-
-  }
-
-  .ant-layout-content.kiva-light{
-    background-color: #F0F0F0;
-    display: flex;
-    flex-direction: column;
-
-    & > .ant-tabs{
-      .ant-tabs-nav{
-        margin: 0;
-
-        .ant-tabs-nav-wrap{
-          padding: 4px 6px;
-          background-color: #EBF1F6;
-        }
-
-        .ant-tabs-tab{
-          color: #909399;
-        }
-      }
-    }
-
-    .kiva-content{
-      height: 100%;
-      flex-grow: 1;
-      padding: 5px;
-      background-color: #F0F0F0;
-      overflow: hidden;
-
-      & > .ant-card{
+    & > .ant-layout-sider {
         height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: hsla(0, 7%, 9%, 0.15);
+            border-radius: 3px;
+            -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
+        }
+
+        &::-webkit-scrollbar-track {
+            background: hsla(0, 0%, 100%, .15);
+            border-radius: 3px;
+            -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
+        }
+
+    }
+
+    .ant-layout-content.kiva-light {
+        background-color: #F0F0F0;
         display: flex;
         flex-direction: column;
 
-        & > .ant-card-body{
-          padding: 8px 12px;
-          overflow-y: auto;
-          flex-grow: 1;
+        & > .ant-tabs {
+            .ant-tabs-nav {
+                margin: 0;
+
+                .ant-tabs-nav-wrap {
+                    padding: 4px 6px;
+                    background-color: #EBF1F6;
+                }
+
+                .ant-tabs-tab {
+                    color: #909399;
+                }
+            }
         }
-      }
+
+        .kiva-content {
+            height: 100%;
+            flex-grow: 1;
+            padding: 5px;
+            background-color: #F0F0F0;
+            overflow: hidden;
+
+            & > .ant-card {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+
+                & > .ant-card-body {
+                    padding: 8px 12px;
+                    overflow-y: auto;
+                    flex-grow: 1;
+                }
+            }
+        }
     }
-  }
 `;
 
 export const LightBreadcrumb = memo(function({items}: IBreadcrumbProps) {
@@ -173,17 +173,17 @@ export const LightBreadcrumb = memo(function({items}: IBreadcrumbProps) {
     return oldProps.items === newProps.items;
 });
 
-export const LightMenus = memo(function({navs}: IMenusProps) {
+export const LightMenus = memo(function({prefix, navs}: IMenusProps) {
     const {pathname} = useLocation();
     const pathnameList = pathname.split("/");
 
     const items = useMemo(() => {
         return navs.map((v, i) => v.items ? (
             <Menu.SubMenu key={v.key} title={v.title} icon={v.icon}>
-                {v.items.map((c, ci) => getMenuItem(c, ci, `/${v.path || v.key}/${c.key}`))}
+                {v.items.map((c, ci) => getMenuItem(prefix, c, ci, `/${v.path || v.key}/${c.key}`))}
             </Menu.SubMenu>
-        ) : getMenuItem(v, i, `/${v.key}`));
-    }, [navs]);
+        ) : getMenuItem(prefix, v, i, `/${v.key}`));
+    }, [prefix, navs]);
 
     return (
         <Menu
@@ -194,13 +194,18 @@ export const LightMenus = memo(function({navs}: IMenusProps) {
         </Menu>
     );
 }, (oldProps, newProps) => {
-    return oldProps.navs === newProps.navs;
+    return oldProps.prefix === newProps.prefix && oldProps.navs === newProps.navs;
 });
 
 /*
     明亮系风格后台管理外层结构组件
  */
-export function LightWorkbench({logoUrl, title, breadcrumb, menus, children, topBar, tabs = {}, onTabRemove}: IWorkbenchProps) {
+export function LightWorkbench(
+    {
+        logoUrl, title, breadcrumb,
+        menus, children, topBar, tabs = {}, onTabRemove
+    }: IWorkbenchProps
+) {
     const [collapsed, setCollapsed] = useState(false);
     const {pathname} = useLocation();
     const history = useHistory();

@@ -30,26 +30,26 @@ const DarkLayout = styled(Layout)`
         box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
 
         .ant-layout-sider-children {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
 
-          & ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-          }
+            & ::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+            }
 
-          & ::-webkit-scrollbar-thumb {
-            background: hsla(0, 0%, 100%, .15);
-            border-radius: 3px;
-            -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
-          }
+            & ::-webkit-scrollbar-thumb {
+                background: hsla(0, 0%, 100%, .15);
+                border-radius: 3px;
+                -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
+            }
 
-          & ::-webkit-scrollbar-track {
-            background: hsla(0, 0%, 100%, .15);
-            border-radius: 3px;
-            -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
-          }
+            & ::-webkit-scrollbar-track {
+                background: hsla(0, 0%, 100%, .15);
+                border-radius: 3px;
+                -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
+            }
         }
     }
 
@@ -59,25 +59,25 @@ const DarkLayout = styled(Layout)`
         line-height: 48px;
 
         & > .header-wrap {
-          display: flex;
-          padding: 0 16px;
+            display: flex;
+            padding: 0 16px;
 
-          .header-placeholder {
-            flex: 1 1 0;
-          }
+            .header-placeholder {
+                flex: 1 1 0;
+            }
         }
     }
 
-  .site-layout-background {
-    background: #FFFFFF;
-  }
+    .site-layout-background {
+        background: #FFFFFF;
+    }
 `;
 
 const PseudoSider = styled.div`
     overflow: hidden;
     width: ${(props: {$siderWidth: number}) => props.$siderWidth}px;
     max-width: ${(props) => props.$siderWidth}px;
-    min-width:${(props) => props.$siderWidth}px;
+    min-width: ${(props) => props.$siderWidth}px;
     flex: 0 0 ${(props) => props.$siderWidth}px;
 `;
 
@@ -95,7 +95,7 @@ export const DarkBreadcrumb = memo(function({items}: IBreadcrumbProps) {
     return oldProps.items === newProps.items;
 });
 
-export const DarkMenus = memo(function({navs}: IMenusProps) {
+export const DarkMenus = memo(function({prefix, navs}: IMenusProps) {
     const {pathname} = useLocation();
     const pathnameList = pathname.split("/");
 
@@ -107,9 +107,9 @@ export const DarkMenus = memo(function({navs}: IMenusProps) {
             {
                 navs.map((v, i) => v.items ? (
                     <Menu.SubMenu key={v.key} title={v.title} icon={v.icon}>
-                        {v.items.map((c, ci) => getMenuItem(c, ci, `/${v.key}/${c.key}`))}
+                        {v.items.map((c, ci) => getMenuItem(prefix, c, ci, `/${v.key}/${c.key}`))}
                     </Menu.SubMenu>
-                ) : getMenuItem(v, i, `/${v.key}`))
+                ) : getMenuItem(prefix, v, i, `/${v.key}`))
             }
         </Menu>
     );
