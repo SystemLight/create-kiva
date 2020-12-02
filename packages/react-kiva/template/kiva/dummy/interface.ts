@@ -128,7 +128,6 @@ export interface ILiveDummyProps<RecordType> extends TableProps<RecordType> {
     onRowDoubleClick?: (record: RecordType) => void,
     onRowClick?: (record: RecordType) => void,
     onRowActivate?: (record: RecordType, method: string) => void,
-    onActionActivate?: (record: RecordType, method: string) => void,
     rowSelection?: TableRowSelection<RecordType>,
     renderOperator?: "dropdown" | "default",
 }
@@ -176,4 +175,15 @@ export interface IEditCellProps {
     onBlur: () => void,
     onChange: (value: any) => void,
     value: any
+}
+
+export interface IFlutterDummyProps<RecordType extends object = any> extends TableProps<RecordType> {
+    leftTitle?: ReactNode,
+    rightNode?: ReactNode,
+    actionBtn?: IActionBtn[],
+    initColumns: IDummyColumn<RecordType>[],
+    mapKey?: keyof RecordType,
+    onRowActivate?: (record: RecordType, method: string) => void,
+    rowSelection?: TableRowSelection<RecordType>,
+    renderOperator?: "dropdown" | "default",
 }

@@ -90,7 +90,7 @@ function upgradeColumn<RecordType = any>(v: IDummyColumn<RecordType>, i: number)
 
 export function LiveDummy<RecordType extends object = any>(
     {
-        initColumns, dataSource, mapKey, renderOperator, actionBtn, onActionActivate,
+        initColumns, dataSource, mapKey, renderOperator, actionBtn,
         onRowDoubleClick, onRowClick, onRowActivate, ...restProps
     }: ILiveDummyProps<RecordType>
 ) {

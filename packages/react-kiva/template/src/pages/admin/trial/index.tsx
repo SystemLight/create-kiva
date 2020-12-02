@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Page, ProDummy, IDummyColumn} from "kiva";
+import {Page, FlutterDummy, IDummyColumn} from "kiva";
 
 export const initColumns: IDummyColumn<any>[] = [
     {
@@ -57,7 +57,7 @@ export const initDataSource = [
 export default function View() {
     return (
         <Page>
-            <ProDummy initColumns={initColumns} dataSource={initDataSource} mapKey={"name"}/>
+            <FlutterDummy initColumns={initColumns} dataSource={initDataSource} mapKey={"name"}/>
         </Page>
     );
 }

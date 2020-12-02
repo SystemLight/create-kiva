@@ -17,7 +17,7 @@ import {
     IProDummyProps, IProDummyBodyRowProps, IProDummyBodyCellProps
 } from "./interface";
 
-const ProDummyWrap = styled.div`
+export const ProDummyWrap = styled.div`
     .ant-table.ant-table-bordered > .ant-table-title {
         border: none;
     }
@@ -114,7 +114,7 @@ function ColumnSetting({columns, onVisibleChange, onOrderChange}: IColumnSetting
     );
 }
 
-function Title({leftTitle, rightNode, ...restProps}: ITitleProps) {
+export function Title({leftTitle, rightNode, ...restProps}: ITitleProps) {
     return (
         <AntTableTopBar>
             <div className="title-item-left">{leftTitle}</div>
@@ -204,7 +204,7 @@ const components: TableComponents<any> = {
     }
 };
 
-const defaultProps: TableProps<any> = {
+export const defaultProps: TableProps<any> = {
     bordered: true, size: "small", scroll: {x: "max-content"},
     rowClassName(record, index?: number) {
         return index ? index % 2 === 0 ? "dummy-even-row" : "dummy-odd-row" : "dummy-even-row";
