@@ -18,54 +18,54 @@ import {
 } from "./interface";
 
 const ProDummyWrap = styled.div`
-  .ant-table.ant-table-bordered > .ant-table-title {
-    border: none;
-  }
-
-  thead.ant-table-thead {
-    tr {
-      th.ant-table-cell {
-        background-color: #426CC9;
-        color: #FFFFFF;
-        cursor: pointer;
-      }
-    }
-  }
-
-  tbody.ant-table-tbody {
-    tr.ant-table-row {
-      td > .line-number {
-        white-space: nowrap;
-        font-weight: 500;
-      }
+    .ant-table.ant-table-bordered > .ant-table-title {
+        border: none;
     }
 
-    tr.ant-table-row:hover {
-      td {
-        background-color: #A7BBEE;
-        cursor: pointer;
-      }
+    thead.ant-table-thead {
+        tr {
+            th.ant-table-cell {
+                background-color: #426CC9;
+                color: #FFFFFF;
+                cursor: pointer;
+            }
+        }
     }
 
-    tr.dummy-odd-row {
-      td {
-        background-color: #E0E3DA;
-      }
-    }
+    tbody.ant-table-tbody {
+        tr.ant-table-row {
+            td > .line-number {
+                white-space: nowrap;
+                font-weight: 500;
+            }
+        }
 
-    tr.dummy-even-row {
-      td {
-        background-color: #FFFFFF;
-      }
-    }
+        tr.ant-table-row:hover {
+            td {
+                background-color: #A7BBEE;
+                cursor: pointer;
+            }
+        }
 
-    tr.ant-table-row.ant-table-row-selected {
-      td {
-        background-color: #8EC0E4;
-        color: #FFFFFF;
-      }
+        tr.dummy-odd-row {
+            td {
+                background-color: #E0E3DA;
+            }
+        }
+
+        tr.dummy-even-row {
+            td {
+                background-color: #FFFFFF;
+            }
+        }
+
+        tr.ant-table-row.ant-table-row-selected {
+            td {
+                background-color: #8EC0E4;
+                color: #FFFFFF;
+            }
+        }
     }
-  }
 `;
 
 function ColumnSetting({columns, onVisibleChange, onOrderChange}: IColumnSettingProps) {
@@ -141,7 +141,12 @@ function BodyRow(props: IProDummyBodyRowProps) {
     );
 }
 
-function BodyCell({editable, children, dataIndex, record, onSave, onSetColWidth, editComponent, ...restProps}: IProDummyBodyCellProps) {
+function BodyCell(
+    {
+        editable, children, dataIndex, record, onSave,
+        onSetColWidth, editComponent, ...restProps
+    }: IProDummyBodyCellProps
+) {
     const form = useContext(EditableContext);
     const [editing, setEditing] = useState(false);
     const editRef = useRef<any>(null);
@@ -208,13 +213,6 @@ const defaultProps: TableProps<any> = {
     components: components
 };
 
-/*
-    ProDummy表格：
-        1. 列排序
-        2. 行号添加和key值映射
-        3. 内部触发列隐藏功能，列排序功能
-        4. 表格内容直接编辑，自定义编辑控件
- */
 export function ProDummy<RecordType extends object = any>(
     {
         leftTitle, rightNode, initColumns, dataSource,
@@ -224,9 +222,10 @@ export function ProDummy<RecordType extends object = any>(
     const [pureColumns, setColumns] = useState<IDummyColumn<RecordType>[]>(initColumns);
     const columns = useMemo<IDummyColumn<RecordType>[]>(() => {
         let newColumns = [...pureColumns];
+        const handleSave = onSave || (() => null);
 
         newColumns = newColumns.filter((v) => !v.isHide);
-        newColumns = newColumns.map(function (v, i) {
+        newColumns = newColumns.map(function(v, i) {
             if (v.isSort) {
                 v.sortDirections = ["descend", "ascend"];
                 v.sorter = (a: any, b: any) => sorter(a, b, v.dataIndex);
@@ -241,7 +240,7 @@ export function ProDummy<RecordType extends object = any>(
                 dataIndex: v.dataIndex,
                 index: i,
                 record: record,
-                onSave: onSave,
+                onSave: handleSave,
                 editComponent: v.editComponent || InputCell,
                 onSetColWidth(dataIndex: string, width: number) {
                     const index = pureColumns.findIndex((v) => v.dataIndex === dataIndex);

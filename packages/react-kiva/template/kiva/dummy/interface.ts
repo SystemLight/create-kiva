@@ -163,7 +163,7 @@ export interface IProDummyProps<RecordType extends object = any> extends TablePr
     leftTitle?: ReactNode,
     rightNode?: ReactNode,
     initColumns: IDummyColumn<RecordType>[],
-    onSave: (record: RecordType) => void,
+    onSave?: (record: RecordType) => void,
     mapKey?: keyof RecordType,
 }
 

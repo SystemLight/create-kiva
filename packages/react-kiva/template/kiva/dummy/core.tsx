@@ -57,7 +57,6 @@ const defaultProps: TableProps<any> = {
     }
 };
 
-// 最基础的表格控件，在antd-table基础上设置默认样式和属性
 export function Dummy<RecordType extends object = any>(props: TableProps<RecordType>) {
     return (
         <DummyWrap>

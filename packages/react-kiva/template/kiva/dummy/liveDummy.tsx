@@ -88,15 +88,6 @@ function upgradeColumn<RecordType = any>(v: IDummyColumn<RecordType>, i: number)
     return v;
 }
 
-/*
-    交互表格：
-        1. 列排序
-        2. 行号添加和key值映射
-        3. 外部触发列隐藏功能
-        4. 渲染操作列，提供两种渲染模式，操作列事件回传
-        5. 列头拖拽排序
-        6. 单行点击，单行双击事件反馈
- */
 export function LiveDummy<RecordType extends object = any>(
     {
         initColumns, dataSource, mapKey, renderOperator, actionBtn, onActionActivate,
