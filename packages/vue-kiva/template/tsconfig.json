@@ -9,7 +9,6 @@
   ],
   "compilerOptions": {
     /* Basic Options */
-
     /* Enable incremental compilation */
     // "incremental": true,
 
@@ -113,7 +112,8 @@
         "src/pages/*"
       ],
       "config": [
-        "src/config"
+        "config",
+        "config/*"
       ],
       "kiva/*": [
         "kiva/*"

@@ -10,8 +10,6 @@ module.exports = class AgreedModelPlugin {
 
             enable: true,
 
-            filePath: "config/index.tsx",
-
             modelsPath: "src/models"
 
         }, options);
@@ -42,15 +40,8 @@ module.exports = class AgreedModelPlugin {
             const note = "// 注意当前文件启用约定模型，请不要在这里编码任何内容\n";
             fs.writeFileSync(
                 this.modelsPath + "/index.ts",
-                `${note}${importResult}\nexport interface IStates {\n${interfaceResult}\n}\n${exportResult}`
+                `import {soul} from "kiva";\n\n${note}${importResult}\nexport interface IStates {\n${interfaceResult}\n}\n${exportResult}\n${registerResult}\nexport const store = soul.createStore();\n`
             );
-
-            const content = fs.readFileSync(this.filePath).toString();
-            const result = content.replace(
-                /\/\* <AgreedModel> \*\/(.*?)\/\* <\/AgreedModel> \*\//s,
-                `/* <AgreedModel> */\n${registerResult}/* </AgreedModel> */`
-            );
-            fs.writeFileSync(this.filePath, result);
         });
     }
 };

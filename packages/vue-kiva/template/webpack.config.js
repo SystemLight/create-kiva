@@ -1,9 +1,11 @@
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Mock = require("mockjs");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 const ph = require("path");
@@ -12,8 +14,11 @@ const ph = require("path");
     获取开发服务器配置信息
  */
 const getDevServer = {
+    compress: true,
     contentBase: "build",
     index: "index.html",
+    port: 8080,
+    overlay: true,
     open: false,
     openPage: "",
     inline: true,
@@ -22,11 +27,41 @@ const getDevServer = {
     hotOnly: false,
     disableHostCheck: false,
     writeToDisk: false,
+    transportMode: "ws",
+    quiet: false,
+    noInfo: false,
+    stats: {
+        assets: false,
+        children: false,
+        chunks: false,
+        chunkModules: false,
+        colors: true,
+        entrypoints: false,
+        hash: false,
+        modules: false,
+        timings: false,
+        version: false
+    },
     proxy: {
         "/proxy": {
             target: "http://127.0.0.1",
             pathRewrite: {"^/proxy": ""},
             changeOrigin: true
+        }
+    },
+    before(app) {
+        try {
+            const mockData = require("./mocks.json");
+            app.get(/\/mock(.*)$/, function(req, res) {
+                const {"0": url} = req.params;
+                const data = Mock.mock(mockData[url]);
+                if (data) {
+                    res.json(data);
+                } else {
+                    res.status(404).json({});
+                }
+            });
+        } catch (e) {
         }
     }
 };
@@ -92,7 +127,13 @@ module.exports = function(env, argv) {
             })
         ];
 
-        const developmentPlugin = [];
+        const developmentPlugin = [
+            new FriendlyErrorsWebpackPlugin({
+                compilationSuccessInfo: {
+                    messages: ["Your application is running here: http://localhost:8080"]
+                }
+            })
+        ];
 
         let basic = [
             new VueLoaderPlugin(),
@@ -111,7 +152,7 @@ module.exports = function(env, argv) {
             new HtmlWebpackPlugin({
                 hash: false,
                 filename: "index.html",
-                template: "./src/config/index.html",
+                template: "./src/pages/index.ejs",
                 inject: true,
                 minify: getMinify
             })
@@ -158,13 +199,15 @@ module.exports = function(env, argv) {
 
     return {
         mode: mode,
+        stats: "errors-only",
         devtool: isProduction ? false : "cheap-module-source-map",
+        context: __dirname,
         resolve: {
-            extensions: [".js", ".ts", "vue"],
+            extensions: [".js", ".ts", ".vue"],
             alias: {
                 "@": ph.join(__dirname, "src"),
                 "@@": ph.join(__dirname, "src/pages"),
-                "config": ph.join(__dirname, "src/config"),
+                "config": ph.join(__dirname, "config"),
                 "kiva": ph.join(__dirname, "kiva")
             }
         },
@@ -177,7 +220,7 @@ module.exports = function(env, argv) {
             maxAssetSize: 3 * 1024 * 1024,
             maxEntrypointSize: 3 * 1024 * 1024
         },
-        entry: "./src/index.ts",
+        entry: "./src/app.ts",
         output: {
             filename: isProduction ? "js/[name].[chunkhash:8].js" : "js/[name].[fullhash:8].js",
             path: ph.resolve(__dirname, "build"),
@@ -193,7 +236,15 @@ module.exports = function(env, argv) {
                 {
                     test: /\.ts$/,
                     exclude: /node_modules/,
-                    use: ["babel-loader", "ts-loader"]
+                    use: [
+                        "babel-loader",
+                        {
+                            loader: "ts-loader",
+                            options: {
+                                appendTsSuffixTo: [/\.vue$/]
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.vue$/,

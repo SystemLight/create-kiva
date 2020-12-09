@@ -5,8 +5,7 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production --progress",
-    "update": "node kiva/scripts/updatePackage.js"
+    "build": "webpack --mode production --progress"
   },
   "author": "SystemLight",
   "license": "MIT",
@@ -27,6 +26,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-vue": "^7.1.0",
     "file-loader": "^6.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^4.5.0",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",

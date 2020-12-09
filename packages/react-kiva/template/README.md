@@ -2,7 +2,7 @@
 
 react-kiva是集成自动路由，状态管理，远程请求等功能的React PC端开发模板
 
-## DEMO
+## 举例效果
 
 ![主页](./public/demo/主页.png)
 
@@ -81,10 +81,10 @@ npm run start
 
 - 举例：
 
-这个语法看上去是这样的，通过缩进对其的方式来表示目录结构，因为目录结构就是看上去的这个样子，
-之后通过npm run gen:pages，项目自动读取该配置文件，并在src/views生成这个看上去的目录结构。
+这个语法看上去是这样的，通过缩进对其的方式来表示目录结构，因为目录结构就是看上去的这个样子， 之后通过npm run gen:pages，项目自动读取该配置文件，并在src/views生成这个看上去的目录结构。
 
 注意：
+
 1. npm run gen:views 并不会覆盖或者写入已经存在的目录或者文件，会主动跳过
 2. pages.tree配置文件对缩进对齐并不是很敏感，只要是看上去那样就可以，所以注意缩进空格控制
 
@@ -95,8 +95,7 @@ example
     my
 ```
 
-3. 优化路由生成，如果无需做路由嵌套时请尽量避免文件夹路径嵌套，对于上述路由页面生成优化写法应该是下列方式，
-让他看起来更像JAVA的package，文件夹嵌套的写法更适合路由外包裹额外组件的场景。
+3. 优化路由生成，如果无需做路由嵌套时请尽量避免文件夹路径嵌套，对于上述路由页面生成优化写法应该是下列方式， 让他看起来更像JAVA的package，文件夹嵌套的写法更适合路由外包裹额外组件的场景。
 
 ```
 example.[users]
@@ -106,11 +105,11 @@ example.my
 
 #### 2. 自动路由生成
 
-pages.tree在src/pages下生成了默认文件路径并附带index.tsx文件，这些文件可以通过路由访问到，
-文件夹命名规则，[dirName]会被转换为可选路由，如example/[user]-->/example/:user，.会被转换成/，
-如example/foo.bar-->/example/foo/bar
+pages.tree在src/pages下生成了默认文件路径并附带index.tsx文件，这些文件可以通过路由访问到， 文件夹命名规则，[dirName]会被转换为可选路由，如example/[user]-->/example/:
+user，.会被转换成/， 如example/foo.bar-->/example/foo/bar
 
 排除规则：
+
 1. utils，components，models这些命名文件夹不会被扫描
 2. 可以在webpack.config.js中配置自动路由忽略名称的参数
 
@@ -163,10 +162,8 @@ const commonModel: ISoulModel<ICommonState> = {
 
 #### 6. 局部状态管理
 
-某些组件状态共享是存在范围的，并不需要扩大到全局，这时使用基于redux的soul状态模型就显得鸡肋了，
-通过kiva提供的model高阶组件来将数据共享缩小，实际上是结合context和useReducer进行改写，注意
-redux保存的状态不会在组件销毁时被销毁，soul提供dispatch("clear")方法用于销毁$开头命名的状态，
-model是组件级别的状态会自动同组件一同销毁状态数据，数据状态模型与soul保持几乎保持一致。
+某些组件状态共享是存在范围的，并不需要扩大到全局，这时使用基于redux的soul状态模型就显得鸡肋了， 通过kiva提供的model高阶组件来将数据共享缩小，实际上是结合context和useReducer进行改写，注意
+redux保存的状态不会在组件销毁时被销毁，soul提供dispatch("clear")方法用于销毁$开头命名的状态， model是组件级别的状态会自动同组件一同销毁状态数据，数据状态模型与soul保持几乎保持一致。
 
 ```javascript
 import React from "react";
@@ -212,9 +209,9 @@ export default model({
     useTab("我的");
     return (
         <div>
-            <Hello1 />
-            <Hello2 />
-            <Hello3 />
+            <Hello1/>
+            <Hello2/>
+            <Hello3/>
         </div>
     );
 });
@@ -250,7 +247,7 @@ export default access("login")(
             <div>
                 <RouteView routes={qr.getRoute("example.other")} after={
                     () => <h1 style={{textAlign: "center"}}>访问组件：src\pages\example.other\index.tsx</h1>
-                } />
+                }/>
             </div>
         );
     }
@@ -266,7 +263,7 @@ export default function View() {
         <div>
             <RouteView routes={qr.getRoute("example.other")} after={
                 () => <h1 style={{textAlign: "center"}}>访问组件：src\pages\example.other\index.tsx</h1>
-            } />
+            }/>
         </div>
     );
 }
@@ -331,8 +328,7 @@ return (<div>he{state?.title}o</div>);
 
 #### 1. 热更新HMR启用
 
-webpack.config.js中启用hot参数index.js中监听模块变化，并执行替换逻辑
-react-hot-loader提供热更新支持且无需再手写任何逻辑，默认项目不使用，需自行配置该功能
+webpack.config.js中启用hot参数index.js中监听模块变化，并执行替换逻辑 react-hot-loader提供热更新支持且无需再手写任何逻辑，默认项目不使用，需自行配置该功能
 
 ```
 if (module.hot) { //告诉 webpack 接受热替换的模块
@@ -383,13 +379,19 @@ export default function() {
     const breadcrumbItems = useUrlBreadcrumbItems(pathname, navs);
     return (
         <DarkWorkbench
-            menus={<DarkMenus navs={navs} />} logoUrl={"/dark-logo.png"}
-            breadcrumb={<DarkBreadcrumb items={breadcrumbItems} />}
+            menus={<DarkMenus navs={navs}/>} logoUrl={"/dark-logo.png"}
+            breadcrumb={<DarkBreadcrumb items={breadcrumbItems}/>}
             topBar={
                 <Button.Group>
-                    <Button type={"text"}><FullscreenOutlined style={{fontSize: 16}} /></Button>
-                    <Button type={"text"}><FullscreenOutlined style={{fontSize: 16}} /></Button>
-                    <Button type={"text"}><FullscreenOutlined style={{fontSize: 16}} /></Button>
+                    <Button type={"text"}>
+                        <FullscreenOutlined style={{fontSize: 16}}/>
+                    </Button>
+                    <Button type={"text"}>
+                        <FullscreenOutlined style={{fontSize: 16}}/>
+                    </Button>
+                    <Button type={"text"}>
+                        <FullscreenOutlined style={{fontSize: 16}}/>
+                    </Button>
                 </Button.Group>
             }
         >
@@ -419,7 +421,9 @@ const welcomeRoute = {
     path: "/admin",
     exact: true,
     component: memo(() => (
-        <div style={{padding: 15}}><Alert message="后台管理" description="欢迎使用后台管理系统 !" type="info" /></div>
+        <div style={{padding: 15}}>
+            <Alert message="后台管理" description="欢迎使用后台管理系统 !" type="info"/>
+        </div>
     ), () => true)
 };
 
@@ -430,20 +434,26 @@ export default function() {
 
     const topBar = (
         <Button.Group>
-            <Button type={"text"} style={{fontSize: 20, border: 0}}><UserOutlined /></Button>
-            <Button type={"text"} style={{fontSize: 20, border: 0}}><SettingOutlined /></Button>
-            <Button type={"text"} style={{fontSize: 20, border: 0}}><FullscreenOutlined /></Button>
+            <Button type={"text"} style={{fontSize: 20, border: 0}}>
+                <UserOutlined/>
+            </Button>
+            <Button type={"text"} style={{fontSize: 20, border: 0}}>
+                <SettingOutlined/>
+            </Button>
+            <Button type={"text"} style={{fontSize: 20, border: 0}}>
+                <FullscreenOutlined/>
+            </Button>
         </Button.Group>
     );
 
     return (
         <LightWorkbench
-            menus={<LightMenus navs={navs} />} logoUrl={"/light-logo.png"}
+            menus={<LightMenus navs={navs}/>} logoUrl={"/light-logo.png"}
             tabs={tabs} onTabRemove={onTabRemove}
-            breadcrumb={<LightBreadcrumb items={breadcrumbItems} />}
+            breadcrumb={<LightBreadcrumb items={breadcrumbItems}/>}
             topBar={topBar}
         >
-            <RouteView before={welcomeRoute} routes={qr.getRoute("admin")} after={R404Page} />
+            <RouteView before={welcomeRoute} routes={qr.getRoute("admin")} after={R404Page}/>
         </LightWorkbench>
     );
 }
@@ -530,9 +540,14 @@ export default function View() {
 
     return (
         <Page>
-            <ProDummy initColumns={initColumns} dataSource={dataSource} mapKey={"name"} onSave={handleSave} />
-        </Page>
-    );
+            <ProDummy initColumns = {initColumns}
+    dataSource = {dataSource}
+    mapKey = {"name"}
+    onSave = {handleSave}
+    />
+    < /Page>
+)
+    ;
 }
 
 View.title = View.tab = "测试组件";

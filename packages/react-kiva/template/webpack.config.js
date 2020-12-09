@@ -247,9 +247,9 @@ module.exports = function(env, argv) {
             maxAssetSize: 3 * 1024 * 1024,
             maxEntrypointSize: 3 * 1024 * 1024
         },
-        entry: isProduction ? "./src/index.tsx" : [
+        entry: isProduction ? "./src/app.tsx" : [
             require.resolve("react-dev-utils/webpackHotDevClient"),
-            "./src/index.tsx"
+            "./src/app.tsx"
         ],
         output: {
             filename: isProduction ? "js/[name].[chunkhash:8].js" : "js/[name].[fullhash:8].js",

@@ -8,8 +8,9 @@ import {ConfigProvider} from "antd";
 import zhCN from "antd/es/locale/zh_CN";
 
 import {UseAxiosConfig} from "kiva";
-import {axiosGlobalConfig, store, Subscription} from "config";
+import {axiosGlobalConfig, Subscription} from "config";
 import RootPage from "@@/index";
+import {store} from "@/models";
 
 function App() {
     return (

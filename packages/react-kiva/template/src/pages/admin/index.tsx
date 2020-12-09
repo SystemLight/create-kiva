@@ -1,14 +1,14 @@
 import React, {memo} from "react";
 import {useLocation} from "react-router-dom";
 import {Button, Alert} from "antd";
-import {FullscreenOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
+import {CrownOutlined, FullscreenOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
 
 import {
     LightWorkbench, LightMenus, LightBreadcrumb,
-    useUrlBreadcrumbItems, RouteView, R404Page
+    useUrlBreadcrumbItems, RouteView, R404Page, INavData
 } from "kiva";
-import {navs, qr} from "config";
-import {useTabs} from "@/models/common/utils";
+import {qr} from "config";
+import {useTabs} from "@/utils/tabs";
 
 const welcomeRoute = {
     key: "welcome",
@@ -18,6 +18,20 @@ const welcomeRoute = {
         <div style={{padding: 15}}><Alert message="后台管理" description="欢迎使用后台管理系统 !" type="info" /></div>
     ), () => true)
 };
+
+const navs: INavData[] = [
+    {
+        key: "admin",
+        title: "管理",
+        icon: <CrownOutlined />,
+        items: [
+            {
+                key: "trial",
+                title: "测试组件"
+            }
+        ]
+    }
+];
 
 export default function() {
     const {pathname} = useLocation();

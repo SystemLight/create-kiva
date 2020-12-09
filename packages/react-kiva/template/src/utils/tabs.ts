@@ -3,9 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory, useLocation} from "react-router-dom";
 
 import {IDispatch, ITabs} from "kiva";
+import types from "@/models/common/types";
 import {IStates} from "@/models";
-
-import types from "./types";
 
 /*
     注册动态Tabs到组件中
