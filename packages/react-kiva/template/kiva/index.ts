@@ -18,4 +18,4 @@ export * from "./token";
 export * from "./useHooks";
 export * from "./utils";
 
-export const VERSION = "1.2.11";
+export const VERSION = "1.2.12";
