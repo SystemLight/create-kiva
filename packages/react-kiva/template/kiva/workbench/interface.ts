@@ -9,7 +9,8 @@ export interface IWorkbenchProps {
     logoUrl: string,
     title?: string,
     tabs?: ITabs,
-    onTabRemove?: (activeKey: string) => void
+    onTabRemove?: (activeKey: string) => void,
+    onSetting?: () => void,
 }
 
 export interface ITabs {

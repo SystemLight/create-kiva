@@ -1,7 +1,7 @@
 import React, {memo, useMemo, useState} from "react";
 import {Layout, Breadcrumb, Menu, Tabs} from "antd";
 import {TabsProps} from "antd/es/tabs";
-import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import {MenuFoldOutlined, MenuUnfoldOutlined, SettingOutlined} from "@ant-design/icons";
 import {useLocation, useHistory, Link} from "react-router-dom";
 import styled from "styled-components";
 
@@ -95,26 +95,49 @@ const LightPanel = styled(Layout)`
 
     & > .ant-layout-sider {
         height: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
 
-        &::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+        & > .ant-layout-sider-children {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 50px;
+
+            & .kiva-sider__setting {
+                background-color: #FFFFFF;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                cursor: pointer;
+                font-size: 25px;
+                border-top: 1px solid #EFEFEF;
+                color: #333333;
+            }
+
+            & > .kiva-sider__menu {
+                height: auto;
+            }
+
+            &::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: hsla(0, 7%, 9%, 0.15);
+                border-radius: 3px;
+                -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
+            }
+
+            &::-webkit-scrollbar-track {
+                background: hsla(0, 0%, 100%, .15);
+                border-radius: 3px;
+                -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
+            }
         }
-
-        &::-webkit-scrollbar-thumb {
-            background: hsla(0, 7%, 9%, 0.15);
-            border-radius: 3px;
-            -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
-        }
-
-        &::-webkit-scrollbar-track {
-            background: hsla(0, 0%, 100%, .15);
-            border-radius: 3px;
-            -webkit-box-shadow: inset 0 0 5px rgba(37, 37, 37, .05);
-        }
-
     }
 
     .ant-layout-content.kiva-light {
@@ -202,7 +225,7 @@ export const LightMenus = memo(function({prefix, navs}: IMenusProps) {
  */
 export function LightWorkbench(
     {
-        logoUrl, title, breadcrumb,
+        logoUrl, title, breadcrumb, onSetting,
         menus, children, topBar, tabs = {}, onTabRemove
     }: IWorkbenchProps
 ) {
@@ -238,8 +261,11 @@ export function LightWorkbench(
                 </div>
             </LightHeader>
             <LightPanel>
-                <Sider width={200} theme={"light"} collapsed={collapsed}>
-                    {menus}
+                <Sider style={{position: "relative"}} width={200} theme={"light"} collapsed={collapsed}>
+                    <div className={"kiva-sider__menu"}>{menus}</div>
+                    {onSetting && (
+                        <div className={"kiva-sider__setting"} onClick={onSetting}><SettingOutlined /></div>
+                    )}
                 </Sider>
                 <Layout>
                     <Content className="kiva-light">
