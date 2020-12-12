@@ -39,9 +39,18 @@ export function useLeavePrompt() {
     };
 }
 
-/*
-    用于合并 props 的 value 和自己的 value 的 hooks。
-    来源：https://github.com/chenshuai2144/merge-value-hooks
+/**
+ * 用于合并 props 的 value 和自己的 value 的 hooks。
+ * 来源：https://github.com/chenshuai2144/merge-value-hooks
+ * @template T
+ * @template R
+ * @param {R | function():T} defaultStateValue - 默认状态值
+ * @param {Object} option - 状态控制参数
+ * @param {T | function():T} option.defaultValue - 默认状态值
+ * @param {T} option.value - 状态值
+ * @param {function(value: T, prevValue: T):void} option.onChange - 数据改变触发函数
+ * @param {function(value:T):T} option.postState - 数据处理过滤函数
+ * @return {[R,function(value:T):void]}
  */
 export function useMergeState<T, R = T>(
     defaultStateValue: T | (() => T),
