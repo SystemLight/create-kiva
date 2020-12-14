@@ -3,7 +3,7 @@ import {Table} from "antd";
 import {TableProps} from "antd/lib/table/Table";
 import styled from "styled-components";
 
-const DummyWrap = styled.div`
+export const DummyWrap = styled.div`
   thead.ant-table-thead {
     tr {
       th.ant-table-cell {

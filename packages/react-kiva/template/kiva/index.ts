@@ -2,6 +2,7 @@ export * from "./access";
 export * from "./ajax";
 export * from "./bubble";
 export * from "./condition";
+export * from "./crudTable";
 export * from "./dragModal";
 export * from "./dummy";
 export * from "./errorBoundary";

@@ -6,14 +6,14 @@ import {AppstoreTwoTone, CopyOutlined, FullscreenExitOutlined, FullscreenOutline
 import styled from "styled-components";
 
 const ButtonGroup = styled(Button.Group)`
-  .ant-btn{
-    background-color: #FFFFFF;
-    color: #6E7783;
-  }
+    .ant-btn {
+        background-color: #FFFFFF;
+        color: #6E7783;
+    }
 
-  .anticon{
-    font-size: 20px;
-  }
+    .anticon {
+        font-size: 20px;
+    }
 `;
 
 /*
@@ -24,11 +24,11 @@ export function Page({title, extra, ...restProps}: CardProps) {
     const _extra = (
         <ButtonGroup>
             <Tooltip placement={"bottom"} title={"页面分身"}>
-                <Button type={"text"} onClick={() => window.open(location.href)}>
+                <Button size={"small"} type={"text"} onClick={() => window.open(location.href)}>
                     <CopyOutlined />
                 </Button>
             </Tooltip>
-            <Button type={"text"} onClick={() => setFullScreen(!fullScreen)}>
+            <Button size={"small"} type={"text"} onClick={() => setFullScreen(!fullScreen)}>
                 {fullScreen ?
                     <FullscreenExitOutlined /> :
                     <FullscreenOutlined />
@@ -39,7 +39,7 @@ export function Page({title, extra, ...restProps}: CardProps) {
     );
     return (
         <Card
-            extra={_extra}
+            extra={_extra} size={"small"}
             title={<><AppstoreTwoTone style={{fontSize: 20, verticalAlign: "middle", marginRight: 8}} />{title}</>}
             style={fullScreen ? {position: "fixed", left: 0, right: 0, bottom: 0, top: 0, zIndex: 10000} : {}}
             {...restProps}

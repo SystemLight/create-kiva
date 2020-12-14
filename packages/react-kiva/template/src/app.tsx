@@ -16,7 +16,7 @@ function App() {
     return (
         <Subscription>
             <UseAxiosConfig value={axiosGlobalConfig}>
-                <ConfigProvider locale={zhCN} componentSize={"small"}>
+                <ConfigProvider locale={zhCN} componentSize={"middle"}>
                     <RootPage />
                 </ConfigProvider>
             </UseAxiosConfig>
