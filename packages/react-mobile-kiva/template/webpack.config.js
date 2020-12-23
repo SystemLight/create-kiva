@@ -136,6 +136,7 @@ module.exports = function(env, argv) {
                     messages: ["Your application is running here: http://localhost:8080"]
                 }
             }),
+            // FIX: webpack5 process is undefined
             new webpack.DefinePlugin({
                 "process.platform": JSON.stringify(process.platform),
                 "process.env.TERM": JSON.stringify(process.env.TERM),
@@ -161,7 +162,7 @@ module.exports = function(env, argv) {
             new HtmlWebpackPlugin({
                 hash: false,
                 filename: "index.html",
-                template: "./src/config/index.html",
+                template: "./src/pages/index.ejs",
                 inject: true,
                 minify: getMinify
             })
@@ -207,7 +208,6 @@ module.exports = function(env, argv) {
 
     return {
         mode: mode,
-        stats: "errors-only",
         devtool: isProduction ? false : "cheap-module-source-map",
         context: __dirname,
         resolve: {
@@ -228,9 +228,9 @@ module.exports = function(env, argv) {
             maxAssetSize: 3 * 1024 * 1024,
             maxEntrypointSize: 3 * 1024 * 1024
         },
-        entry: isProduction ? "./src/index.tsx" : [
+        entry: isProduction ? "./src/app.tsx" : [
             require.resolve("react-dev-utils/webpackHotDevClient"),
-            "./src/index.tsx"
+            "./src/app.tsx"
         ],
         output: {
             filename: isProduction ? "js/[name].[chunkhash:8].js" : "js/[name].[fullhash:8].js",

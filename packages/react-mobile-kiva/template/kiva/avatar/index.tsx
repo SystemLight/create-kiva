@@ -13,7 +13,7 @@ export function Avatar({avatar, title, subtitle}: IAvatarProps) {
         <div className="kiva-avatar">
             <div className="kiva-avatar__header">
                 {avatar ? (
-                    <img src={"images/avatar.jpg"} alt={"Avatar"} />
+                    <img src={avatar} alt={"Avatar"} />
                 ) : undefined}
             </div>
             <div className="kiva-avatar__info">
