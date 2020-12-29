@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production --progress",
+    "build": "webpack --mode production",
     "gen": "node kiva/scripts/genPages.js",
     "update": "node kiva/scripts/updatePackage.js"
   },
@@ -52,7 +52,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",

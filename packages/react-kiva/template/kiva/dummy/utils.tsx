@@ -47,6 +47,20 @@ export function sorter(a: any, b: any, dataIndex: any) {
     }
 }
 
+export function isSorter(dataIndex: string) {
+    return function(a: any, b: any) {
+        const __a = a[dataIndex];
+        const __b = b[dataIndex];
+        if (__a < __b) {
+            return -1;
+        } else if (__a > __b) {
+            return 1;
+        } else {
+            return 0;
+        }
+    };
+}
+
 export const lineNumColumns = {
     key: "index",
     dataIndex: "index",

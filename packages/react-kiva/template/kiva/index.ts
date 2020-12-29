@@ -3,6 +3,7 @@ export * from "./ajax";
 export * from "./bubble";
 export * from "./condition";
 export * from "./crudTable";
+export * from "./directory";
 export * from "./dragModal";
 export * from "./dummy";
 export * from "./errorBoundary";
