@@ -125,6 +125,9 @@ module.exports = function(env, argv) {
         根据开发环境获取相对插件
      */
     const getPlugin = function() {
+        // 并行loader转换
+        const parallel = [];
+
         // 生产环境插件
         const productPlugin = [
             new MiniCssExtractPlugin({
@@ -152,6 +155,7 @@ module.exports = function(env, argv) {
 
         // 通用插件
         let basic = [
+            ...parallel,
             new CleanWebpackPlugin(),
             new CopyWebpackPlugin({
                 patterns: [
@@ -241,6 +245,7 @@ module.exports = function(env, argv) {
         devServer: getDevServer,
         optimization: {
             splitChunks: splitChunks,
+            minimize: isProduction,
             minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
         },
         performance: {
@@ -277,8 +282,8 @@ module.exports = function(env, argv) {
                     use: getCssUseLoader(true)
                 },
                 {
-                    issuer: /\.tsx?$/,
                     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                    issuer: /\.tsx?$/,
                     use: [
                         "babel-loader",
                         {
