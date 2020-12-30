@@ -1,6 +1,6 @@
 import {ProTableProps} from "@ant-design/pro-table/lib/typing";
 import {ParamsType} from "@ant-design/pro-provider";
-import {ModalProps} from "antd/es/modal";
+import {ModalProps} from "antd/lib/modal";
 import {FormInstance} from "antd/lib/form/hooks/useForm";
 
 export interface ICrudRecord {

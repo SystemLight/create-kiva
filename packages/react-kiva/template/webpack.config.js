@@ -210,117 +210,211 @@ const splitChunks = {
     }
 };
 
+/**
+ * 获取生产环境和开发环境CSS Loader配置
+ * @param {boolean} isProduction
+ * @param {boolean} less
+ * @return {any}
+ */
+const getCssLoader = function(isProduction, less = false) {
+    const basic = [
+        "css-loader",
+        "postcss-loader"
+    ];
+
+    if (isProduction) {
+        basic.unshift(MiniCssExtractPlugin.loader);
+    } else {
+        basic.unshift("style-loader");
+    }
+
+    if (less) {
+        basic.push({
+            loader: "less-loader",
+            options: {
+                lessOptions: {javascriptEnabled: true}
+            }
+        });
+    }
+
+    return basic;
+};
+
+/**
+ * 获取加载Loader配置规则
+ * @param {boolean} isProduction
+ * @return {any}
+ */
+const getRules = function(isProduction) {
+    return [
+        {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            use: ["babel-loader"]
+        },
+        {
+            test: /\.tsx?$/,
+            exclude: /node_modules/,
+            use: ["babel-loader", "ts-loader"]
+        },
+        {
+            test: /\.css$/,
+            exclude: /node_modules/,
+            use: getCssLoader(isProduction)
+        },
+        {
+            test: /\.less$/,
+            use: getCssLoader(isProduction, true)
+        },
+        {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            issuer: /\.tsx?$/,
+            use: [
+                "babel-loader",
+                {
+                    loader: "@svgr/webpack",
+                    options: {
+                        babel: false,
+                        icon: true
+                    }
+                },
+                {
+                    loader: "url-loader",
+                    options: {
+                        limit: 8192,
+                        fallback: "file-loader",
+                        name: "images/[name].[fullhash:8].[ext]",
+                        publicPath: "/",
+                        esModule: false
+                    }
+                }
+            ]
+        },
+        {
+            test: /\.(png|jpe?g|gif|svg)$/,
+            use: [
+                {
+                    loader: "url-loader",
+                    options: {
+                        limit: 8192,
+                        fallback: "file-loader",
+                        name: "images/[name].[fullhash:8].[ext]",
+                        publicPath: "/",
+                        esModule: false
+                    }
+                }
+            ]
+        },
+        {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: [
+                {
+                    loader: "file-loader",
+                    options: {
+                        name: "font/[name].[fullhash:8].[ext]",
+                        publicPath: "/",
+                        esModule: false
+                    }
+                }
+            ]
+        }
+    ];
+};
+
+/**
+ * 根据开发环境获取相对插件
+ * @param {boolean} isProduction
+ * @return {any}
+ */
+const getPlugin = function(isProduction) {
+    // 并行loader转换
+    const parallel = [];
+
+    // 生产环境插件
+    const productPlugin = [
+        new MiniCssExtractPlugin({
+            filename: "css/[name].[contenthash:8].css",
+            chunkFilename: "css/[name].[contenthash:8].css"
+        })
+    ];
+
+    // 开发环境插件
+    const developmentPlugin = [
+        new WebpackBar(),
+        new FriendlyErrorsWebpackPlugin({
+            compilationSuccessInfo: {
+                messages: ["Your application is running here: http://localhost:8080"]
+            }
+        }),
+        // FIX: webpack5 process is undefined
+        new webpack.DefinePlugin({
+            "process.platform": JSON.stringify(process.platform),
+            "process.env.TERM": JSON.stringify(process.env.TERM),
+            "process.env.WDS_SOCKET_HOST": JSON.stringify(process.env.WDS_SOCKET_HOST),
+            "process.env.WDS_SOCKET_PORT": JSON.stringify(process.env.WDS_SOCKET_HOST),
+            "process.env.WDS_SOCKET_PATH": JSON.stringify(process.env.WDS_SOCKET_PATH)
+        })
+    ];
+
+    // 通用插件
+    let basic = [
+        ...parallel,
+        new CleanWebpackPlugin(),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: __dirname + "/public",
+                    to: __dirname + "/build",
+                    globOptions: {
+                        ignore: [".*"]
+                    }
+                }
+            ]
+        }),
+        new HtmlWebpackPlugin({
+            hash: false,
+            filename: "index.html",
+            template: "./src/pages/index.ejs",
+            inject: true,
+            minify: isProduction ? {
+                removeComments: true,
+                collapseWhitespace: true,
+                minifyCSS: true
+            } : undefined
+        }),
+        // 启用约定式路由，手动配置的路由将会被替换
+        new AgreedRoutePlugin({
+            base: "", // 项目需要部署到CDN或者非根目录时，指定该项，使路由匹配增加前缀
+            filePath: "config/index.tsx", // 入口文件路径
+            viewsPath: "src/pages", // 约定式路由结构文件夹路径
+            enable: true,
+            ignore: []
+        }),
+        // 启用约定式状态模型自注册，自动生成状态模型接口
+        new AgreedModelPlugin({
+            enable: true,
+            modelsPath: "src/models"
+        })
+    ];
+
+    if (isProduction) {
+        basic = basic.concat(productPlugin);
+    } else {
+        basic = basic.concat(developmentPlugin);
+    }
+
+    return basic;
+};
+
+/**
+ * webpack 核心配置
+ * @param {any} env
+ * @param {any} argv
+ * @return {any}
+ */
 module.exports = function(env, argv) {
     const mode = argv.mode || "development";
     const isProduction = mode === "production";
-
-    /*
-        根据开发环境获取相对插件
-     */
-    const getPlugin = function() {
-        // 并行loader转换
-        const parallel = [];
-
-        // 生产环境插件
-        const productPlugin = [
-            new MiniCssExtractPlugin({
-                filename: "css/[name].[contenthash:8].css",
-                chunkFilename: "css/[name].[contenthash:8].css"
-            })
-        ];
-
-        // 开发环境插件
-        const developmentPlugin = [
-            new WebpackBar(),
-            new FriendlyErrorsWebpackPlugin({
-                compilationSuccessInfo: {
-                    messages: ["Your application is running here: http://localhost:8080"]
-                }
-            }),
-            // FIX: webpack5 process is undefined
-            new webpack.DefinePlugin({
-                "process.platform": JSON.stringify(process.platform),
-                "process.env.TERM": JSON.stringify(process.env.TERM),
-                "process.env.WDS_SOCKET_HOST": JSON.stringify(process.env.WDS_SOCKET_HOST),
-                "process.env.WDS_SOCKET_PORT": JSON.stringify(process.env.WDS_SOCKET_HOST),
-                "process.env.WDS_SOCKET_PATH": JSON.stringify(process.env.WDS_SOCKET_PATH)
-            })
-        ];
-
-        // 通用插件
-        let basic = [
-            ...parallel,
-            new CleanWebpackPlugin(),
-            new CopyWebpackPlugin({
-                patterns: [
-                    {
-                        from: __dirname + "/public",
-                        to: __dirname + "/build",
-                        globOptions: {
-                            ignore: [".*"]
-                        }
-                    }
-                ]
-            }),
-            new HtmlWebpackPlugin({
-                hash: false,
-                filename: "index.html",
-                template: "./src/pages/index.ejs",
-                inject: true,
-                minify: getMinify
-            }),
-            // 启用约定式路由，手动配置的路由将会被替换
-            new AgreedRoutePlugin({
-                base: "", // 项目需要部署到CDN或者非根目录时，指定该项，使路由匹配增加前缀
-                filePath: "config/index.tsx", // 入口文件路径
-                viewsPath: "src/pages", // 约定式路由结构文件夹路径
-                enable: true,
-                ignore: []
-            }),
-            // 启用约定式状态模型自注册，自动生成状态模型接口
-            new AgreedModelPlugin({
-                enable: true,
-                modelsPath: "src/models"
-            })
-        ];
-
-        if (isProduction) {
-            basic = basic.concat(productPlugin);
-        } else {
-            basic = basic.concat(developmentPlugin);
-        }
-
-        return basic;
-    };
-
-    // 判断环境是否需要压缩文件，移除空白和注释等操作
-    const getMinify = isProduction ? {
-        removeComments: true,
-        collapseWhitespace: true,
-        minifyCSS: true
-    } : undefined;
-
-    // 生产环境提取CSS代码到文件中
-    const getCssUseLoader = function(less = false) {
-        const basic = [
-            "css-loader",
-            "postcss-loader"
-        ];
-        if (isProduction) {
-            basic.unshift(MiniCssExtractPlugin.loader);
-        } else {
-            basic.unshift("style-loader");
-        }
-        if (less) {
-            basic.push({
-                loader: "less-loader",
-                options: {
-                    lessOptions: {javascriptEnabled: true}
-                }
-            });
-        }
-        return basic;
-    };
 
     return {
         mode: mode,
@@ -340,7 +434,10 @@ module.exports = function(env, argv) {
         optimization: {
             splitChunks: splitChunks,
             minimize: isProduction,
-            minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
+            minimizer: [
+                new TerserJSPlugin({}),
+                new OptimizeCSSAssetsPlugin({})
+            ]
         },
         performance: {
             maxAssetSize: 3 * 1024 * 1024,
@@ -356,79 +453,8 @@ module.exports = function(env, argv) {
             publicPath: "/"
         },
         module: {
-            rules: [
-                {
-                    test: /\.jsx?$/,
-                    exclude: /node_modules/,
-                    use: ["babel-loader"]
-                },
-                {
-                    test: /\.tsx?$/,
-                    exclude: /node_modules/,
-                    use: ["babel-loader", "ts-loader"]
-                },
-                {
-                    test: /\.css$/,
-                    use: getCssUseLoader()
-                },
-                {
-                    test: /\.less$/,
-                    use: getCssUseLoader(true)
-                },
-                {
-                    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                    issuer: /\.tsx?$/,
-                    use: [
-                        "babel-loader",
-                        {
-                            loader: "@svgr/webpack",
-                            options: {
-                                babel: false,
-                                icon: true
-                            }
-                        },
-                        {
-                            loader: "url-loader",
-                            options: {
-                                limit: 8192,
-                                fallback: "file-loader",
-                                name: "images/[name].[fullhash:8].[ext]",
-                                publicPath: "/",
-                                esModule: false
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.(png|jpe?g|gif|svg)$/,
-                    use: [
-                        {
-                            loader: "url-loader",
-                            options: {
-                                limit: 8192,
-                                fallback: "file-loader",
-                                name: "images/[name].[fullhash:8].[ext]",
-                                publicPath: "/",
-                                esModule: false
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.(woff|woff2|eot|ttf|otf)$/,
-                    use: [
-                        {
-                            loader: "file-loader",
-                            options: {
-                                name: "font/[name].[fullhash:8].[ext]",
-                                publicPath: "/",
-                                esModule: false
-                            }
-                        }
-                    ]
-                }
-            ]
+            rules: getRules(isProduction)
         },
-        plugins: getPlugin()
+        plugins: getPlugin(isProduction)
     };
 };

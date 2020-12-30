@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {ConfigProvider} from "antd";
-import zhCN from "antd/es/locale/zh_CN";
+import zhCN from "antd/lib/locale/zh_CN";
 
 import {UseAxiosConfig} from "kiva";
 import {axiosGlobalConfig, Subscription} from "config";

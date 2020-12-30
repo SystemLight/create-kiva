@@ -3,7 +3,7 @@ import "./proDummy.style.less";
 import React, {useContext, useMemo, useState, useEffect, useRef} from "react";
 import {Card, Popover, Space, Table, Tooltip, Checkbox, Form} from "antd";
 import {TableComponents} from "rc-table/lib/interface";
-import {TableProps} from "antd/es/table/Table";
+import {TableProps} from "antd/lib/table/Table";
 import Icon, {SettingOutlined} from "@ant-design/icons";
 import styled from "styled-components";
 

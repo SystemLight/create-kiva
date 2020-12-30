@@ -1,6 +1,6 @@
 import React, {Key, ReactNode, useCallback, useMemo, useState} from "react";
 import {Button, Checkbox, Dropdown, Menu, Table} from "antd";
-import {RowSelectionType, TableRowSelection} from "antd/es/table/interface";
+import {RowSelectionType, TableRowSelection} from "antd/lib/table/interface";
 import {FilterOutlined} from "@ant-design/icons";
 import styled from "styled-components";
 

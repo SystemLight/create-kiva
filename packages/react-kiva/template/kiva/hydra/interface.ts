@@ -1,4 +1,4 @@
-import {SelectProps} from "antd/es/select";
+import {SelectProps} from "antd/lib/select";
 
 export interface IHydraProps extends SelectProps<any> {
 }

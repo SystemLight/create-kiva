@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from "react";
 import {EllipsisOutlined} from "@ant-design/icons";
-import {ColumnType} from "antd/es/table/interface";
+import {ColumnType} from "antd/lib/table/interface";
 import {TableComponents} from "rc-table/lib/interface";
 import {SortableContainer, SortableElement, SortableHandle} from "react-sortable-hoc";
 

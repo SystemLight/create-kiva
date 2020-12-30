@@ -1,6 +1,6 @@
 import React, {memo, useMemo, useState} from "react";
 import {Layout, Breadcrumb, Menu, Tabs} from "antd";
-import {TabsProps} from "antd/es/tabs";
+import {TabsProps} from "antd/lib/tabs";
 import {MenuFoldOutlined, MenuUnfoldOutlined, SettingOutlined} from "@ant-design/icons";
 import {useLocation, useHistory, Link} from "react-router-dom";
 import styled from "styled-components";

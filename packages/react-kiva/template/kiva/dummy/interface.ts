@@ -2,8 +2,8 @@ import {
     ComponentType, ClassAttributes, CSSProperties,
     Dispatch, Key, ReactElement, ReactNode, SetStateAction
 } from "react";
-import {TableProps} from "antd/es/table";
-import {ColumnType, TableRowSelection} from "antd/es/table/interface";
+import {TableProps} from "antd/lib/table";
+import {ColumnType, TableRowSelection} from "antd/lib/table/interface";
 
 import {EditCell} from "./render";
 

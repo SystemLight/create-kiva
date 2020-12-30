@@ -1,6 +1,6 @@
 import React from "react";
 import {Form} from "antd";
-import {FormInstance} from "antd/es/form";
+import {FormInstance} from "antd/lib/form";
 import styled from "styled-components";
 
 import {ISelectOption} from "../hydra/interface";

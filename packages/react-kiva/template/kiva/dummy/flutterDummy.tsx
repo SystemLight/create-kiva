@@ -2,7 +2,7 @@ import "./proDummy.style.less";
 
 import React, {useMemo, useState} from "react";
 import {Card, Table} from "antd";
-import {ColumnType} from "antd/es/table/interface";
+import {ColumnType} from "antd/lib/table/interface";
 
 import {arrayMove} from "../utils";
 import {getDropdownRender, getRender, lineNumColumns, sorter, useMapDataSource} from "./utils";

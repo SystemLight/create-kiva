@@ -1,6 +1,6 @@
 import React, {PropsWithChildren, useState, ReactNode, SyntheticEvent} from "react";
 import {Modal} from "antd";
-import {ModalProps} from "antd/es/modal";
+import {ModalProps} from "antd/lib/modal";
 import Draggable from "react-draggable";
 import {Resizable, ResizeCallbackData} from "react-resizable";
 import styled from "styled-components";
