@@ -58,38 +58,3 @@ ul, dl, ol {
     visibility: hidden;
     clear: both;
 }
-
-// 固定标题头部
-.fixed-navbar {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    .navbar {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 45px;
-        background: #38ADFF;
-        z-index: 100;
-    }
-
-    .scroll-area {
-        padding-top: 45px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
-
-        &:after {
-            content: "";
-            display: block;
-            height: 80px;
-        }
-    }
-}

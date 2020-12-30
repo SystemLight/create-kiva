@@ -1,11 +1,11 @@
 {
   "name": "react-mobile-kiva",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "Kiva's React mobile development template.",
   "private": true,
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production --progress",
+    "build": "webpack --mode production",
     "update": "node kiva/scripts/updatePackage.js"
   },
   "author": "SystemLight",
@@ -48,7 +48,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.8.0",
     "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
