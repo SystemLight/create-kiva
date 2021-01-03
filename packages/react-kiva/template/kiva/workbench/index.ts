@@ -1,9 +1,8 @@
-import React from "react";
+import "antd/lib/layout/style/index.less";
 
 export * from "./dark";
 export * from "./light";
 export * from "./design";
-export * from "./pro";
 
 export * from "./page";
 export * from "./browser";

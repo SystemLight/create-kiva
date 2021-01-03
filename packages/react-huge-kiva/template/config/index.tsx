@@ -34,63 +34,7 @@ globalRequestConfig.onError = () => {
  */
 export const qr = new QueryRoute([
     /* <AgreedRouting> */
-    {
-        key: "developer",
-        path: "/developer",
-        component: dynamic(() => import(/* webpackChunkName: "developer" */"@@/developer")),
-        subRoute: [{
-            key: "data.form",
-            path: "/developer/data/form",
-            component: dynamic(() => import(/* webpackChunkName: "developer-data.form" */"@@/developer/data.form")),
-            exact: true
-        }, {
-            key: "data.list",
-            path: "/developer/data/list",
-            component: dynamic(() => import(/* webpackChunkName: "developer-data.list" */"@@/developer/data.list")),
-            exact: true
-        }, {
-            key: "data.table",
-            path: "/developer/data/table",
-            component: dynamic(() => import(/* webpackChunkName: "developer-data.table" */"@@/developer/data.table")),
-            exact: true
-        }, {
-            key: "media.audio",
-            path: "/developer/media/audio",
-            component: dynamic(() => import(/* webpackChunkName: "developer-media.audio" */"@@/developer/media.audio")),
-            exact: true
-        }, {
-            key: "media.edit",
-            path: "/developer/media/edit",
-            component: dynamic(() => import(/* webpackChunkName: "developer-media.edit" */"@@/developer/media.edit")),
-            exact: true
-        }, {
-            key: "media.live",
-            path: "/developer/media/live",
-            component: dynamic(() => import(/* webpackChunkName: "developer-media.live" */"@@/developer/media.live")),
-            exact: true
-        }, {
-            key: "media.picture",
-            path: "/developer/media/picture",
-            component: dynamic(() => import(/* webpackChunkName: "developer-media.picture" */"@@/developer/media.picture")),
-            exact: true
-        }, {
-            key: "media.video",
-            path: "/developer/media/video",
-            component: dynamic(() => import(/* webpackChunkName: "developer-media.video" */"@@/developer/media.video")),
-            exact: true
-        }, {
-            key: "motion.basic",
-            path: "/developer/motion/basic",
-            component: dynamic(() => import(/* webpackChunkName: "developer-motion.basic" */"@@/developer/motion.basic")),
-            exact: true
-        }, {
-            key: "utils.demo",
-            path: "/developer/utils/demo",
-            component: dynamic(() => import(/* webpackChunkName: "developer-utils.demo" */"@@/developer/utils.demo")),
-            exact: true
-        }],
-        exact: false
-    },
+    {key: "developer",path: "/developer",component: dynamic(() => import(/* webpackChunkName: "developer" */"@@/developer")),subRoute: [{key: "data.form",path: "/developer/data/form",component: dynamic(() => import(/* webpackChunkName: "developer-data.form" */"@@/developer/data.form")),exact: true},{key: "data.list",path: "/developer/data/list",component: dynamic(() => import(/* webpackChunkName: "developer-data.list" */"@@/developer/data.list")),exact: true},{key: "data.table",path: "/developer/data/table",component: dynamic(() => import(/* webpackChunkName: "developer-data.table" */"@@/developer/data.table")),exact: true},{key: "media.audio",path: "/developer/media/audio",component: dynamic(() => import(/* webpackChunkName: "developer-media.audio" */"@@/developer/media.audio")),exact: true},{key: "media.edit",path: "/developer/media/edit",component: dynamic(() => import(/* webpackChunkName: "developer-media.edit" */"@@/developer/media.edit")),exact: true},{key: "media.live",path: "/developer/media/live",component: dynamic(() => import(/* webpackChunkName: "developer-media.live" */"@@/developer/media.live")),exact: true},{key: "media.picture",path: "/developer/media/picture",component: dynamic(() => import(/* webpackChunkName: "developer-media.picture" */"@@/developer/media.picture")),exact: true},{key: "media.video",path: "/developer/media/video",component: dynamic(() => import(/* webpackChunkName: "developer-media.video" */"@@/developer/media.video")),exact: true},{key: "motion.basic",path: "/developer/motion/basic",component: dynamic(() => import(/* webpackChunkName: "developer-motion.basic" */"@@/developer/motion.basic")),exact: true},{key: "utils.demo",path: "/developer/utils/demo",component: dynamic(() => import(/* webpackChunkName: "developer-utils.demo" */"@@/developer/utils.demo")),exact: true}],exact: false},{key: "user",path: "/user",component: dynamic(() => import(/* webpackChunkName: "user" */"@@/user")),subRoute: [{key: "login",path: "/user/login",component: dynamic(() => import(/* webpackChunkName: "user-login" */"@@/user/login")),exact: true},{key: "register",path: "/user/register",component: dynamic(() => import(/* webpackChunkName: "user-register" */"@@/user/register")),exact: true}],exact: false},
     /* </AgreedRouting> */
     {
         key: "notFound",
@@ -134,6 +78,7 @@ export const route: IProWorkbenchRoute = {
         {
             key: "data",
             name: "数据",
+            path: "/developer/data",
             icon: <FormOutlined />,
             routes: [
                 {
@@ -156,6 +101,7 @@ export const route: IProWorkbenchRoute = {
         {
             key: "media",
             name: "媒体",
+            path: "/developer/media",
             icon: <CameraOutlined />,
             routes: [
                 {
@@ -188,6 +134,7 @@ export const route: IProWorkbenchRoute = {
         {
             key: "motion",
             name: "动画",
+            path: "/developer/motion",
             icon: <FireOutlined />,
             routes: [
                 {
@@ -200,6 +147,7 @@ export const route: IProWorkbenchRoute = {
         {
             key: "utils",
             name: "工具",
+            path: "/developer/utils",
             icon: <RocketOutlined />,
             routes: [
                 {

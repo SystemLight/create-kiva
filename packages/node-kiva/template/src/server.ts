@@ -1,11 +1,13 @@
 import {IncomingMessage, ServerResponse} from "http";
 
+import {bar} from "./foo";
+
 const http = require("http");
 
 const server = http.createServer(function(request: IncomingMessage, response: ServerResponse) {
     console.log("create a server");
     response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("hello worlsdfgd");
+    response.write("hello " + bar);
     response.end();
 });
 
