@@ -1,0 +1,25 @@
+{
+  "name": "react-huge-kiva",
+  "version": "1.2.10",
+  "keywords": [
+    "react",
+    "create-kiva",
+    "template"
+  ],
+  "description": "The base template for Create Kiva App.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/react-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}

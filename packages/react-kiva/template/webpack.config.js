@@ -279,11 +279,9 @@ const getRules = function(isProduction) {
                     }
                 },
                 {
-                    loader: "url-loader",
+                    loader: "file-loader",
                     options: {
-                        limit: 8192,
-                        fallback: "file-loader",
-                        name: "images/[name].[fullhash:8].[ext]",
+                        name: "images/[name].[ext]",
                         publicPath: "/",
                         esModule: false
                     }
@@ -291,14 +289,14 @@ const getRules = function(isProduction) {
             ]
         },
         {
-            test: /\.(png|jpe?g|gif|svg)$/,
+            test: /\.(png|jpe?g|gif)$/,
             use: [
                 {
                     loader: "url-loader",
                     options: {
                         limit: 8192,
                         fallback: "file-loader",
-                        name: "images/[name].[fullhash:8].[ext]",
+                        name: "images/[name].[ext]",
                         publicPath: "/",
                         esModule: false
                     }
@@ -311,7 +309,7 @@ const getRules = function(isProduction) {
                 {
                     loader: "file-loader",
                     options: {
-                        name: "font/[name].[fullhash:8].[ext]",
+                        name: "font/[name].[ext]",
                         publicPath: "/",
                         esModule: false
                     }

@@ -1,110 +1,124 @@
 {
+  // 包含目录或者文件，支持glob匹配
   "include": [
     "src/**/*",
     "kiva-core.d.ts"
   ],
+
+  // 排除目录或者文件，支持glob匹配
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
   ],
-  "compilerOptions": {
-    /* Basic Options */
 
-    /* Enable incremental compilation */
+  // 编译器选项
+  "compilerOptions": {
+    // 启用增量编译
     // "incremental": true,
 
-    /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    // 指定ecmascript目标版本：“es3”（默认），“es5”，“es2015”，“es2016”，“es2017”，“es2018”，“es2019”或“esnext”
     "target": "esNext",
-    /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+
+    // 指定模块代码生成：“none”、“commonjs”、“amd”、“system”、“umd”、“es2015”或“ESNext”
     "module": "esNext",
-    /* Specify library files to be included in the compilation. */
+
+    // 指定额外包含在编译中的库文件
     // "lib": [],
 
-    /* Allow javascript files to be compiled. */
+    // 允许编译javascript文件
     "allowJs": false,
-    /* Report errors in .js files. */
+
+    // 报告.js文件中的错误
     // "checkJs": true,
 
-    /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+    // 如何处理JSX语法，'preserve', 'react-native', or 'react'
     "jsx": "preserve",
-    /* Generates corresponding '.d.ts' file. */
-    // "declaration": true,
 
-    /* Generates a sourcemap for each corresponding '.d.ts' file. */
+    // 生成类型生成文件
+    "declaration": false,
+
+    // 为每个对应的“.d.ts”文件生成源映射
     // "declarationMap": true,
 
-    /* Generates corresponding '.map' file. */
+    // 生成相应的“.map”文件
     "sourceMap": true,
-    /* Concatenate and emit output to single file. */
+
+    // 制定输出文件
     // "outFile": "./",
 
-    /* Redirect output structure to the directory. */
+    // 将输出结构重定向到目录
     // "outDir": "./",
 
-    /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    // 指定输入文件的根目录
     // "rootDir": "./",
 
-    /* Enable project compilation */
+    // 启用项目编译
     // "composite": true,
 
-    /* Specify file to store incremental compilation information */
+    // 指定增量编译存储的文件
     // "tsBuildInfoFile": "./",
 
-    /* Do not emit comments to output. */
+    // 删除注释
     "removeComments": false,
-    /* Do not emit outputs. */
+
+    // 不输出文件，配合ts-loader
     "noEmit": false,
-    /* Import emit helpers from 'tslib'. */
+
+    // 从“tslib”导入emit帮助程序
     // "importHelpers": true,
 
-    /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
+    // 针对“ES5”或“ES3”时，在“for of”、“spread”和“destructuring”中为iterables提供全面支持
     // "downlevelIteration": true,
 
-    /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
+    // 将每个文件作为单独的模块进行传输，文件必须声明导出
     "isolatedModules": false,
-    /* Strict Type-Checking Options */
-    /* Enable all strict type-checking options. */
+
+    // 严格模式
     "strict": true,
-    /* Raise error on expressions and declarations with an implied 'any' type. */
-    // "noImplicitAny": true,
 
-    /* Enable strict null checks. */
-    // "strictNullChecks": true,
-
-    /* Enable strict checking of function types. */
-    // "strictFunctionTypes": true,
-
-    /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
-    // "strictBindCallApply": true,
-
-    /* Enable strict checking of property initialization in classes. */
-    // "strictPropertyInitialization": true,
-
-    /* Raise error on 'this' expressions with an implied 'any' type. */
-    // "noImplicitThis": true,
-
-    /* Parse in strict mode and emit "use strict" for each source file. */
+    // 在严格模式下解析，并为每个源文件发出“use strict”
     // "alwaysStrict": true,
 
-    /* Additional Checks */
-    /* Report errors on unused locals. */
+    // 对隐含“any”类型的表达式和声明引发错误
+    "noImplicitAny": false,
+
+    // 阻止 noImplicitAny 对缺少索引签名的索引对象报错
+    "suppressImplicitAnyIndexErrors": true,
+
+    // 对隐含“any”类型的“this”表达式引发错误
+    // "noImplicitThis": true,
+
+    // 启用严格的空检查
+    // "strictNullChecks": true,
+
+    // 启用对函数类型的严格检查
+    // "strictFunctionTypes": true,
+
+    // 对函数启用严格的“bind”、“call”和“apply”方法
+    // "strictBindCallApply": true,
+
+    // 启用类中属性初始化的严格检查
+    // "strictPropertyInitialization": true,
+
+    // 报告未使用的局部变量的错误
     // "noUnusedLocals": true,
 
-    /* Report errors on unused parameters. */
+    // 报告未使用参数的错误
     // "noUnusedParameters": true,
 
-    /* Report error when not all code paths in function return a value. */
+    // 函数中并非所有代码路径都返回值时报告错误
     // "noImplicitReturns": true,
 
-    /* Report errors for fallthrough cases in switch statement. */
+    // 在switch语句中未正确返回报告错误
     // "noFallthroughCasesInSwitch": true,
 
-    /* Module Resolution Options */
-    /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    // 指定模块解析策略：“node”(节点.js)或“classic”（TypeScript pre-1.6）
     "moduleResolution": "node",
-    /* Base directory to resolve non-absolute module names. */
+
+    // 解析模块基目录
     "baseUrl": "./",
-    /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+
+    // 定义导入别名，这个配置需要和webpack别名一致
     "paths": {
       "@/*": [
         "src/*"
@@ -119,48 +133,53 @@
         "kiva/*"
       ]
     },
-    /* List of root folders whose combined content represents the structure of the project at runtime. */
+
+    // 其组合内容在运行时表示项目结构的根文件夹列表
     // "rootDirs": [],
 
-    /* List of folders to include type definitions from. */
+    // 包含类型定义的文件夹列表
     // "typeRoots": [],
 
-    /* Type declaration files to be included in compilation. */
+    // 编译中要包含的类型声明文件
     // "types": [],
 
-    /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+    // 允许从没有默认导出的模块进行默认导入
     "allowSyntheticDefaultImports": true,
-    /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+
+    // 通过为所有导入创建命名空间对象，实现CommonJS和ES模块之间的互操作性，需要启用allowSyntheticDefaultImports
     "esModuleInterop": true,
-    /* Do not resolve the real path of symlinks. */
+
+    // 不要解析符号链接的实际路径
     // "preserveSymlinks": true,
 
-    /* Allow accessing UMD globals from modules. */
+    // 允许从模块访问UMD全局
     // "allowUmdGlobalAccess": true,
 
-    /* Source Map Options */
-    /* Specify the location where debugger should locate TypeScript files instead of source locations. */
+    // 指定调试器应该定位TypeScript文件的位置，而不是源位置
     // "sourceRoot": "",
 
-    /* Specify the location where debugger should locate map files instead of generated locations. */
+    // 指定调试器应该定位映射文件的位置，而不是生成的位置
     // "mapRoot": "",
 
-    /* Emit a single file with source maps instead of having a separate file. */
+    // 输出代码映射文件
     // "inlineSourceMap": true,
 
-    /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
+    // 输出源码文件
     // "inlineSources": true,
 
-    /* Experimental Options */
-    /* Enables experimental support for ES7 decorators. */
-    "experimentalDecorators": true,
-    /* Enables experimental support for emitting type metadata for decorators. */
+    // 启用装饰器支持
+    // "experimentalDecorators": true,
+
+    // 启用对装饰器元信息支持
     // "emitDecoratorMetadata": true,
 
-    /* Advanced Options */
-    /* Disallow inconsistently-cased references to the same file. */
+    // 不允许对同一文件的大小写不一致的引用
     "forceConsistentCasingInFileNames": true,
+
+    // 解析JSON文件
     "resolveJsonModule": false,
+
+    // 跳过库包类型检查
     "skipLibCheck": true
   }
 }
