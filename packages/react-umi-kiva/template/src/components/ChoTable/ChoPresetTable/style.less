@@ -1,0 +1,22 @@
+@import "~antd/es/style/themes/default.less";
+
+.choTable {
+    :global {
+        .ant-table-thead th.ant-table-column-has-sorters:hover, .ant-table-thead th.ant-table-cell {
+            background-color: @primary-color;
+            color: #FFFFFF;
+        }
+
+        tr.cho-table__even-row {
+            & > td {
+                background-color: #FFFFFF;
+            }
+        }
+
+        tr.cho-table__odd-row {
+            & > td {
+                background-color: #F6F7FA;
+            }
+        }
+    }
+}
