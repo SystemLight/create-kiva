@@ -259,7 +259,6 @@ const getRules = function(isProduction) {
         },
         {
             test: /\.css$/,
-            exclude: /node_modules/,
             use: getCssLoader(isProduction)
         },
         {
@@ -416,6 +415,7 @@ module.exports = function(env, argv) {
 
     return {
         mode: mode,
+        target: ["web", "es5"],
         stats: "errors-only",
         devtool: isProduction ? false : "cheap-module-source-map",
         context: __dirname,

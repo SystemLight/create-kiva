@@ -1,5 +1,6 @@
 <template>
-    <div>hello
+    <div>
+        hello
         <router-link to="/admin/trial">尝试</router-link>
         <router-view></router-view>
     </div>
