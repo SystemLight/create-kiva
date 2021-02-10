@@ -188,3 +188,54 @@ export const arrayMove = <ValueType>(array: ValueType[], from: number, to: numbe
     arrayMoveMutate(array, from, to);
     return array;
 };
+
+/*
+    utf8编码
+ */
+export function utf8Encode(content: string) {
+    let utfText = "";
+    for (let n = 0; n < content.length; n++) {
+        const c = content.charCodeAt(n);
+        if (c < 128) {
+            utfText += String.fromCharCode(c);
+        } else if ((c > 127) && (c < 2048)) {
+            utfText += String.fromCharCode((c >> 6) | 192);
+            utfText += String.fromCharCode((c & 63) | 128);
+        } else {
+            utfText += String.fromCharCode((c >> 12) | 224);
+            utfText += String.fromCharCode(((c >> 6) & 63) | 128);
+            utfText += String.fromCharCode((c & 63) | 128);
+        }
+    }
+    return utfText;
+}
+
+/*
+    utf8解码
+ */
+export function utf8Decode(content: string) {
+    let outputStr = "";
+    let code1;
+    let code2;
+    let code3;
+    let code4;
+    for (let i = 0; i < content.length; i++) {
+        code1 = content.charCodeAt(i);
+        if (code1 < 128) {
+            outputStr += String.fromCharCode(code1);
+        } else if (code1 < 224) {
+            code2 = content.charCodeAt(++i);
+            outputStr += String.fromCharCode(((code1 & 31) << 6) | (code2 & 63));
+        } else if (code1 < 240) {
+            code2 = content.charCodeAt(++i);
+            code3 = content.charCodeAt(++i);
+            outputStr += String.fromCharCode(((code1 & 15) << 12) | ((code2 & 63) << 6) | (code3 & 63));
+        } else {
+            code2 = content.charCodeAt(++i);
+            code3 = content.charCodeAt(++i);
+            code4 = content.charCodeAt(++i);
+            outputStr += String.fromCharCode(((code1 & 7) << 18) | ((code2 & 63) << 12) | ((code3 & 63) << 6) | (code2 & 63));
+        }
+    }
+    return outputStr;
+}

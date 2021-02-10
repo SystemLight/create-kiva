@@ -21,7 +21,7 @@ export function catchRowKeyData<RecordType>(rowKeys: any[], data: RecordType[], 
 /*
     映射dataSource添加key和index属性值
  */
-export function useMapDataSource<RecordType extends object = any>(dataSource: RecordType[], keyName?: keyof RecordType): (RecordType & IDummyRecord)[] {
+export function useMapDataSource<RecordType extends object = any>(dataSource: readonly RecordType[], keyName?: keyof RecordType): readonly (RecordType & IDummyRecord)[] {
     return useMemo(() => {
         if (keyName) {
             return dataSource.map((v, i) => {

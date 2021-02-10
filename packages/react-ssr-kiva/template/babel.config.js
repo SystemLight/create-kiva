@@ -19,15 +19,10 @@ module.exports = function(api) {
                     "proposals": true
                 }
             }
-        ],
-        "@babel/react"
+        ]
     ];
 
     const plugins = [];
 
-    return {
-        comments: true,
-        presets,
-        plugins
-    };
+    return {comments: true, presets, plugins};
 };

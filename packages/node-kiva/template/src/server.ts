@@ -12,5 +12,5 @@ const server = http.createServer(function(request: IncomingMessage, response: Se
 });
 
 server.listen(3000, function() {
-    console.log("server listen");
+    console.log("server listen, http://127.0.0.1:3000");
 });

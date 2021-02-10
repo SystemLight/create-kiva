@@ -102,7 +102,7 @@ const devServer = {
     // 在 dev-server 的两种不同模式之间切换
     inline: true,
 
-    // 检测dao到文件更改是否刷新浏览器
+    // 检测到文件更改是否刷新浏览器
     // liveReload: true,
 
     // 启用 webpack 的模块热替换特性
@@ -254,11 +254,11 @@ const getRules = function(isProduction) {
         },
         {
             test: /\.tsx?$/,
-            exclude: /node_modules/,
             use: ["babel-loader", "ts-loader"]
         },
         {
             test: /\.css$/,
+            exclude: /node_modules/,
             use: getCssLoader(isProduction)
         },
         {
@@ -433,8 +433,8 @@ module.exports = function(env, argv) {
             splitChunks: splitChunks,
             minimize: isProduction,
             minimizer: [
-                new TerserJSPlugin({}),
-                new OptimizeCSSAssetsPlugin({})
+                new TerserJSPlugin(),
+                new OptimizeCSSAssetsPlugin()
             ]
         },
         performance: {
