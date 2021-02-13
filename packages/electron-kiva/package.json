@@ -1,0 +1,25 @@
+{
+  "name": "electron-kiva",
+  "version": "1.2.10",
+  "keywords": [
+    "electron",
+    "create-kiva",
+    "template"
+  ],
+  "description": "The electron template for Create Kiva App.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/electron-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}
