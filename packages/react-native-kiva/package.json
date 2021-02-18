@@ -1,0 +1,25 @@
+{
+  "name": "react-native-kiva",
+  "version": "1.2.10",
+  "keywords": [
+    "react-native",
+    "create-kiva",
+    "template"
+  ],
+  "description": "React native develops native app templates.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/react-native-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}

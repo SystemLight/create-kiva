@@ -3,3 +3,15 @@
 
 // 1080px设计稿像素值
 @lpx: 2.88*@px;
+
+.response_font() {
+    font-size: 37.5px;
+}
+
+.response_font(@isResponse) when (@isResponse=false) {
+    .response_font();
+}
+
+.response_font(@isResponse) when (@isResponse=true) {
+    font-size: 10vw;
+}
