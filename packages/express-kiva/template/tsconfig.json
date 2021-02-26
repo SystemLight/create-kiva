@@ -47,7 +47,7 @@
     // "outFile": "./",
 
     // 将输出结构重定向到目录
-    "outDir": "build",
+     "outDir": "build",
 
     // 指定输入文件的根目录
     // "rootDir": "./",

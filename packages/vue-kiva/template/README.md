@@ -1,6 +1,6 @@
 # vue-kiva
 
-vue-kiva是VUE开发模板
+vue-kiva是Vue2开发模板
 
 ## 技术栈
 

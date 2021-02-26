@@ -1,7 +1,7 @@
 {
   "name": "vue-kiva",
   "version": "1.2.12",
-  "description": "Kiva's Vue PC-side development template.",
+  "description": "Kiva's Vue2 PC-side development template.",
   "private": true,
   "scripts": {
     "start": "webpack serve --mode development",

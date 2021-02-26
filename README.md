@@ -20,14 +20,17 @@ create-kiva install react-kiva
 
 - 下列模板并非所有都发行到npm上，有些模板由于暂不稳定所以未及时更新
 
-| 名称  |  介绍   |
-| --- | --- |
-|  basic-kiva   |  基础规范集成模板   |
-|  electron-kiva   |  桌面应用开发基础模板   |
-|  node-kiva   |  nodeJS开发模板   |
-|  react-huge-kiva   |  react演示专用，重量级集成模板 |
-|  react-kiva   |  react前端浏览器项目基础模板   |
-|  react-mobile-kiva   | react移动端项目模板    |
-|  react-ssr-kiva   |  react服务端渲染（SSR）基础模板   |
-|  react-umi-kiva   |  基于umiJS的react前端模板   |
-|  vue-kiva   |  Vue前端浏览器项目基础模板   |
+| 名称  |  介绍   | kiva构建 | 类似模板 |
+| --- | --- | --- | --- |
+|  basic-kiva   |  基础规范集成模板   | npx create-kiva i basic-kiva | npx create-html5-boilerplate ./app  |
+|  electron-kiva   |  桌面应用开发基础模板   | npx create-kiva i basic-kiva  | git clone https://github.com/electron/electron-quick-start  |
+|  node-kiva   |  nodeJS应用程序开发模板   | npx create-kiva i node-kiva  | null |
+|  express-kiva   |  express服务端开发模板   | npx create-kiva i express-kiva  | npx express-generator ./app  |
+|  react-huge-kiva   |  react演示专用，重量级集成模板 | npx create-kiva i react-huge-kiva  | npx create-react-app ./app  |
+|  react-kiva   |  react前端浏览器项目基础模板   | npx create-kiva i react-kiva  | npx create-react-app ./app  |
+|  react-mobile-kiva   | react移动端项目模板    | npx create-kiva i react-mobile-kiva  | npx create-react-app ./app  |
+|  react-native-kiva   | react开发原生APP项目模板    | npx create-kiva i react-native-kiva  | npx react-native init ./app  |
+|  react-ssr-kiva   |  react服务端渲染（SSR）基础模板   | npx create-kiva i react-ssr-kiva  | null  |
+|  react-umi-kiva   |  基于umiJS的react前端模板   | npx create-kiva i react-umi-kiva  |  npx @umijs/create-umi-app |
+|  vue-kiva   |  Vue前端浏览器项目基础模板   | npx create-kiva i vue-kiva  | npx @vue/cli create ./app  |
+

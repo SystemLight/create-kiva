@@ -2,7 +2,7 @@ import "./global.less";
 
 import Vue from "vue";
 
-import {router} from "../config";
+import {router} from "config/index";
 import {install} from "config/plugins";
 import {store} from "@/models";
 

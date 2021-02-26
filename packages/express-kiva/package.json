@@ -1,16 +1,16 @@
 {
-  "name": "vue-kiva",
-  "version": "1.2.12",
+  "name": "express-kiva",
+  "version": "1.2.10",
   "keywords": [
-    "vue",
+    "ts-node",
     "create-kiva",
     "template"
   ],
-  "description": "Kiva's Vue2 PC-side development template.",
+  "description": "The base template for Create Kiva App.",
   "repository": {
     "type": "git",
     "url": "https://github.com/SystemLight/create-kiva.git",
-    "directory": "packages/vue-kiva"
+    "directory": "packages/node-kiva"
   },
   "license": "MIT",
   "engines": {

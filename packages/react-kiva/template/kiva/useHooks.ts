@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer} from "react";
+import React, {useEffect, useReducer, useState, useCallback, ChangeEvent} from "react";
 
 /*
     观察组件的渲染和卸载时机，并输出打印LOG
@@ -96,4 +96,20 @@ function reducer(prevState: any, action: any) {
 
 export function useImmerState<S extends {}>(initState: S): [S, (changeState: Partial<S>) => void] {
     return useReducer(reducer, initState);
+}
+
+/**
+ * 快捷双向绑定表单状态
+ * @param {any} initValue
+ * @param {any} beforeChange
+ * @return {any} any
+ */
+export function useTwoWay<S>(initValue: S | (() => S), beforeChange: (e: ChangeEvent<any>) => boolean) {
+    const [value, setValue] = useState(initValue);
+    const onChange = useCallback(function(e: ChangeEvent<any>) {
+        if (!beforeChange || beforeChange(e)) {
+            setValue(e.target.value);
+        }
+    }, [beforeChange]);
+    return [{value, onChange}, setValue];
 }
