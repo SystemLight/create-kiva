@@ -33,4 +33,4 @@ create-kiva install react-kiva
 |  react-ssr-kiva   |  react服务端渲染（SSR）基础模板   | npx create-kiva i react-ssr-kiva  | null  |
 |  react-umi-kiva   |  基于umiJS的react前端模板   | npx create-kiva i react-umi-kiva  |  npx @umijs/create-umi-app |
 |  vue-kiva   |  Vue前端浏览器项目基础模板   | npx create-kiva i vue-kiva  | npx @vue/cli create ./app  |
-
+|  vue3-kiva   |  Vue3前端浏览器项目基础模板   | npx create-kiva i vue3-kiva  | npx @vue/cli@next create ./app  |

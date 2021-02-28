@@ -5,11 +5,18 @@ import Trial from "@@/admin/trial.vue";
 
 export const router = new VueRouter({
     routes: [
-        {path: "/", redirect: "/admin"},
         {
-            path: "/admin", component: AdminRoot,
+            path: "/",
+            redirect: "/admin"
+        },
+        {
+            path: "/admin",
+            component: AdminRoot,
             children: [
-                {path: "/admin/trial", component: Trial}
+                {
+                    path: "/admin/trial",
+                    component: Trial
+                }
             ]
         }
     ]

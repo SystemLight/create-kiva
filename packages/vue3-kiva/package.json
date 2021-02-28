@@ -1,0 +1,25 @@
+{
+  "name": "vue3-kiva",
+  "version": "1.2.10",
+  "keywords": [
+    "vue3",
+    "create-kiva",
+    "template"
+  ],
+  "description": "Kiva's Vue3 PC-side development template.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/vue3-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}
