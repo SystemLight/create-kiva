@@ -1,6 +1,6 @@
 {
   "name": "react-kiva",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "kiva is a React development template that integrates automatic routing, state management, remote request and other functions.",
   "private": true,
   "scripts": {

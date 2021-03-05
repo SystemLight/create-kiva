@@ -1,6 +1,6 @@
 {
   "name": "react-mobile-kiva",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "description": "Kiva's React mobile development template.",
   "private": true,
   "scripts": {

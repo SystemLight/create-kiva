@@ -6,7 +6,7 @@ kiva系列模板快速搭建工具
 
 ```
 npm install create-kiva -g
-create-kiva install react-kiva
+create-kiva i <模板名称>
 ```
 
 ## kiva系列模板开发

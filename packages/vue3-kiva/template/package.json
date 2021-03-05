@@ -1,6 +1,6 @@
 {
   "name": "vue3-kiva",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "Kiva's Vue3 PC-side development template.",
   "private": true,
   "scripts": {

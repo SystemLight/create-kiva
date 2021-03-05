@@ -1,6 +1,6 @@
 {
   "name": "basic-kiva",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "Norm is a basic code development template that integrates code specification plug-ins",
   "private": true,
   "scripts": {

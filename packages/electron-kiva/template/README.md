@@ -1,6 +1,6 @@
 # electron-kiva
 
-Electron桌面应用开发模板
+electron桌面应用程序模板
 
 # 注意事项
 

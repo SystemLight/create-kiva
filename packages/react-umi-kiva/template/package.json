@@ -1,6 +1,6 @@
 {
   "name": "react-umi-kiva",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "private": true,
   "description": "Basic UmiJS regular template",
   "scripts": {

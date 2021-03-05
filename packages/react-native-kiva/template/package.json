@@ -1,6 +1,6 @@
 {
   "name": "react-native-kiva",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "React native develops native app templates.",
   "private": true,
   "scripts": {

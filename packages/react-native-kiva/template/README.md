@@ -2,7 +2,7 @@
 
 react native开发原生app模板
 
-## 环境需求
+# 环境需求
 
 - JAVA 8
 - android studio 4
