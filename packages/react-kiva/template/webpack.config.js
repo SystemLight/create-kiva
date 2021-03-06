@@ -158,10 +158,6 @@ const devServer = {
             // 根目录下不存在mocks.json文件时不进行注册mock代理，
             // 启用mock代理请配置代理选项将/proxy代理到本机/mock下
         }
-    },
-
-    // 提供在服务器内部在所有其他中间件之后执行自定义中间件的功能
-    after(app) {
     }
 };
 

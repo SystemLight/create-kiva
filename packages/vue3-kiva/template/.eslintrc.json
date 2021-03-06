@@ -19,6 +19,7 @@
   ],
   "rules": {
     "vue/comment-directive": "off",
+    "@typescript-eslint/no-var-requires": 0,
     "quotes": [
       "error",
       "double"
