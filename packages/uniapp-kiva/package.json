@@ -1,0 +1,27 @@
+{
+  "name": "uniapp-kiva",
+  "version": "1.2.10",
+  "keywords": [
+    "uniapp",
+    "kiva",
+    "basic",
+    "create-kiva",
+    "template"
+  ],
+  "description": "Kiva's uniapp development template.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/uniapp-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}

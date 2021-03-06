@@ -4,18 +4,21 @@
     "browser": true,
     "es2021": true
   },
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 11,
     "sourceType": "module"
   },
   "plugins": [
+    "vue",
     "@typescript-eslint"
   ],
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:vue/essential",
+    "@vue/typescript/recommended"
   ],
   "rules": {
+    "vue/comment-directive": "off",
     "quotes": [
       "error",
       "double"

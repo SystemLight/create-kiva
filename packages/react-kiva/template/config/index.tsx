@@ -16,13 +16,13 @@ const baseURL = process.env.NODE_ENV === "development" ? "/proxy/api" : "/api";
 export const axiosGlobalConfig: IRequestConfig = {
     baseURL: baseURL,
     onError(e) {
-        message.error("请求失败");
+        message.error("请求失败").then();
     }
 };
 
 globalRequestConfig.baseURL = baseURL;
 globalRequestConfig.onError = () => {
-    message.error("请求失败");
+    message.error("请求失败").then();
 };
 
 /*
@@ -33,7 +33,6 @@ globalRequestConfig.onError = () => {
  */
 export const qr = new QueryRoute([
     /* <AgreedRouting> */
-    {key: "admin",path: "/admin",component: dynamic(() => import(/* webpackChunkName: "admin" */"@@/admin")),subRoute: [{key: "trial",path: "/admin/trial",component: dynamic(() => import(/* webpackChunkName: "admin-trial" */"@@/admin/trial")),exact: true}],exact: false},
     /* </AgreedRouting> */
     {
         key: "notFound",
@@ -54,7 +53,7 @@ export const Subscription = createSubscription({
 });
 
 /*
-    路由处理中间策略注册配置
+    路由处理中间策略注册配置，注册类型参考kiva-core.d.ts说明
  */
 dynamic.meta.use("access", function(component, args) {
     return {default: access(...args)(component)};

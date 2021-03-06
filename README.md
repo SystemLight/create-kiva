@@ -34,3 +34,4 @@ create-kiva i <模板名称>
 |  react-umi-kiva   |  基于umiJS的react前端模板   | npx create-kiva i react-umi-kiva  |  npx @umijs/create-umi-app |
 |  vue-kiva   |  Vue前端浏览器项目基础模板   | npx create-kiva i vue-kiva  | npx @vue/cli create ./app  |
 |  vue3-kiva   |  Vue3前端浏览器项目基础模板   | npx create-kiva i vue3-kiva  | npx @vue/cli@next create ./app  |
+|  uniapp-kiva   |  uniapp跨移动端项目开发模板   | npx create-kiva i uniapp-kiva  | npx @vue/cli create -p dcloudio/uni-preset-vue ./app  |
