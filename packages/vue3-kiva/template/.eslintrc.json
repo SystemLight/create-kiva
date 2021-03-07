@@ -19,7 +19,8 @@
   ],
   "rules": {
     "vue/comment-directive": "off",
-    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "quotes": [
       "error",
       "double"
