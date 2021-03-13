@@ -23,7 +23,9 @@ create-kiva i <模板名称>
 | 名称  |  介绍   | kiva构建 | 类似模板 |
 | --- | --- | --- | --- |
 |  basic-kiva   |  基础规范集成模板   | npx create-kiva i basic-kiva | npx create-html5-boilerplate ./app  |
-|  electron-kiva   |  桌面应用开发基础模板   | npx create-kiva i basic-kiva  | git clone https://github.com/electron/electron-quick-start  |
+|  electron-kiva   |  桌面应用开发基础模板   | npx create-kiva i basic-kiva  | [1] git clone https://github.com/electron/electron-quick-start <br/> [2] npx create-electron-app my-new-app    |
+|  electron-vue-kiva   |  electron集成vue开发模板   | npx create-kiva i electron-vue-kiva  | null  |
+|  electron-vu3e-kiva   |  electron集成vue3开发模板   | npx create-kiva i electron-vue3-kiva  | null  |
 |  node-kiva   |  nodeJS应用程序开发模板   | npx create-kiva i node-kiva  | null |
 |  express-kiva   |  express服务端开发模板   | npx create-kiva i express-kiva  | npx express-generator ./app  |
 |  react-huge-kiva   |  react演示专用，重量级集成模板 | npx create-kiva i react-huge-kiva  | npx create-react-app ./app  |
