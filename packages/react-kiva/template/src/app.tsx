@@ -1,3 +1,4 @@
+import "antd/dist/antd.less";
 import "./global.less";
 
 import React from "react";

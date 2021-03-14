@@ -1,0 +1,26 @@
+{
+  "name": "electron-react-kiva",
+  "version": "1.2.10",
+  "keywords": [
+    "electron",
+    "react",
+    "create-kiva",
+    "template"
+  ],
+  "description": "Electron desktop application template, based on react as view layer.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/electron-react-kiva"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}

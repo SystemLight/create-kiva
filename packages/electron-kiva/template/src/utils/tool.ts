@@ -7,7 +7,7 @@ import {BrowserWindow, Menu, BrowserWindowConstructorOptions} from "electron";
  * @param {BrowserWindowConstructorOptions} options -窗口构造函数可选项
  * @return {BrowserWindow} browserWindow -窗口实例
  */
-export function renderWindow(filePath: string, debug: boolean = false, options: BrowserWindowConstructorOptions = {}) {
+export function createWindow(filePath: string, debug: boolean = false, options: BrowserWindowConstructorOptions = {}) {
     const browserWindow = new BrowserWindow({
         width: 800,
         height: 600,

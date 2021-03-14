@@ -5,7 +5,4 @@ import ReactDOM from "react-dom";
 
 import RootPage from "@@/index";
 
-ReactDOM.render(
-    <RootPage />
-    , document.getElementById("root")
-);
+ReactDOM.render(<RootPage />, document.getElementById("root"));

@@ -11,3 +11,9 @@ electron桌面应用程序模板
 npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
 npm i electron -g
 ```
+
+# 更新日志
+
+### V1.2.10
+
+- 更新eslint配置，去除google配置插件
