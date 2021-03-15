@@ -11,7 +11,7 @@ function staticPath(path) {
  * @param {string} filePath -文件路径
  * @param {boolean} debug -是否开启debug模式窗口
  * @param {BrowserWindowConstructorOptions} options -窗口构造函数可选项
- * @return {BrowserWindow} browserWindow -窗口实例
+ * @return {Electron.BrowserWindow} browserWindow -窗口实例
  */
 function createWindow(filePath, debug = false, options = {}) {
     const browserWindow = new BrowserWindow({

@@ -4,12 +4,25 @@ electron桌面应用程序模板
 
 # 注意事项
 
-- Electron还原安装会比较慢，推荐执行 `npm i` 之前先执行下列命令，更换electron淘宝源
-- 全局需要安装electron避免打包时找不到依赖
+- 国内请使用淘宝源加快下载速度
 
 ```
 npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
-npm i electron -g
+npm config set registry https://registry.npm.taobao.org
+```
+
+- linux下防止权限问题无法安装模块
+
+```
+npm config set user 0
+npm config set unsafe-perm true
+```
+
+- 如果遇到模块NODE_MODULE_VERSION不匹配，请使用下列命令
+
+```
+npm i electron-rebuild -D
+electron-rebuild
 ```
 
 # 更新日志
