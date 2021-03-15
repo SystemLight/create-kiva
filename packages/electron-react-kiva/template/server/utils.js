@@ -1,13 +1,19 @@
-import {BrowserWindow, Menu, BrowserWindowConstructorOptions} from "electron";
+const {BrowserWindow, Menu} = require("electron");
+
+const publicPath = "http://127.0.0.1:8080/";
+
+function staticPath(path) {
+    return publicPath + path;
+}
 
 /**
  * 工厂函数，构建一个electron窗口实例
  * @param {string} filePath -文件路径
  * @param {boolean} debug -是否开启debug模式窗口
  * @param {BrowserWindowConstructorOptions} options -窗口构造函数可选项
- * @return {BrowserWindow} browserWindow -窗口实例
+ * @return {Electron.BrowserWindow} browserWindow -窗口实例
  */
-export function createWindow(filePath: string, debug: boolean = false, options: BrowserWindowConstructorOptions = {}) {
+function createWindow(filePath, debug = false, options = {}) {
     const browserWindow = new BrowserWindow({
         width: 800,
         height: 600,
@@ -20,7 +26,8 @@ export function createWindow(filePath: string, debug: boolean = false, options: 
         },
         ...options
     });
-    browserWindow.loadFile(filePath).then();
+    console.log(filePath);
+    browserWindow.loadURL(filePath).then();
     if (!debug) {
         Menu.setApplicationMenu(null);
     }
@@ -29,3 +36,9 @@ export function createWindow(filePath: string, debug: boolean = false, options: 
     });
     return browserWindow;
 }
+
+module.exports = {
+    publicPath,
+    staticPath,
+    createWindow
+};

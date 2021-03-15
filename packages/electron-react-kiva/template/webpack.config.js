@@ -444,7 +444,7 @@ module.exports = function(env, argv) {
         output: {
             filename: isProduction ? "js/[name].[chunkhash:8].js" : "js/[name].[fullhash:8].js",
             path: ph.resolve(__dirname, "build"),
-            publicPath: "./"
+            publicPath: "/"
         },
         module: {
             rules: getRules(isProduction)

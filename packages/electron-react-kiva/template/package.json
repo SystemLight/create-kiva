@@ -6,7 +6,10 @@
   "scripts": {
     "react:start": "webpack serve --mode development",
     "react:build": "webpack --mode production",
-    "electron:build": "",
+    "web:start": "npm run react:start",
+    "web:build": "npm run react:build",
+    "win:pack:start": "electron main.js",
+    "win:pack:build": "",
     "gen": "node kiva/scripts/genPages.js",
     "update": "node kiva/scripts/updatePackage.js"
   },
