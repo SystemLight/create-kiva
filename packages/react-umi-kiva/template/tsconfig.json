@@ -50,7 +50,7 @@
     // "checkJs": true,
 
     // 如何处理JSX语法，'preserve', 'react-native', or 'react'
-    "jsx": "preserve",
+    "jsx": "react-jsx",
 
     // 生成类型生成文件
     "declaration": false,
@@ -60,9 +60,6 @@
 
     // 生成相应的“.map”文件
     "sourceMap": true,
-
-    // 制定输出文件
-    // "outFile": "./",
 
     // 制定输出文件
     // "outFile": "./",
@@ -122,10 +119,13 @@
     // "strictPropertyInitialization": true,
 
     // 报告未使用的局部变量的错误
-     "noUnusedLocals": true,
+    // "noUnusedLocals": true,
+
+    // 报告未使用参数的错误
+    // "noUnusedParameters": true,
 
     // 函数中并非所有代码路径都返回值时报告错误
-     "noImplicitReturns": true,
+    // "noImplicitReturns": true,
 
     // 在switch语句中未正确返回报告错误
     // "noFallthroughCasesInSwitch": true,

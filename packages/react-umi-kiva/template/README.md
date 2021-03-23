@@ -28,9 +28,10 @@
     - [x] @ant-design/pro-form
     - [x] @ant-design/pro-layout
     - [x] @ant-design/pro-table
+- [ ] use-merge-value
 - [x] classnames
-- [x] qs
-- [x] lodash
+- [ ] qs
+- [ ] lodash
 
 ## 项目约定
 

@@ -2,29 +2,30 @@
   "root": true,
   "env": {
     "browser": true,
-    "es2020": true
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+    "es2021": true,
+    "node": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 11,
+    "ecmaVersion": 2021,
     "sourceType": "module"
   },
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "google"
-  ],
   "plugins": [
     "react",
     "@typescript-eslint"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "rules": {
     "react/display-name": [
@@ -39,7 +40,6 @@
       "double"
     ],
     "require-jsdoc": "off",
-    "no-invalid-this": "off",
     "comma-dangle": [
       "error",
       {
@@ -66,20 +66,22 @@
       "never"
     ],
     "max-len": "off",
-    "no-unused-vars": [
-      "off",
-      {
-        "vars": "all",
-        "args": "after-used",
-        "ignoreRestSiblings": false
-      }
-    ],
     "space-before-function-paren": [
       "error",
       {
         "asyncArrow": "always",
         "anonymous": "never",
         "named": "never"
+      }
+    ],
+    "no-invalid-this": "off",
+    "no-undef": "off",
+    "no-unused-vars": [
+      "off",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
       }
     ],
     "no-multiple-empty-lines": [

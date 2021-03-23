@@ -1,7 +1,7 @@
 import {defineConfig} from "umi";
 
 import {routes} from "./routes";
-import proxy from "./proxy";
+import {proxy} from "./proxy";
 
 const {REACT_APP_ENV} = process.env;
 
@@ -35,6 +35,6 @@ export default defineConfig({
     routes: routes,
     title: "后台管理系统",
     ignoreMomentLocale: true,
-    // mock: false,
+    mock: {exclude: []},
     proxy: proxy[REACT_APP_ENV || "dev"]
 });

@@ -1,4 +1,4 @@
-export default {
+export const proxy = {
     dev: {
         "/api/": {
             target: "https://www.abidu.com",
