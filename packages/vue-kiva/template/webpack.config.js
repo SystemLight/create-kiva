@@ -7,7 +7,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const WebpackBar = require("webpackbar");
-const webpack = require("webpack");
 const Mock = require("mockjs");
 
 const ph = require("path");
@@ -244,16 +243,18 @@ const getRules = function(isProduction) {
         {
             test: /\.js$/,
             exclude: /node_modules/,
-            use: ["babel-loader"]
+            use: ["thread-loader", "babel-loader"]
         },
         {
             test: /\.ts$/,
-            exclude: /node_modules/,
             use: [
+                "thread-loader",
                 "babel-loader",
                 {
                     loader: "ts-loader",
                     options: {
+                        transpileOnly: true,
+                        happyPackMode: true,
                         appendTsSuffixTo: [/\.vue$/]
                     }
                 }
@@ -262,6 +263,7 @@ const getRules = function(isProduction) {
         {
             test: /\.vue$/,
             use: [
+                "thread-loader",
                 {
                     loader: "vue-loader",
                     options: {
@@ -280,53 +282,23 @@ const getRules = function(isProduction) {
         },
         {
             test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            issuer: /\.tsx?$/,
-            use: [
-                "babel-loader",
-                {
-                    loader: "@svgr/webpack",
-                    options: {
-                        babel: false,
-                        icon: true
-                    }
-                },
-                {
-                    loader: "file-loader",
-                    options: {
-                        name: "images/[name].[ext]",
-                        publicPath: "/",
-                        esModule: false
-                    }
-                }
-            ]
+            type: "asset/resource"
         },
         {
             test: /\.(png|jpe?g|gif)$/,
-            use: [
-                {
-                    loader: "url-loader",
-                    options: {
-                        limit: 8192,
-                        fallback: "file-loader",
-                        name: "images/[name].[ext]",
-                        publicPath: "/",
-                        esModule: false
-                    }
+            type: "asset",
+            parser: {
+                dataUrlCondition: {
+                    maxSize: 8 * 1024
                 }
-            ]
+            }
         },
         {
             test: /\.(woff|woff2|eot|ttf|otf)$/,
-            use: [
-                {
-                    loader: "file-loader",
-                    options: {
-                        name: "font/[name].[ext]",
-                        publicPath: "/",
-                        esModule: false
-                    }
-                }
-            ]
+            type: "asset/resource",
+            generator: {
+                filename: "font/[hash][ext][query]"
+            }
         }
     ];
 };
@@ -337,9 +309,6 @@ const getRules = function(isProduction) {
  * @return {any}
  */
 const getPlugin = function(isProduction) {
-    // 并行loader转换
-    const parallel = [];
-
     // 生产环境插件
     const productPlugin = [
         new MiniCssExtractPlugin({
@@ -355,20 +324,11 @@ const getPlugin = function(isProduction) {
             compilationSuccessInfo: {
                 messages: ["Your application is running here: http://localhost:8080"]
             }
-        }),
-        // FIX: webpack5 process is undefined
-        new webpack.DefinePlugin({
-            "process.platform": JSON.stringify(process.platform),
-            "process.env.TERM": JSON.stringify(process.env.TERM),
-            "process.env.WDS_SOCKET_HOST": JSON.stringify(process.env.WDS_SOCKET_HOST),
-            "process.env.WDS_SOCKET_PORT": JSON.stringify(process.env.WDS_SOCKET_HOST),
-            "process.env.WDS_SOCKET_PATH": JSON.stringify(process.env.WDS_SOCKET_PATH)
         })
     ];
 
     // 通用插件
     let basic = [
-        ...parallel,
         new VueLoaderPlugin(),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
@@ -385,7 +345,7 @@ const getPlugin = function(isProduction) {
         new HtmlWebpackPlugin({
             hash: false,
             filename: "index.html",
-            template: "./src/pages/index.ejs",
+            template: "./src/pages/document.ejs",
             inject: true,
             minify: isProduction ? {
                 removeComments: true,
@@ -421,12 +381,10 @@ module.exports = function(env, argv) {
         devtool: isProduction ? false : "cheap-module-source-map",
         context: __dirname,
         resolve: {
-            extensions: [".js", ".ts"],
+            extensions: [".js", ".ts", ".vue"],
             alias: {
                 "@": ph.join(__dirname, "src"),
-                "@@": ph.join(__dirname, "src/pages"),
-                "config": ph.join(__dirname, "config"),
-                "kiva": ph.join(__dirname, "kiva")
+                "@@": ph.join(__dirname, "src/pages")
             }
         },
         devServer: devServer,
@@ -434,8 +392,8 @@ module.exports = function(env, argv) {
             splitChunks: splitChunks,
             minimize: isProduction,
             minimizer: [
-                new TerserJSPlugin({}),
-                new OptimizeCSSAssetsPlugin({})
+                new TerserJSPlugin(),
+                new OptimizeCSSAssetsPlugin()
             ]
         },
         performance: {
@@ -446,6 +404,7 @@ module.exports = function(env, argv) {
         output: {
             filename: isProduction ? "js/[name].[chunkhash:8].js" : "js/[name].[fullhash:8].js",
             path: ph.resolve(__dirname, "build"),
+            assetModuleFilename: "images/[hash][ext][query]",
             publicPath: "/"
         },
         module: {

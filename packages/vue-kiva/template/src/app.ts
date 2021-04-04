@@ -1,21 +1,14 @@
+import "element-ui/lib/theme-chalk/index.css";
 import "./global.less";
 
 import Vue from "vue";
-import Vuex from "vuex";
-import VueRouter from "vue-router";
-import {Button} from "element-ui";
+import ElementUI from "element-ui";
 
-import {router} from "config";
-import {createStore} from "@/models";
+import Index from "@@/index.vue";
 
 Vue.prototype.$ELEMENT = {size: "small"};
-
-Vue.use(Vuex);
-Vue.use(VueRouter);
-Vue.use(Button);
+Vue.use(ElementUI);
 
 new Vue({
-    store: createStore(),
-    router: router,
-    render: (h) => h("router-view")
+    render: (h) => h(Index)
 }).$mount("#root");

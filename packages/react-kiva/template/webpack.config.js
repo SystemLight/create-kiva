@@ -344,7 +344,7 @@ const getPlugin = function(isProduction) {
             "process.platform": JSON.stringify(process.platform),
             "process.env.TERM": JSON.stringify(process.env.TERM),
             "process.env.WDS_SOCKET_HOST": JSON.stringify(process.env.WDS_SOCKET_HOST),
-            "process.env.WDS_SOCKET_PORT": JSON.stringify(process.env.WDS_SOCKET_HOST),
+            "process.env.WDS_SOCKET_PORT": JSON.stringify(process.env.WDS_SOCKET_PORT),
             "process.env.WDS_SOCKET_PATH": JSON.stringify(process.env.WDS_SOCKET_PATH)
         })
     ];

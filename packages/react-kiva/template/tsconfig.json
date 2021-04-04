@@ -1,4 +1,6 @@
 {
+  // 配置参考：https://www.typescriptlang.org/zh/tsconfig
+
   // 包含目录或者文件，支持glob匹配
   "include": [
     "src/**/*",
@@ -13,6 +15,7 @@
 
   // 编译器选项
   "compilerOptions": {
+
     // 启用增量编译
     // "incremental": true,
 
@@ -180,6 +183,7 @@
     "resolveJsonModule": false,
 
     // 跳过库包类型检查
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
   }
 }

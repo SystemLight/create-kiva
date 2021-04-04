@@ -33,7 +33,7 @@ globalRequestConfig.onError = () => {
  */
 export const qr = new QueryRoute([
     /* <AgreedRouting> */
-    {key: "admin",path: "/admin",component: dynamic(() => import(/* webpackChunkName: "admin" */"@@/admin")),subRoute: [{key: "trial",path: "/admin/trial",component: dynamic(() => import(/* webpackChunkName: "admin-trial" */"@@/admin/trial")),exact: true}],exact: false},
+    {key: "admin",path: "/admin",component: dynamic(() => import(/* webpackChunkName: "admin" */"@@/admin")),subRoute: [{key: "edittable",path: "/admin/edittable",component: dynamic(() => import(/* webpackChunkName: "admin-edittable" */"@@/admin/edittable")),exact: true},{key: "trial",path: "/admin/trial",component: dynamic(() => import(/* webpackChunkName: "admin-trial" */"@@/admin/trial")),exact: true}],exact: false},
     /* </AgreedRouting> */
     {
         key: "notFound",

@@ -1,8 +1,9 @@
 {
+  // 配置参考：https://www.typescriptlang.org/zh/tsconfig
+
   // 包含目录或者文件，支持glob匹配
   "include": [
-    "src/**/*",
-    "kiva-core.d.ts"
+    "src/**/*"
   ],
 
   // 排除目录或者文件，支持glob匹配
@@ -13,6 +14,7 @@
 
   // 编译器选项
   "compilerOptions": {
+
     // 启用增量编译
     // "incremental": true,
 
@@ -25,14 +27,14 @@
     // 指定额外包含在编译中的库文件
     // "lib": [],
 
-    // 允许编译javascript文件
+    // 允许 JavaScript 文件在你的工程中被引入，而不是仅仅允许 .ts 和 .tsx 文件
     "allowJs": false,
 
     // 报告.js文件中的错误
     // "checkJs": true,
 
-    // 如何处理JSX语法，'preserve', 'react-native', or 'react'
-    "jsx": "react",
+    // 如何处理JSX语法，包含：react | react-jsx | react-jsxdev | preserve | react-native
+    "jsx": "preserve",
 
     // 生成类型生成文件
     "declaration": false,
@@ -122,15 +124,6 @@
     "paths": {
       "@/*": [
         "src/*"
-      ],
-      "@@/*": [
-        "src/pages/*"
-      ],
-      "config": [
-        "config/index.tsx"
-      ],
-      "kiva/*": [
-        "kiva/*"
       ]
     },
 
@@ -181,5 +174,6 @@
 
     // 跳过库包类型检查
     "skipLibCheck": true
+
   }
 }
