@@ -132,9 +132,13 @@ const devServer = {
     // 配置代理服务设置
     proxy: {
         "/proxy": {
-            target: "http://127.0.0.1",
+            target: "http://127.0.0.1:5000",
             pathRewrite: {"^/proxy": ""},
-            changeOrigin: true
+            changeOrigin: true,
+            secure: false,
+            autoRewrite: true,
+            hostRewrite: "localhost:8080/proxy",
+            protocolRewrite: null
         }
     },
 

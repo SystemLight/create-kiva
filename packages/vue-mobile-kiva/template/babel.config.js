@@ -1,4 +1,4 @@
-module.exports = function(api) {
+module.exports = function (api) {
     api.cache(true);
 
     const presets = [
@@ -23,15 +23,15 @@ module.exports = function(api) {
     ];
 
     const plugins = [
-        [
-            "import",
-            {
-                "libraryName": "vant",
-                "libraryDirectory": "es",
-                "style": true
-            },
-            "vant"
-        ]
+        // [
+        //     "import",
+        //     {
+        //         "libraryName": "vant",
+        //         "libraryDirectory": "es",
+        //         "style": true
+        //     },
+        //     "vant"
+        // ]
     ];
 
     return {comments: true, presets, plugins};
