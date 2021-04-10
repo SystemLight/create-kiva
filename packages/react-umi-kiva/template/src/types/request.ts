@@ -31,7 +31,7 @@ export interface IRequestError<D = any> extends Error {
     info?: IErrorInfoStructure<D>,
 }
 
-export interface IOptions {
+export interface IDeclareUseRequestOptions {
     // 在初始化时是否自动执行 service
     manual?: boolean,
 

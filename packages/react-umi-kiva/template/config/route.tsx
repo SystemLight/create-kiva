@@ -14,7 +14,7 @@ import {Route} from "@ant-design/pro-layout/es/typings";
  *  - 不是 .js、.jsx、.ts 或 .tsx 文件
  *  - 文件内容不包含 JSX 元素
  */
-export const routes: Route[] = [
+const routes: Route[] = [
     {
         path: "/",
         component: "@/layouts/BlankLayout",
@@ -123,3 +123,5 @@ export const routes: Route[] = [
         ]
     }
 ];
+
+export default routes;

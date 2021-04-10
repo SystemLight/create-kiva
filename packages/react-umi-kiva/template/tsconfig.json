@@ -1,33 +1,29 @@
 {
+  // 配置参考：https://www.typescriptlang.org/zh/tsconfig
+
   // 包含目录或者文件，支持glob匹配
   "include": [
-    "mock/**/*",
     "src/**/*",
+    "mock/**/*",
     "tests/**/*",
-    "test/**/*",
-    "__test__/**/*",
-    "typings/**/*",
-    "config/**/*",
-    ".eslintrc.js",
-    ".stylelintrc.js",
-    ".prettierrc.js",
-    "jest.config.js",
-    "mock/*"
+    "config/**/*"
   ],
 
   // 排除目录或者文件，支持glob匹配
   "exclude": [
+    "src/.umi/*",
+    "src/assets/**/*",
     "node_modules",
     "build",
     "dist",
     "scripts",
-    "src/.umi/*",
     "webpack",
     "jest"
   ],
 
   // 编译器选项
   "compilerOptions": {
+
     // 启用增量编译
     // "incremental": true,
 
@@ -38,10 +34,7 @@
     "module": "esNext",
 
     // 指定额外包含在编译中的库文件
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    // "lib": [],
 
     // 允许编译javascript文件
     "allowJs": false,
@@ -49,8 +42,8 @@
     // 报告.js文件中的错误
     // "checkJs": true,
 
-    // 如何处理JSX语法，'preserve', 'react-native', or 'react'
-    "jsx": "react-jsx",
+    // 如何处理JSX语法，包含：react | react-jsx | react-jsxdev | preserve | react-native
+    "jsx": "preserve",
 
     // 生成类型生成文件
     "declaration": false,
@@ -191,7 +184,11 @@
     // 解析JSON文件
     "resolveJsonModule": false,
 
-    // 跳过库包类型检查
-    "skipLibCheck": true
+    // 忽略所有的声明文件（ *.d.ts）的类型检查
+    "skipLibCheck": true,
+
+    // 忽略库的默认声明文件的类型检查
+    "skipDefaultLibCheck": true
+
   }
 }

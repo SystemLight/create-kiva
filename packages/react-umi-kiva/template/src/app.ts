@@ -1,7 +1,7 @@
 import {createElement, ReactNode} from "react";
 import {RequestConfig, UseRequestProvider} from "umi";
 
-import {IErrorInfoStructure, IUseRequestOptions} from "@/interface";
+import {IErrorInfoStructure, IUseRequestOptions} from "@/types";
 import {ErrorShowType} from "@@/plugin-request/request";
 
 // 基础运行时配置：https://umijs.org/zh-CN/docs/runtime-config
