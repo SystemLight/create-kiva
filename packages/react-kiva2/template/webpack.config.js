@@ -13,6 +13,7 @@ const ph = require("path");
 
 /**
  * 获取开发服务器配置信息
+ * 更多配置：https://webpack.js.org/configuration/dev-server/
  */
 const devServer = {
     // 当使用内联模式(inline mode)时，在开发工具(DevTools)的控制台(console)将显示消息
@@ -164,22 +165,58 @@ const devServer = {
 
 /**
  * 切割代码块规则配置
+ * 更多配置：https://webpack.js.org/plugins/split-chunks-plugin/
  */
 const splitChunks = {
+    // 指定对哪些块进行分割优化
     chunks: "async",
-    minSize: 30720,
-    maxSize: 3145728,
-    minChunks: 1,
-    maxAsyncRequests: 6,
-    maxInitialRequests: 4,
+
+    // 分割块的名称
+    // name: false,
+
+    // 自动生成的名称连接符号
     automaticNameDelimiter: "-",
+
+    // Sets the size types which are used when a number is used for sizes
+    // defaultSizeTypes: ["javascript", "unknown"],
+
+    // Prevents exposing path info when creating names for parts splitted by maxSize
+    // hidePathInfo: true,
+
+    // [cacheGroups]-强制执行拆分Chunk
+    // enforceSizeThreshold: true,
+
+    // [cacheGroups]-Assign modules to a cache group by module layer
+    // layer: "",
+
+    // [cacheGroups]-Figure out which exports are used by modules to mangle export names, omit unused exports and generate more efficient code
+    // usedExports: true,
+
+    // 按需加载时并行请求的最大数量
+    // maxAsyncRequests: 30,
+
+    // 入口点的最大并行请求数
+    // maxInitialRequests: 30,
+
+    // 拆分之前，模块被共享的最小次数
+    // minChunks: 1,
+
+    // 生成块的限制（以字节为单位）
+    // minSize: 20000,
+    // maxSize: 3145728,
+    // maxAsyncSize: 3145728,
+
+    // [cacheGroups]-确保拆分后剩余的最小块大小超过限制来，避免大小为零的模块
+    // minRemainingSize: 0,
+
+    // 继承或覆盖splitChunks中的任何选项
     cacheGroups: {
         common: {
             name: "common",
             chunks: "all",
             priority: -20,
             minChunks: 2,
-            reuseExistingChunk: true
+            reuseExistingChunk: true // 重用已从主捆绑包中拆分出的模块
         },
         vendors: {
             name: "vendors",
@@ -208,41 +245,36 @@ const splitChunks = {
 };
 
 /**
- * 获取生产环境和开发环境CSS Loader配置
- * @param {boolean} isProduction
- * @param {boolean} less
- * @return {any}
- */
-const getCssLoader = function(isProduction, less = false) {
-    const basic = [
-        "css-loader",
-        "postcss-loader"
-    ];
-
-    if (isProduction) {
-        basic.unshift(MiniCssExtractPlugin.loader);
-    } else {
-        basic.unshift("style-loader");
-    }
-
-    if (less) {
-        basic.push({
-            loader: "less-loader",
-            options: {
-                lessOptions: {javascriptEnabled: true}
-            }
-        });
-    }
-
-    return basic;
-};
-
-/**
  * 获取加载Loader配置规则
  * @param {boolean} isProduction
  * @return {any}
  */
 const getRules = function(isProduction) {
+    // 获取生产环境和开发环境CSS Loader配置
+    const getCssLoader = function(isProduction, less = false) {
+        const basic = [
+            "css-loader",
+            "postcss-loader"
+        ];
+
+        if (isProduction) {
+            basic.unshift(MiniCssExtractPlugin.loader);
+        } else {
+            basic.unshift("style-loader");
+        }
+
+        if (less) {
+            basic.push({
+                loader: "less-loader",
+                options: {
+                    lessOptions: {javascriptEnabled: true}
+                }
+            });
+        }
+
+        return basic;
+    };
+
     return [
         {
             test: /\.js$/,
@@ -321,7 +353,7 @@ const getRules = function(isProduction) {
  * @param {boolean} isProduction
  * @return {any}
  */
-const getPlugin = function(isProduction) {
+const getPlugins = function(isProduction) {
     // 生产环境插件
     const productPlugin = [
         new MiniCssExtractPlugin({
@@ -397,7 +429,7 @@ module.exports = function(env, argv) {
 
     return {
         mode: mode,
-        target: ["web", "es5"],
+        target: isProduction ? ["web", "es5"] : "web",
         stats: "errors-only",
         devtool: isProduction ? false : "cheap-module-source-map",
         context: __dirname,
@@ -434,6 +466,6 @@ module.exports = function(env, argv) {
         module: {
             rules: getRules(isProduction)
         },
-        plugins: getPlugin(isProduction)
+        plugins: getPlugins(isProduction)
     };
 };
