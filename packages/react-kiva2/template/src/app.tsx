@@ -1,18 +1,15 @@
-import "antd/dist/antd.less";
-import "./global.less";
-
 import React from "react";
-import ReactDOM from "react-dom";
 import {ConfigProvider} from "antd";
 import zhCN from "antd/lib/locale/zh_CN";
 
-import Index from "@@/index";
+function App() {
+    return (
+        <React.StrictMode>
+            <ConfigProvider locale={zhCN} componentSize={"middle"}>
+                <h1>Hello React-kiva2</h1>
+            </ConfigProvider>
+        </React.StrictMode>
+    );
+}
 
-ReactDOM.render(
-    <React.StrictMode>
-        <ConfigProvider locale={zhCN} componentSize={"middle"}>
-            <Index />
-        </ConfigProvider>
-    </React.StrictMode>
-    , document.getElementById("root")
-);
+export default App;

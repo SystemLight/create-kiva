@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const baseURL = "/";
+export const BASE_URL = "/";
 
 const service = axios.create({
-    baseURL: baseURL
+    baseURL: BASE_URL
 });
 
 service.interceptors.request.use(

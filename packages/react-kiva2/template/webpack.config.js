@@ -398,7 +398,7 @@ const getPlugins = function(isProduction) {
         new HtmlWebpackPlugin({
             hash: false,
             filename: "index.html",
-            template: "./src/pages/document.ejs",
+            template: "./template.ejs",
             inject: true,
             minify: isProduction ? {
                 removeComments: true,
@@ -453,9 +453,9 @@ module.exports = function(env, argv) {
             maxAssetSize: 3 * 1024 * 1024,
             maxEntrypointSize: 3 * 1024 * 1024
         },
-        entry: isProduction ? "./src/app.tsx" : [
+        entry: isProduction ? "./src/main.ts" : [
             require.resolve("react-dev-utils/webpackHotDevClient"),
-            "./src/app.tsx"
+            "./src/main.ts"
         ],
         output: {
             filename: isProduction ? "js/[name].[chunkhash:8].js" : "js/[name].[fullhash:8].js",

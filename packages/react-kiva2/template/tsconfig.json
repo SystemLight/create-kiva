@@ -181,6 +181,5 @@
 
     // 忽略库的默认声明文件的类型检查
     "skipDefaultLibCheck": true
-
   }
 }

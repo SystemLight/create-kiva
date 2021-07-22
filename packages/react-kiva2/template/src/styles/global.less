@@ -1,0 +1,187 @@
+@import "./var.less";
+@import "./mixin.less";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-family: "Segoe UI", Arial, "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+}
+
+div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del,
+dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup,
+tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label,
+legend, caption, article, aside,
+canvas, details, embed, figure, figcaption, footer, header, hgroup, menu,
+nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+ul, dl, ol {
+    list-style: none;
+}
+
+.clearfix {
+    .clear_fix();
+}
+
+.hidden-text {
+    .text-ellipsis();
+}
+
+.bg-grey {
+    background: extract(@colors, 0);
+}
+
+.text(@pIndex) when (@pIndex>0) {
+    @val: extract(@position, @pIndex);
+    .text-@{val} {
+        text-align: extract(@position, @pIndex);
+        color: extract(@colors, 1);
+    }
+    .text(@pIndex - 1);
+}
+
+.text(length(@position));
+
+.font-3 {
+    color: extract(@colors, 1);
+    font-size: 15px;
+}
+
+.mt(@i) when (@i>0) {
+    .mt-@{i} {
+        margin-top: (5px * @i) !important;
+    }
+    .mt(@i - 1);
+}
+
+.mt(5);
+
+.mb(@i) when (@i>0) {
+    .mb-@{i} {
+        margin-bottom: (5px * @i) !important;
+    }
+    .mb(@i - 1);
+}
+
+.mb(5);
+
+.ml(@i) when (@i>0) {
+    .ml-@{i} {
+        margin-left: (5px * @i) !important;
+    }
+    .ml(@i - 1);
+}
+
+.ml(5);
+
+.mr(@i) when (@i>0) {
+    .mr-@{i} {
+        margin-right: (5px * @i) !important;
+    }
+    .mr(@i - 1);
+}
+
+.mr(5);
+
+.mx(@i) when (@i>0) {
+    .mx-@{i} {
+        margin-left: (5px * @i) !important;
+        margin-right: (5px * @i) !important;
+    }
+    .mx(@i - 1);
+}
+
+.mx(5);
+
+.my(@i) when (@i>0) {
+    .my-@{i} {
+        margin-top: (5px * @i) !important;
+        margin-bottom: (5px * @i) !important;
+    }
+    .my(@i - 1);
+}
+
+.my(5);
+
+.pl(@i) when (@i>0) {
+    .pl-@{i} {
+        padding-left: (5px * @i) !important;
+    }
+    .pl(@i - 1);
+}
+
+.pl(5);
+
+.pr(@i) when (@i>0) {
+    .pr-@{i} {
+        padding-right: (5px * @i) !important;
+    }
+    .pr(@i - 1);
+}
+
+.pr(5);
+
+.px(@i) when (@i>0) {
+    .px-@{i} {
+        padding-left: (5px * @i) !important;
+        padding-right: (5px * @i) !important;
+    }
+    .px(@i - 1);
+}
+
+.px(5);
+
+.py(@i) when (@i>0) {
+    .py-@{i} {
+        padding-top: (5px * @i) !important;
+        padding-bottom: (5px * @i) !important;
+    }
+    .py(@i - 1);
+}
+
+.py(5);
+
+.flex {
+    display: flex;
+}
+
+.flex-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+.flex-item-start {
+    align-items: flex-start;
+}
+
+.flex-item-center {
+    align-items: center;
+}
+
+.flex-item-end {
+    align-items: flex-end;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+.pointer {
+    cursor: pointer;
+}
