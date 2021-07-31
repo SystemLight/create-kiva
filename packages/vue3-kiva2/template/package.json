@@ -1,0 +1,31 @@
+{
+  "name": "vue3-kiva2",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "search:doc": "start https://element-plus.org/#/zh-CN/component/layout & start https://vue3js.cn/docs/zh/api/"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.8.3",
+    "dayjs": "^1.10.6",
+    "element-plus": "^1.0.2-beta.54",
+    "js-cookie": "^2.2.1",
+    "mitt": "^3.0.0",
+    "qs": "^6.10.1",
+    "uuid": "^8.3.2",
+    "vue": "^3.0.4",
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0-beta.2",
+    "@vue/cli-plugin-router": "~5.0.0-beta.2",
+    "@vue/cli-service": "~5.0.0-beta.2",
+    "@vue/compiler-sfc": "^3.0.4",
+    "less": "^4.0.0",
+    "less-loader": "^8.0.0"
+  }
+}

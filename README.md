@@ -39,4 +39,5 @@ create-kiva i <模板名称>
 |  vue-kiva   |  Vue前端浏览器项目基础模板   | npx create-kiva i vue-kiva  | npx @vue/cli create ./app  |
 |  vue-mobile-kiva   |  Vue移动端浏览器项目基础模板   | npx create-kiva i vue-mobile-kiva  | npx @vue/cli create ./app  |
 |  vue3-kiva   |  Vue3前端浏览器项目基础模板   | npx create-kiva i vue3-kiva  | npx @vue/cli@next create ./app  |
+|  vue3-kiva2   |  基于vue-cli@next构建的vue3基础前端PC开发模板   | npx create-kiva i vue3-kiva2  | npx @vue/cli@next create ./app  |
 |  uniapp-kiva   |  uniapp跨移动端项目开发模板   | npx create-kiva i uniapp-kiva  | npx @vue/cli create -p dcloudio/uni-preset-vue ./app  |
