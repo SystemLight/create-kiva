@@ -1,17 +1,17 @@
 {
-  "name": "vue3-kiva2",
+  "name": "vue3-mobile-kiva2",
   "version": "1.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "search:doc": "start https://element-plus.gitee.io/#/zh-CN/component/installation & start https://vue3js.cn/docs/zh/api/"
+    "search:doc": "start https://vant-contrib.gitee.io/vant/v3/#/zh-CN/quickstart & start https://vue3js.cn/docs/zh/api/"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.8.3",
     "dayjs": "^1.10.6",
-    "element-plus": "^1.0.2-beta.70",
+    "vant": "^3.1.5",
     "js-cookie": "^2.2.1",
     "mitt": "^3.0.0",
     "qs": "^6.10.1",

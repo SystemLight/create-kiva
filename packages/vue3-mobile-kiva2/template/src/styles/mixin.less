@@ -13,3 +13,15 @@
         clear: both;
     }
 }
+
+.response_font() {
+    font-size: 37.5px;
+}
+
+.response_font(@isResponse) when (@isResponse=false) {
+    .response_font();
+}
+
+.response_font(@isResponse) when (@isResponse=true) {
+    font-size: 10vw;
+}

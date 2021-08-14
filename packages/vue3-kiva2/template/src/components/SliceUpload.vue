@@ -21,7 +21,7 @@ import {ref} from "vue";
 import {upload} from "@/api";
 
 export default {
-    name: "Upload",
+    name: "SliceUpload",
     props: [
         "modelValue",
         "action"
@@ -56,7 +56,3 @@ export default {
     }
 };
 </script>
-
-<style scoped>
-
-</style>

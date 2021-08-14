@@ -30,7 +30,8 @@ export default {
     props: [
         "modelValue",
         "phoneName",
-        "phoneValue"
+        "phoneValue",
+        "onSendSMS"
     ],
     emits: [
         "update:modelValue"
@@ -45,7 +46,7 @@ export default {
             // 发送短信验证码
             elForm.validateField(props.phoneName || "phone", (validMsg, invalidFields) => {
                 if (!validMsg) {
-                    sendSms(props.phoneValue).catch((err) => {
+                    props.onSendSMS(props.phoneValue).catch((err) => {
                         responseErrorMessage(err, "发送验证码失败");
                         stopResendTimer();
                     });

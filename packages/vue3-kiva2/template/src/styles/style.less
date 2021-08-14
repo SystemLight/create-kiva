@@ -1,0 +1,74 @@
+@import "var.less";
+@import "mixin.less";
+
+.custom-card {
+    .el-card__header {
+        padding: 14px 16px;
+    }
+
+    .el-card__body {
+        padding: 16px;
+    }
+}
+
+.custom-tab-card {
+    .el-card__header {
+        padding: 0;
+    }
+
+    &-header {
+        padding: 14px 16px;
+        background-color: @color-card-header;
+        color: @color-text-3;
+    }
+}
+
+.custom-tools-card {
+    .el-card__body {
+        padding: 12px;
+    }
+}
+
+.custom-descriptions {
+    td.el-descriptions__label.is-bordered-label,
+    td.el-descriptions__label.is-bordered-label .item-label {
+        width: 80px;
+        .text_ellipsis();
+    }
+
+    .el-descriptions__header {
+        margin-bottom: 5px;
+    }
+}
+
+.custom-upload {
+    margin-left: 80px;
+
+    .el-upload {
+        width: 100%;
+
+        .el-upload-dragger {
+            width: 100%;
+        }
+    }
+}
+
+.custom-dialog {
+    .el-dialog__body {
+        padding: 10px 20px;
+    }
+
+    .el-dialog__footer {
+        border-top: 1px solid @color-shallow-black;
+    }
+}
+
+.kiva-list {
+    border: 1px solid @color-border-2;
+    padding: 20px;
+
+    &-item {
+        border-bottom: 1px solid @color-border-2;
+        padding: 15px;
+    }
+}

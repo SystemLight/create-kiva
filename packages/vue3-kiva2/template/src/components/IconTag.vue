@@ -2,7 +2,7 @@
     <div class="custom-tag" :class="{'px-1':!closeable,'py-1':!closeable}">
         <div class="tag-content" @click="handleClick">
             <div class="tag-avatar-icon">
-                <img :src="avatar || defaultAvatarURL" alt="头像">
+                <img :src="image || defaultAvatarURL" alt="icon">
             </div>
             <div class="tag-avatar-text">
                 {{ text }}
@@ -18,9 +18,9 @@
 import {defaultAvatarURL} from "@/utils";
 
 export default {
-    name: "UserTag",
+    name: "IconTag",
     props: [
-        "avatar",
+        "image",
         "text",
         "closeable"
     ],
