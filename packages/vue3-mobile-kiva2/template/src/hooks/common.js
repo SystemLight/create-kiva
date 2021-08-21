@@ -2,8 +2,6 @@ import {reactive} from "vue";
 
 /**
  * 计时触发器
- * @param counterSize
- * @returns {(UnwrapNestedRefs<{resendTimer: number, resendTime: number, isStart: boolean}>|startResendTimer|stopResendTimer)[]}
  */
 export function useCountdown(counterSize = 60) {
     const state = reactive({

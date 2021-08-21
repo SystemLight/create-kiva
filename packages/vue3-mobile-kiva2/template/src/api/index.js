@@ -67,3 +67,30 @@ export async function upload(url, file, onProcess) {
 
     return result;
 }
+
+export async function getUser(key) {
+    return {
+        data: {
+            data: {
+                id: -1,
+                avatar: null,
+                create_at: null,
+                name: null,
+                phone: null,
+                priority: 0
+            }
+        }
+    };
+}
+
+export async function login(loginForm) {
+    return {data: {data: {token: "token"}}};
+}
+
+export async function sendSms(phone) {
+    return await service.post("/oauth/captcha", qs.stringify({phone}));
+}
+
+export async function logout(phone) {
+    return {};
+}

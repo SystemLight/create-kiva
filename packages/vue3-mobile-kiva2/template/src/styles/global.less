@@ -16,9 +16,10 @@ html {
 }
 
 body {
+    background: @bg-body;
     overflow-x: hidden;
     overflow-y: auto;
-    font-size: 16/@px;
+    font-size: (16/@px);
 }
 
 div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
@@ -43,7 +44,7 @@ ul, dl, ol {
 }
 
 .hidden-text {
-    .text_ellipsis();
+    .text-ellipsis();
 }
 
 .text(@pIndex) when (@pIndex>0) {
@@ -112,6 +113,33 @@ ul, dl, ol {
 
 .my(5);
 
+.m(@i) when (@i>0) {
+    .m-@{i} {
+        margin: (5px * @i) !important;
+    }
+    .m(@i - 1);
+}
+
+.m(5);
+
+.pt(@i) when (@i>0) {
+    .pt-@{i} {
+        padding-top: (5px * @i) !important;
+    }
+    .pt(@i - 1);
+}
+
+.pt(5);
+
+.pb(@i) when (@i>0) {
+    .pb-@{i} {
+        padding-bottom: (5px * @i) !important;
+    }
+    .pb(@i - 1);
+}
+
+.pb(5);
+
 .pl(@i) when (@i>0) {
     .pl-@{i} {
         padding-left: (5px * @i) !important;
@@ -149,6 +177,15 @@ ul, dl, ol {
 }
 
 .py(5);
+
+.p(@i) when (@i>0) {
+    .p-@{i} {
+        padding: (5px * @i) !important;
+    }
+    .p(@i - 1);
+}
+
+.p(5);
 
 .flex {
     display: flex;
