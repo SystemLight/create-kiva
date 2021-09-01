@@ -1,0 +1,33 @@
+{
+  "name": "vite-vue3-kiva",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --mode development",
+    "build:beta": "vue-tsc --noEmit && vite build --mode beta",
+    "build:release": "vue-tsc --noEmit && vite build --mode release",
+    "serve": "vite preview",
+    "docs": "start https://element-plus.org/#/zh-CN/component/installation"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "element-plus": "^1.1.0-beta.8",
+    "js-cookie": "^3.0.1",
+    "qs": "^6.10.1",
+    "vue": "^3.2.6",
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^2.2.7",
+    "@types/node": "^16.7.10",
+    "@vitejs/plugin-legacy": "^1.5.1",
+    "@vitejs/plugin-vue": "^1.6.0",
+    "@vue/compiler-sfc": "^3.2.6",
+    "less": "^4.1.1",
+    "typescript": "^4.3.2",
+    "vite": "^2.5.2",
+    "vite-plugin-element-plus": "^0.0.12",
+    "vue-tsc": "^0.2.2"
+  }
+}
