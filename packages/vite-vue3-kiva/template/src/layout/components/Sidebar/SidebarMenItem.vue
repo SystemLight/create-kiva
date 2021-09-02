@@ -1,6 +1,6 @@
 <template>
     <template v-for="item in menus">
-        <template v-if="item.isSub">
+        <template v-if="item.children&&item.children.length>0">
             <el-sub-menu :index="item.index">
                 <template #title>
                     <span>{{ item.title }}</span>
@@ -24,7 +24,6 @@
 </template>
 
 <script lang="ts" setup>
-import {ElSubMenu, ElMenuItem} from "element-plus";
 import AppLink from "./Link.vue";
 import {useStore} from "@/store";
 import {computed} from "vue";

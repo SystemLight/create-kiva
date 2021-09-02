@@ -21,15 +21,15 @@
 <script lang="ts" setup>
 import {computed, ref, onMounted} from "vue";
 import {useStore} from "@/store";
-import router from "@/router";
-import {useRoute, useRouter, onBeforeRouteUpdate} from "vue-router";
+import {useRoute} from "vue-router";
 import Logo from "./Logo.vue";
 import SidebarMenItem from "./SidebarMenItem.vue";
 
+const route = useRoute();
 const store = useStore();
 const isCollapse = computed(() => {
     return !store.state.app.sidebar.opened;
 });
-const activeMenu = ref<string>("trial2");
+const activeMenu = ref(route.meta.activeMenu);
 
 </script>

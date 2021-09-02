@@ -12,7 +12,6 @@ export interface MenuType {
     index: string,
     title: string,
     link?: string,
-    isSub: boolean,
     children?: MenuType[];
 }
 

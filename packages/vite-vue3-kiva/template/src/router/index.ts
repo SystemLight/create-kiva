@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 import Layout from "@/layout/index.vue";
+import {MENU_INDEX_DEF} from "@/setting";
 
 export const constantRoutes: RouteRecordRaw[] = [
     {
@@ -29,7 +30,7 @@ export const constantRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/dashboard/index.vue"),
                 meta: {
                     title: "主页",
-                    activeMenu: "dashboard"
+                    activeMenu: MENU_INDEX_DEF.DASHBOARD
                 }
             }
         ]
@@ -48,7 +49,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/demo/trial1.vue"),
                 meta: {
                     title: "演示1",
-                    activeMenu: "tria1"
+                    activeMenu: MENU_INDEX_DEF.TRIAL1
                 }
             },
             {
@@ -57,7 +58,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/demo/trial2.vue"),
                 meta: {
                     title: "演示2",
-                    activeMenu: "tria2"
+                    activeMenu: MENU_INDEX_DEF.TRIAL2
                 }
             }
         ]

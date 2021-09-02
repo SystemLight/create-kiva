@@ -1,27 +1,30 @@
 import {MenuType} from "@/store/interface";
 
+export const MENU_INDEX_DEF = {
+    DEMO: "demo",
+    DASHBOARD: "dashboard",
+    TRIAL1: "trial1",
+    TRIAL2: "trial2"
+};
+
 const initAdminMenu: MenuType[] = [
     {
-        index: "dashboard",
+        index: MENU_INDEX_DEF.DASHBOARD,
         title: "主页",
-        isSub: false,
         link: "/dashboard"
     },
     {
-        index: "demo",
+        index: MENU_INDEX_DEF.DEMO,
         title: "演示",
-        isSub: true,
         children: [
             {
-                index: "trial1",
+                index: MENU_INDEX_DEF.TRIAL1,
                 title: "尝试1",
-                isSub: false,
                 link: "/demo/trial1"
             },
             {
-                index: "trial2",
+                index: MENU_INDEX_DEF.TRIAL2,
                 title: "尝试2",
-                isSub: false,
                 link: "/demo/trial2"
             }
         ]
