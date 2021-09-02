@@ -25,9 +25,9 @@ export default defineConfig(({mode}) => ({
         host: "0.0.0.0",
         proxy: {
             "/api": {
-                target: "http://localhost:9000",
+                target: "http://localhost:5000",
                 changeOrigin: true,
-                rewrite: path => path.replace(/^\/api/, "")
+                // rewrite: path => path.replace(/^\/api/, "")
             }
         }
     },
@@ -39,12 +39,12 @@ export default defineConfig(({mode}) => ({
             }),
             apply: "build"
         },
-        VitePluginElementPlus({
-            // 如果你需要使用 [component name].scss 源文件，你需要把下面的注释取消掉。
-            // 对于所有的 API 你可以参考 https://github.com/element-plus/vite-plugin-element-plus
-            // 的文档注释
-            // useSource: true
-            format: mode === "development" ? "esm" : "cjs"
-        })
+        // VitePluginElementPlus({
+        //     // 如果你需要使用 [component name].scss 源文件，你需要把下面的注释取消掉。
+        //     // 对于所有的 API 你可以参考 https://github.com/element-plus/vite-plugin-element-plus
+        //     // 的文档注释
+        //     // useSource: true
+        //     format: mode === "development" ? "esm" : "cjs"
+        // })
     ]
 }));

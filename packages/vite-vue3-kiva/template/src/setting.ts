@@ -1,37 +1,37 @@
+import {MenuType} from "@/store/interface";
+
+const initAdminMenu: MenuType[] = [
+    {
+        index: "dashboard",
+        title: "主页",
+        isSub: false,
+        link: "/dashboard"
+    },
+    {
+        index: "demo",
+        title: "演示",
+        isSub: true,
+        children: [
+            {
+                index: "trial1",
+                title: "尝试1",
+                isSub: false,
+                link: "/demo/trial1"
+            },
+            {
+                index: "trial2",
+                title: "尝试2",
+                isSub: false,
+                link: "/demo/trial2"
+            }
+        ]
+    }
+];
+
 const defaultSettings = {
     title: "清源后台管理",
 
-    /**
-     * @type {boolean} true | false
-     * @description Whether show the settings right-panel
-     */
-    showSettings: true,
-
-    /**
-     * @type {boolean} true | false
-     * @description Whether need tagsView
-     */
-    tagsView: true,
-
-    /**
-     * @type {boolean} true | false
-     * @description Whether fix the header
-     */
-    fixedHeader: false,
-
-    /**
-     * @type {boolean} true | false
-     * @description Whether show the logo in sidebar
-     */
-    sidebarLogo: false,
-
-    /**
-     * @type {string | array} 'production' | ['production', 'development']
-     * @description Need show err logs component.
-     * The default is only used in the production env
-     * If you want to also use it in dev, you can pass ['production', 'development']
-     */
-    errorLog: "production"
+    initAdminMenu: initAdminMenu
 };
 
 export default defaultSettings;

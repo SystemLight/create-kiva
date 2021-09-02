@@ -8,16 +8,15 @@
                     <div class="tips">后台管理系统</div>
                 </div>
             </div>
-            <el-form label-position="top" :rules="rules" :model="ruleForm" ref="loginForm" class="login-form">
+            <el-form label-position="top" :rules="loginFormRules" :model="loginForm" ref="loginFormRef"
+                     class="login-form">
                 <el-form-item label="账号" prop="username">
-                    <el-input type="text" v-model.trim="ruleForm.username" autocomplete="off"></el-input>
+                    <el-input type="text" v-model.trim="loginForm.username" autocomplete="off" />
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
-                    <el-input type="password" v-model.trim="ruleForm.password" autocomplete="off"></el-input>
+                    <el-input type="password" v-model.trim="loginForm.password" autocomplete="off" />
                 </el-form-item>
-                <el-form-item>
-                    <el-button style="width: 100%" type="primary" @click="submitForm">立即登录</el-button>
-                </el-form-item>
+                <el-button class="mt-3" style="width: 100%" type="primary" @click="handleSubmit">立即登录</el-button>
             </el-form>
         </div>
     </div>
@@ -30,17 +29,39 @@ import {
     ElInput,
     ElButton
 } from "element-plus";
+import {Rules} from "async-validator";
 import {reactive, ref} from "vue";
+import {useRouter, useRoute} from "vue-router";
+import {useStore} from "@/store";
 
-const ruleForm = reactive({});
-const rules = ref([]);
+const route = useRoute();
+const router = useRouter();
+const store = useStore();
+const loginFormRef = ref();
+const loginForm = reactive({});
+const loginFormRules = reactive<Rules>({
+    username: [
+        {required: true, message: "填写用户名"}
+    ],
+    password: [
+        {required: true, message: "填写密码"}
+    ]
+});
 
-const submitForm = () => {
-    console.log("submitForm");
+const handleSubmit = () => {
+    loginFormRef.value.validate((isValidate: boolean, msg) => {
+        if (isValidate) {
+            store.dispatch("user/login", loginForm).then(() => {
+                if (route.query["redirect"]) {
+                    router.replace({path: route.query["redirect"]});
+                }
+            });
+        }
+    });
 };
 
 defineExpose({
-    submitForm
+    handleSubmit
 });
 </script>
 
@@ -90,14 +111,12 @@ defineExpose({
     width: 70%;
     margin: 0 auto;
 }
-</style>
 
-<style>
-.el-form--label-top .el-form-item__label {
+::v-deep(.el-form--label-top .el-form-item__label) {
     padding: 0;
 }
 
-.login-form .el-form-item {
+.login-form ::v-deep(.el-form-item) {
     margin-bottom: 12px;
 }
 </style>

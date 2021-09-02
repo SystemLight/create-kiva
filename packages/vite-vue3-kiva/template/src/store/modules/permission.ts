@@ -1,6 +1,7 @@
 import {asyncRoutes, constantRoutes} from "@/router";
 import {ActionTree, Module, MutationTree} from "vuex";
 import {RouteRecordRaw} from "vue-router";
+import defaultSettings from "@/setting";
 import {PermissionStateType, RootStateType} from "@/store/interface";
 
 /**
@@ -42,13 +43,17 @@ export function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
 
 const permissionState: PermissionStateType = {
     routes: [],
-    addRoutes: []
+    addRoutes: [],
+    menu: []
 };
 
 const permissionMutations: MutationTree<PermissionStateType> = {
     setRoutes(state, routes) {
         state.addRoutes = routes;
         state.routes = constantRoutes.concat(routes);
+    },
+    setMenu(state, menu) {
+        state.menu = menu;
     }
 };
 
@@ -58,6 +63,9 @@ const permissionActions: ActionTree<PermissionStateType, RootStateType> = {
         let accessedRoutes;
         if (roles.includes("admin")) {
             accessedRoutes = asyncRoutes || [];
+
+            // 根据不同角色生成不同导航栏
+            commit("setMenu", defaultSettings.initAdminMenu);
         } else {
             accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
         }

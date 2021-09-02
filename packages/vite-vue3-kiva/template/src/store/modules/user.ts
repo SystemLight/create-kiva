@@ -2,6 +2,8 @@ import {Module, ActionTree, MutationTree} from "vuex";
 import {RootStateType, UserStateType} from "../interface";
 import {getToken, setToken, removeToken} from "@/utils/auth";
 import {login, getInfo, logout} from "@/api/user";
+import router, {replaceRoutes, resetRouter} from "@/router";
+import {RouteRecordRaw} from "vue-router";
 
 const userState: UserStateType = {
     token: getToken() || "",
@@ -37,15 +39,16 @@ const userActions: ActionTree<UserStateType, RootStateType> = {
     // user login
     async login({commit}, userInfo) {
         const {username, password} = userInfo;
-        const response = await login({username: username.trim(), password: password});
-        const {data} = response;
+        const {data} = await login({username: username.trim(), password: password});
         commit("setToken", data.token);
         setToken(data.token);
+        return data;
     },
 
     // get user info
     async getInfo({commit, state}) {
         const {data} = await getInfo();
+
         if (!data) {
             throw new Error("Verification failed, please Login again.");
         }
@@ -70,7 +73,7 @@ const userActions: ActionTree<UserStateType, RootStateType> = {
         commit("setToken", "");
         commit("setRoles", []);
         removeToken();
-        location.reload();
+        resetRouter();
     },
 
     // remove token
@@ -84,13 +87,15 @@ const userActions: ActionTree<UserStateType, RootStateType> = {
     async changeRoles({commit, dispatch}, role) {
         const {roles} = await dispatch("getInfo");
 
-        // generate accessible routes map based on roles
-        // const accessRoutes = await dispatch("permission/generateRoutes", roles, {root: true});
+        resetRouter();
 
-        // dynamically add accessible routes
-        // router.addRoutes(accessRoutes);
+        // 根据角色生成可访问的路由
+        const accessRoutes: RouteRecordRaw[] = await dispatch("permission/generateRoutes", roles, {root: true});
 
-        // reset visited views and cached views
+        // 动态添加可访问的路由
+        replaceRoutes(accessRoutes);
+
+        // 重置访问视图和缓存视图
         // dispatch("tagsView/delAllViews", null, {root: true});
     }
 };
