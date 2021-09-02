@@ -4,7 +4,7 @@
             <div class="head">
                 <img class="logo" src="/src/assets/logo.svg" alt="logo" />
                 <div class="name">
-                    <div class="title">清源</div>
+                    <div class="title">后台</div>
                     <div class="tips">后台管理系统</div>
                 </div>
             </div>

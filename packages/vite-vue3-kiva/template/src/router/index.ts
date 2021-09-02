@@ -30,6 +30,7 @@ export const constantRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/dashboard/index.vue"),
                 meta: {
                     title: "主页",
+                    breadcrumb: "主页",
                     activeMenu: MENU_INDEX_DEF.DASHBOARD
                 }
             }
@@ -49,6 +50,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/demo/trial1.vue"),
                 meta: {
                     title: "演示1",
+                    breadcrumb: "演示1",
                     activeMenu: MENU_INDEX_DEF.TRIAL1
                 }
             },
@@ -58,10 +60,46 @@ export const asyncRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/demo/trial2.vue"),
                 meta: {
                     title: "演示2",
+                    breadcrumb: "演示2",
                     activeMenu: MENU_INDEX_DEF.TRIAL2
                 }
             }
         ]
+    },
+    // 配置自定义路由
+
+
+
+    // 配置自定义路由
+    {
+        name: "ErrorLayout",
+        path: "/error",
+        component: Layout,
+        redirect: "noRedirect",
+        children: [
+            {
+                path: "401",
+                component: () => import("@/views/error-page/401.vue"),
+                name: "Error401",
+                meta: {
+                    title: "401",
+                    breadcrumb: "401"
+                }
+            },
+            {
+                path: "404",
+                component: () => import("@/views/error-page/404.vue"),
+                name: "Error404",
+                meta: {
+                    title: "404",
+                    breadcrumb: "404"
+                }
+            }
+        ]
+    },
+    {
+        path: "/:fullPath(.*)*",
+        redirect: "/404"
     }
 ];
 

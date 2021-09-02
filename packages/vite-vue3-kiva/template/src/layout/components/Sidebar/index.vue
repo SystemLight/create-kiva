@@ -30,6 +30,7 @@ const store = useStore();
 const isCollapse = computed(() => {
     return !store.state.app.sidebar.opened;
 });
-const activeMenu = ref(route.meta.activeMenu);
-
+const activeMenu = computed(() => {
+    return route.meta.activeMenu;
+});
 </script>

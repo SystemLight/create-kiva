@@ -20,7 +20,7 @@ const props = defineProps({
         required: true
     }
 });
-const title = "清源后台管理";
+const title = "后台管理";
 const logo = "https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png";
 </script>
 

@@ -6,70 +6,62 @@
                     v-if="item.redirect==='noRedirect'||index===levelList.length-1"
                     class="no-redirect"
                 >
-                    {{ item.meta.title }}
+                    {{ item.meta.breadcrumb }}
                 </span>
-                <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
+                <a v-else @click.prevent="handleLink(item)">{{ item.meta.breadcrumb }}</a>
             </el-breadcrumb-item>
         </transition-group>
     </el-breadcrumb>
 </template>
 
-<script>
-import {pathToRegexp} from "path-to-regexp";
+<script lang="ts" setup>
+import {compile} from "path-to-regexp";
+import {ref, watchEffect} from "vue";
+import {RouteRecordRaw, useRoute, useRouter} from "vue-router";
 
-export default {
-    data() {
-        return {
-            levelList: null
-        };
-    },
-    watch: {
-        $route(route) {
-            // if you go to the redirect page, do not update the breadcrumbs
-            if (route.path.startsWith("/redirect/")) {
-                return;
-            }
-            this.getBreadcrumb();
-        }
-    },
-    created() {
-        this.getBreadcrumb();
-    },
-    methods: {
-        getBreadcrumb() {
-            // only show routes with meta.title
-            let matched = this.$route.matched.filter(item => item.meta && item.meta.title);
-            const first = matched[0];
+const route = useRoute();
+const router = useRouter();
+const levelList = ref([]);
 
-            if (!this.isDashboard(first)) {
-                matched = [{path: "/dashboard", meta: {title: "Dashboard"}}].concat(matched);
-            }
-
-            this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false);
-        },
-        isDashboard(route) {
-            const name = route && route.name;
-            if (!name) {
-                return false;
-            }
-            return name.trim().toLocaleLowerCase() === "Dashboard".toLocaleLowerCase();
-        },
-        pathCompile(path) {
-            // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
-            const {params} = this.$route;
-            var toPath = pathToRegexp.compile(path);
-            return toPath(params);
-        },
-        handleLink(item) {
-            const {redirect, path} = item;
-            if (redirect) {
-                this.$router.push(redirect);
-                return;
-            }
-            this.$router.push(this.pathCompile(path));
-        }
+const isDashboard = (r: any) => {
+    const name = r && r.meta.breadcrumb;
+    if (!name) {
+        return false;
     }
+    return name.trim().toLocaleLowerCase() === "主页".toLocaleLowerCase();
 };
+
+const pathCompile = (path: string) => {
+    // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
+    const {params} = route;
+    let toPath = compile(path);
+    return toPath(params);
+};
+
+const handleLink = (item: any) => {
+    const {redirect, path} = item;
+    if (redirect) {
+        router.push(redirect);
+        return;
+    }
+    router.push(pathCompile(path));
+};
+
+watchEffect(() => {
+    let matched: any = route.matched.filter(item => item.meta && item.meta.breadcrumb);
+    const first = matched[0];
+
+    // 判断第一个是否为首页，不是主页添加主页
+    if (!isDashboard(first)) {
+        matched = [{path: "/dashboard", meta: {breadcrumb: "主页"}}].concat(matched);
+    }
+
+    levelList.value = matched.filter((item: RouteRecordRaw) => item.meta && item.meta.breadcrumb !== false);
+});
+
+defineExpose({
+    handleLink
+});
 </script>
 
 <style lang="less" scoped>
