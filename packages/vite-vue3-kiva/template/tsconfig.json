@@ -6,6 +6,7 @@
     "src/**/*.vue"
   ],
   "compilerOptions": {
+    "skipLibCheck": true,
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",

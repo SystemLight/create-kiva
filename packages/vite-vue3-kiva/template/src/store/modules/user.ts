@@ -39,7 +39,11 @@ const userActions: ActionTree<UserStateType, RootStateType> = {
     // user login
     async login({commit}, userInfo) {
         const {username, password} = userInfo;
-        const {data} = await login({username: username.trim(), password: password});
+
+        // TODO: 更改真实请求
+        // const {data} = await login({username: username.trim(), password: password});
+        const data = {token: "123"}
+
         commit("setToken", data.token);
         setToken(data.token);
         return data;
@@ -47,7 +51,14 @@ const userActions: ActionTree<UserStateType, RootStateType> = {
 
     // get user info
     async getInfo({commit, state}) {
-        const {data} = await getInfo();
+        // TODO: 更改真实请求
+        // const {data} = await getInfo();
+        const data = {
+            roles: ["admin"],
+            name: "abc",
+            avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80",
+            introduction: "abc"
+        }
 
         if (!data) {
             throw new Error("Verification failed, please Login again.");
@@ -69,7 +80,9 @@ const userActions: ActionTree<UserStateType, RootStateType> = {
 
     // user logout
     async logout({commit}) {
-        await logout();
+        // TODO: 更改真实请求
+        // await logout();
+
         commit("setToken", "");
         commit("setRoles", []);
         removeToken();

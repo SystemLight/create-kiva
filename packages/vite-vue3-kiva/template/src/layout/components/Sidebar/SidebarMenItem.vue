@@ -5,7 +5,7 @@
                 <template #title>
                     <span>{{ item.title }}</span>
                 </template>
-                <app-link v-for="subItem in item.children" :to="subItem.link">
+                <app-link v-for="subItem in item.children" :to="subItem.link||''">
                     <el-menu-item :index="subItem.index">
                         {{ subItem.title }}
                     </el-menu-item>
@@ -14,7 +14,7 @@
         </template>
 
         <template v-else>
-            <app-link :to="item.link">
+            <app-link :to="item.link||''">
                 <el-menu-item :index="item.index">
                     {{ item.title }}
                 </el-menu-item>

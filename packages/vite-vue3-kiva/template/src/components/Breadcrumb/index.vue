@@ -17,11 +17,11 @@
 <script lang="ts" setup>
 import {compile} from "path-to-regexp";
 import {ref, watchEffect} from "vue";
-import {RouteRecordRaw, useRoute, useRouter} from "vue-router";
+import {RouteLocationMatched, RouteRecordRaw, useRoute, useRouter} from "vue-router";
 
 const route = useRoute();
 const router = useRouter();
-const levelList = ref([]);
+const levelList = ref<RouteLocationMatched[]>([]);
 
 const isDashboard = (r: any) => {
     const name = r && r.meta.breadcrumb;

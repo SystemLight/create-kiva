@@ -38,7 +38,10 @@ const route = useRoute();
 const router = useRouter();
 const store = useStore();
 const loginFormRef = ref();
-const loginForm = reactive({});
+const loginForm = reactive({
+    username: "",
+    password: ""
+});
 const loginFormRules = reactive<Rules>({
     username: [
         {required: true, message: "填写用户名"}
@@ -49,11 +52,11 @@ const loginFormRules = reactive<Rules>({
 });
 
 const handleSubmit = () => {
-    loginFormRef.value.validate((isValidate: boolean, msg) => {
+    loginFormRef.value.validate((isValidate: boolean, msg: any) => {
         if (isValidate) {
             store.dispatch("user/login", loginForm).then(() => {
                 if (route.query["redirect"]) {
-                    router.replace({path: route.query["redirect"]});
+                    router.replace({path: route.query["redirect"] as string});
                 }
             });
         }

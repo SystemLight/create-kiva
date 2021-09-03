@@ -62,6 +62,10 @@ a {
     .text_ellipsis();
 }
 
+.desc {
+    .text-desc();
+}
+
 .text(@pIndex) when (@pIndex>0) {
     @val: extract(@position, @pIndex);
     .text-@{val} {
@@ -128,6 +132,33 @@ a {
 
 .my(5);
 
+.m(@i) when (@i>0) {
+    .m-@{i} {
+        margin: (5px * @i) !important;
+    }
+    .m(@i - 1);
+}
+
+.m(5);
+
+.pt(@i) when (@i>0) {
+    .pt-@{i} {
+        padding-top: (5px * @i) !important;
+    }
+    .pt(@i - 1);
+}
+
+.pt(5);
+
+.pb(@i) when (@i>0) {
+    .pb-@{i} {
+        padding-bottom: (5px * @i) !important;
+    }
+    .pb(@i - 1);
+}
+
+.pb(5);
+
 .pl(@i) when (@i>0) {
     .pl-@{i} {
         padding-left: (5px * @i) !important;
@@ -166,6 +197,15 @@ a {
 
 .py(5);
 
+.p(@i) when (@i>0) {
+    .p-@{i} {
+        padding: (5px * @i) !important;
+    }
+    .p(@i - 1);
+}
+
+.p(5);
+
 .flex {
     display: flex;
 }
@@ -196,8 +236,11 @@ a {
     align-items: flex-end;
 }
 
-.custom-text-btn {
-    font-size: @font-size-4;
-    color: @color-brand;
-    cursor: pointer;
+.grayscale {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.placeholder-bottom {
+    height: 300px;
 }

@@ -9,6 +9,12 @@
     .el-card__body {
         padding: 16px;
     }
+
+    .custom-card__header_between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
 .custom-tab-card {
@@ -26,6 +32,12 @@
 .custom-tools-card {
     .el-card__body {
         padding: 12px;
+    }
+
+    .custom-tools-card__form {
+        .el-form-item {
+            margin-bottom: 0;
+        }
     }
 }
 
@@ -61,6 +73,12 @@
     .el-dialog__footer {
         border-top: 1px solid @color-shallow-black;
     }
+}
+
+.custom-text-btn {
+    font-size: @font-size-4;
+    color: @color-brand;
+    cursor: pointer;
 }
 
 .kiva-list {
