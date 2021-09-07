@@ -1,0 +1,20 @@
+.text_ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.clear_fix() {
+    &:after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        clear: both;
+    }
+}
+
+.text-desc() {
+    color: rgba(69, 90, 100, 0.6);
+    font-size: 14px;
+}

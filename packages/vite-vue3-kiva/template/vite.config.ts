@@ -6,8 +6,8 @@ import VitePluginElementPlus from "vite-plugin-element-plus";
 
 const baseUrl = {
     development: "./",
-    beta: "./",
-    release: "./"
+    beta: "/",
+    release: "/"
 };
 
 // https://vitejs.dev/config/
