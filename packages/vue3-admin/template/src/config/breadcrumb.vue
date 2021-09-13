@@ -4,6 +4,10 @@
 
 <script>
 export default {
-    name: "Layout"
+    name: "Breadcrumb"
 };
 </script>
+
+<style scoped>
+
+</style>

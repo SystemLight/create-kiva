@@ -2,13 +2,17 @@
 
 const path = require("path");
 
-function resolve(dir) {
-    return path.join(__dirname, dir);
-}
+/**
+ * 配置参考：
+ *      https://cli.vuejs.org/config/
+ *      https://github.com/browserslist/browserslist
+ */
 
-const name = "vue3-admin"; // page title
+// 页面初始标题
+const name = "vue3-admin";
 
-const port = process.env.port || process.env.npm_config_port || 9527; // dev port
+// 开发端口
+const port = process.env.port || process.env.npm_config_port || 9527;
 
 /**
  * @typedef PublicPathType
@@ -24,11 +28,14 @@ const publicPath = {
     production: "/"
 };
 
-// All configuration item explanations can be find in https://cli.vuejs.org/config/
+function resolve(dir) {
+    return path.join(__dirname, dir);
+}
+
 module.exports = {
     publicPath: publicPath[process.env.NODE_ENV],
     outputDir: "dist",
-    assetsDir: "static",
+    assetsDir: "rely",
     productionSourceMap: false,
     devServer: {
         port: port,
@@ -94,7 +101,7 @@ module.exports = {
                             }
                         }
                     });
-                    // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
+                    // https://webpack.js.org/configuration/optimization/#optimizationruntimechunk
                     config.optimization.runtimeChunk("single");
                 }
             );

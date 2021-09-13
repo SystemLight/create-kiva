@@ -5958,11 +5958,6 @@ path-to-regexp@0.1.7:
   resolved "https://registry.nlark.com/path-to-regexp/download/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
 
-path-to-regexp@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.nlark.com/path-to-regexp/download/path-to-regexp-6.2.0.tgz?cache=0&sync_timestamp=1624608046390&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpath-to-regexp%2Fdownload%2Fpath-to-regexp-6.2.0.tgz#f7b3803336104c346889adece614669230645f38"
-  integrity sha1-97OAMzYQTDRoia3s5hRmkjBkXzg=
-
 path-type@^3.0.0:
   version "3.0.0"
   resolved "https://registry.nlark.com/path-type/download/path-type-3.0.0.tgz#cef31dc8e0a1a3bb0d105c0cd97cf3bf47f4e36f"

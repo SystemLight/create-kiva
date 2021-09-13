@@ -1,5 +1,5 @@
 <template>
-    <router-view />
+    <el-button>按钮</el-button>
 </template>
 
 <script>

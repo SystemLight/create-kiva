@@ -4,6 +4,10 @@
 
 <script>
 export default {
-    name: "Layout"
+    name: "Menu"
 };
 </script>
+
+<style scoped>
+
+</style>
