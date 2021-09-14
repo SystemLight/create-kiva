@@ -28,7 +28,7 @@ export const constantRoutes = [
 ];
 
 /**
- * 权限异步加载路由表
+ * 权限异步加载路由表，登录后根据权限进行访问
  * @type {RouteRecordRaw[]}
  */
 export const asyncRoutes = [
@@ -50,7 +50,7 @@ export const asyncRoutes = [
     },
     {
         name: "NotFound",
-        path: "*",
+        path: "/:fullPath(.*)*",
         redirect: "/404"
     }
 ];
@@ -58,7 +58,7 @@ export const asyncRoutes = [
 const router = createRouter({
     history: createWebHistory("/"),
     scrollBehavior: () => ({y: 0}),
-    routes: constantRoutes
+    routes: constantRoutes.concat(asyncRoutes)
 });
 
 /**
@@ -67,41 +67,41 @@ const router = createRouter({
  */
 const whiteList = ["/login"];
 
-router.beforeEach(async (to, from, next) => {
-    document.title = getPageTitle(to.meta.title);
-
-    const hasToken = getToken();
-    if (hasToken) {
-        if (to.path === "/login") {
-            next({path: "/"});
-        } else {
-            try {
-                await store.dispatch("user/getUserInfo");
-                const accessRoutes = await store.dispatch("permission/generateRoutes");
-                addRoutes(accessRoutes);
-                next({...to, replace: true});
-            } catch (error) {
-                await store.dispatch("user/resetToken");
-                ElMessage.error(error || "#01 权限错误");
-                next(`/login?redirect=${to.path}`);
-            }
-        }
-    } else {
-        if (whiteList.indexOf(to.path) !== -1) {
-            next();
-        } else {
-            next(`/login?redirect=${to.path}`);
-        }
-    }
-});
-
-router.afterEach(() => {
-});
+// router.beforeEach(async (to, from, next) => {
+//     document.title = getPageTitle(to.meta.title);
+//
+//     const hasToken = getToken();
+//     if (hasToken) {
+//         if (to.path === "/login") {
+//             next({path: "/"});
+//         } else {
+//             try {
+//                 await store.dispatch("user/getUserInfo");
+//                 const accessRoutes = await store.dispatch("permission/generateRoutes");
+//                 addRoutes(accessRoutes);
+//                 next({...to, replace: true});
+//             } catch (error) {
+//                 await store.dispatch("user/resetToken");
+//                 ElMessage.error(error || "#01 权限错误");
+//                 next(`/login?redirect=${to.path}`);
+//             }
+//         }
+//     } else {
+//         if (whiteList.indexOf(to.path) !== -1) {
+//             next();
+//         } else {
+//             next(`/login?redirect=${to.path}`);
+//         }
+//     }
+// });
 
 /**
  * 重置路由
  */
 export function resetRouter() {
+    router.getRoutes().forEach((v) => {
+        router.removeRoute(v.name);
+    });
 }
 
 /**
@@ -109,6 +109,9 @@ export function resetRouter() {
  * @param {RouteRecordRaw[]} accessRoutes
  */
 export function addRoutes(accessRoutes) {
+    accessRoutes.forEach((v) => {
+        router.addRoute(v);
+    });
 }
 
 export default router;

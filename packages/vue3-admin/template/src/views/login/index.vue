@@ -1,3 +1,3 @@
 <template>
-    <div>login</div>
+    <el-button type="primary">按钮</el-button>
 </template>

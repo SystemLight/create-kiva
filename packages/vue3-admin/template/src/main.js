@@ -1,7 +1,9 @@
-import "element-plus/dist/index.css";
 import {createApp} from "vue";
 import ElementPlus from "element-plus";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
+import "normalize.css";
+import "@/styles/element-variables.scss";
+import "@/styles/index.scss";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -18,5 +20,5 @@ import store from "./store";
 const app = createApp(App);
 app.use(router);
 app.use(store);
-app.use(ElementPlus, {size: "middle", zIndex: 3000, locale: zhCn});
+app.use(ElementPlus, {size: "small", zIndex: 3000, locale: zhCn});
 app.mount("#app");
