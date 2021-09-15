@@ -1,3 +1,5 @@
+import request from "@/utils/request";
+
 export async function login(loginInfo) {
     return {
         code: 200,

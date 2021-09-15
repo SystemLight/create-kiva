@@ -12,48 +12,19 @@
         </div>
 
         <el-scrollbar wrap-class="scrollbar-wrapper">
-            <el-menu
-                :background-color="variables.menuBg"
-                :text-color="variables.menuText"
-                default-active="1-1"
-                :unique-opened="false"
-                :collapse-transition="false"
-                mode="vertical"
-            >
-                <el-sub-menu index="1">
-                    <el-menu-item index="1-1">选项1-1</el-menu-item>
-                    <el-menu-item index="1-2">选项1-2</el-menu-item>
-                    <template #title>
-                        <span>选项1</span>
-                    </template>
-                </el-sub-menu>
-                <el-sub-menu index="2">
-                    <el-menu-item index="2-1">选项2-1</el-menu-item>
-                    <el-menu-item index="2-2">选项2-2</el-menu-item>
-                    <template #title>
-                        <span>选项2</span>
-                    </template>
-                </el-sub-menu>
-                <el-sub-menu index="3">
-                    <el-menu-item index="3-1">选项3-1</el-menu-item>
-                    <el-menu-item index="3-2">选项3-2</el-menu-item>
-                    <el-menu-item index="3-3">选项3-3</el-menu-item>
-                    <template #title>
-                        <span>选项3</span>
-                    </template>
-                </el-sub-menu>
-            </el-menu>
+            <sidebar-menu />
         </el-scrollbar>
     </el-aside>
 </template>
 
 <script setup>
-import variables from "../../styles/variables.scss";
+import variables from "../../../styles/variables.scss";
+import SidebarMenu from "./Menu";
 </script>
 
 <style lang="scss" scoped>
-@use "../../styles/mixin";
-@use "../../styles/variables";
+@use "../../../styles/mixin";
+@use "../../../styles/variables";
 
 .sidebar-container {
     transition: width 0.28s;

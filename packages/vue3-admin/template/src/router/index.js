@@ -49,6 +49,22 @@ export const asyncRoutes = [
         ]
     },
     {
+        name: "TrialLayout",
+        path: "/trial",
+        component: Layout,
+        redirect: "/trial/transition",
+        children: [
+            {
+                name: "Transition",
+                path: "transition",
+                component: () => import("@/views/trial/transition"),
+                meta: {
+                    title: "transition"
+                }
+            }
+        ]
+    },
+    {
         name: "NotFound",
         path: "/:fullPath(.*)*",
         redirect: "/404"

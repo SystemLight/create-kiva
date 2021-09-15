@@ -11,7 +11,7 @@
 
 <script setup>
 import HeaderLayout from "./components/HeaderLayout";
-import SidebarLayout from "./components/SidebarLayout";
+import SidebarLayout from "./components/SidebarLayout/index";
 import FooterLayout from "./components/FooterLayout";
 import MainLayout from "./components/MainLayout";
 </script>

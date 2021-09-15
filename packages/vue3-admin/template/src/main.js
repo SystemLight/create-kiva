@@ -7,6 +7,7 @@ import "@/styles/index.scss";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import ElDragDialog from "@/directive/el-drag-dialog";
 
 /**
  * 参考文档：
@@ -15,10 +16,17 @@ import store from "./store";
  *      https://next.vuex.vuejs.org/zh/api/
  *      https://next.router.vuejs.org/zh/api/
  *      https://yuri4ever.github.io/jsdoc/
+ *      https://github.com/PanJiaChen/vue-element-admin
  */
 
 const app = createApp(App);
+
+// 注册中间件
 app.use(router);
 app.use(store);
 app.use(ElementPlus, {size: "small", zIndex: 3000, locale: zhCn});
+
+// 注册指令 https://vue3js.cn/docs/zh/guide/custom-directive.html#%E7%AE%80%E4%BB%8B
+app.directive("drag", ElDragDialog);
+
 app.mount("#app");
