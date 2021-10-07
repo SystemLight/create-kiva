@@ -1,40 +1,33 @@
-var app = require('koa')()
-  , logger = require('koa-logger')
-  , json = require('koa-json')
-  , views = require('koa-views')
-  , onerror = require('koa-onerror');
+const Koa = require("koa");
+const onerror = require("koa-onerror");
+const bodyparser = require("koa-bodyparser");
+const koaStatic = require("koa-static");
+const logger = require("koa-logger");
+const json = require("koa-json");
+const views = require("koa-views");
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+// https://github.com/visionmedia/debug
+// https://koa.bootcss.com/
+// https://github.com/ZijianHe/koa-router
+const app = new Koa();
 
-// error handler
+// 全局中间件
 onerror(app);
 
-// global middlewares
-app.use(views('views', {
-  root: __dirname + '/views',
-  default: 'jade'
-}));
-app.use(require('koa-bodyparser')());
-app.use(json());
 app.use(logger());
+app.use(views(__dirname + "/views", {
+    extension: "pug",
+}));
+app.use(bodyparser({
+    enableTypes: ["json", "form", "text"]
+}));
+app.use(json());
 
-app.use(function *(next){
-  var start = new Date;
-  yield next;
-  var ms = new Date - start;
-  console.log('%s %s - %s', this.method, this.url, ms);
-});
+// 路由注册
+const indexRoute = require("./routes/index");
+app.use(indexRoute.routes());
+app.use(indexRoute.allowedMethods());
 
-app.use(require('koa-static')(__dirname + '/public'));
-
-// routes definition
-app.use(index.routes(), index.allowedMethods());
-app.use(users.routes(), users.allowedMethods());
-
-// error-handling
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
-});
+app.use(koaStatic(__dirname + "/public"));
 
 module.exports = app;
