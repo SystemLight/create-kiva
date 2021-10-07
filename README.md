@@ -29,6 +29,7 @@ create-kiva i <模板名称>
 |  electron-reacte-kiva   |  electron集成React开发模板   | npx create-kiva i electron-react-kiva  | null  |
 |  node-kiva   |  nodeJS应用程序开发模板   | npx create-kiva i node-kiva  | null |
 |  express-kiva   |  express服务端开发模板   | npx create-kiva i express-kiva  | npx express-generator ./app  |
+|  koa2-kiva   |  koa2服务端开发模板   | npx create-kiva i koa2-kiva  | npx koa-generator ./app  |
 |  react-huge-kiva   |  react演示专用，重量级集成模板 | npx create-kiva i react-huge-kiva  | npx create-react-app ./app  |
 |  react-kiva   |  react前端浏览器项目基础模板   | npx create-kiva i react-kiva  | npx create-react-app ./app  |
 |  react-kiva2   |  注重轻量和编译速度的第二代react开发模板   | npx create-kiva i react-kiva2  | npx create-react-app ./app  |
