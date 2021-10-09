@@ -3,8 +3,8 @@
 const childProcess = require("child_process");
 const ph = require("path");
 const fs = require("fs");
-const fse = require("fs-extra");
 
+const fse = require("fs-extra");
 const commander = require("commander");
 
 const info = require("./package.json");

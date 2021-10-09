@@ -1,6 +1,6 @@
 {
   "name": "create-kiva",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "keywords": [
     "react",
     "kiva",
@@ -30,8 +30,7 @@
   "scripts": {},
   "dependencies": {
     "commander": "^6.2.0",
-    "fs-extra": "^9.0.1",
-    "react-kiva": "^1.2.0"
+    "fs-extra": "^9.0.1"
   },
   "devDependencies": {}
 }
