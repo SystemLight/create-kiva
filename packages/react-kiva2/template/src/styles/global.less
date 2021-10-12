@@ -1,28 +1,96 @@
 @import "./var.less";
 @import "./mixin.less";
 
-html, body {
-    margin: 0;
+html,
+body {
     padding: 0;
-    line-height: 1;
+    margin: 0;
     font-family: "Segoe UI", Arial, "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 14px;
+    line-height: 1;
 }
 
-div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
-blockquote, pre, a, abbr, acronym, address, big, cite, code, del,
-dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup,
-tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label,
-legend, caption, article, aside,
-canvas, details, embed, figure, figcaption, footer, header, hgroup, menu,
-nav, output, ruby, section, summary, time, mark, audio, video {
-    margin: 0;
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+caption,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
     padding: 0;
     border: 0;
+    margin: 0;
     vertical-align: baseline;
 }
 
-ul, dl, ol {
+ul,
+dl,
+ol {
     list-style: none;
 }
 
@@ -41,8 +109,8 @@ ul, dl, ol {
 .text(@pIndex) when (@pIndex>0) {
     @val: extract(@position, @pIndex);
     .text-@{val} {
-        text-align: extract(@position, @pIndex);
         color: extract(@colors, 1);
+        text-align: extract(@position, @pIndex);
     }
     .text(@pIndex - 1);
 }
@@ -92,8 +160,8 @@ ul, dl, ol {
 
 .mx(@i) when (@i>0) {
     .mx-@{i} {
-        margin-left: (5px * @i) !important;
         margin-right: (5px * @i) !important;
+        margin-left: (5px * @i) !important;
     }
     .mx(@i - 1);
 }
@@ -130,8 +198,8 @@ ul, dl, ol {
 
 .px(@i) when (@i>0) {
     .px-@{i} {
-        padding-left: (5px * @i) !important;
         padding-right: (5px * @i) !important;
+        padding-left: (5px * @i) !important;
     }
     .px(@i - 1);
 }

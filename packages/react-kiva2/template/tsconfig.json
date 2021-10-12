@@ -3,14 +3,14 @@
 
   // 包含目录或者文件，支持glob匹配
   "include": [
-    "src/**/*"
+    "types/**/*",
+    "src/shims-app.d.ts"
   ],
 
   // 排除目录或者文件，支持glob匹配
   "exclude": [
     "node_modules/**/*",
-    "**/*.spec.ts",
-    "src/assets/**/*"
+    "**/*.spec.ts"
   ],
 
   // 编译器选项

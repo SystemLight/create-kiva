@@ -5,11 +5,11 @@
 }
 
 .clear_fix() {
-    &:after {
-        content: "";
+    &::after {
         display: block;
         width: 0;
         height: 0;
         clear: both;
+        content: "";
     }
 }

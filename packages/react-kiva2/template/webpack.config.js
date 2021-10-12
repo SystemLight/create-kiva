@@ -1,3 +1,6 @@
+const ph = require("path");
+const fs = require("fs");
+
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
@@ -9,7 +12,7 @@ const WebpackBar = require("webpackbar");
 const webpack = require("webpack");
 const Mock = require("mockjs");
 
-const ph = require("path");
+const MockServer = require("./mocks/mock-server");
 
 /**
  * 获取开发服务器配置信息
@@ -130,7 +133,7 @@ const devServer = {
     // 指定要监听请求的端口号
     port: 8080,
 
-    // 配置代理服务设置
+    // 配置代理服务设置，/proxy前缀会走代理
     proxy: {
         "/proxy": {
             target: "http://127.0.0.1:5000",
@@ -145,8 +148,11 @@ const devServer = {
 
     // 提供在服务器内部先于所有其他中间件执行自定义中间件的功能，可以自定义处理
     before(app) {
-        try {
+        const hasSimpleMock = fs.existsSync("./mocks.json");
+        // 根目录下不存在mocks.json文件时使用mocks下的server进行复杂mock处理
+        if (hasSimpleMock) {
             const mockData = require("./mocks.json");
+            // mocks.json配置请求统一路径为/mock开头
             app.get(/\/mock(.*)$/, function(req, res) {
                 const {"0": url} = req.params;
                 const data = Mock.mock(mockData[url]);
@@ -156,9 +162,8 @@ const devServer = {
                     res.status(404).json({});
                 }
             });
-        } catch (e) {
-            // 根目录下不存在mocks.json文件时不进行注册mock代理，
-            // 启用mock代理请配置代理选项将/proxy代理到本机/mock下
+        } else {
+            MockServer(app);
         }
     }
 };

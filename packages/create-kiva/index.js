@@ -10,6 +10,26 @@ const commander = require("commander");
 const info = require("./package.json");
 
 /*
+    初始化git
+ */
+function gitInit() {
+    return new Promise((resolve, reject) => {
+        const command = "git";
+        const args = ["init"];
+        const child = childProcess.spawn(command, args, {stdio: "inherit"});
+        child.on("close", code => {
+            if (code !== 0) {
+                reject({
+                    command: `${command} ${args.join(' ')}`,
+                });
+                return;
+            }
+            resolve();
+        });
+    });
+}
+
+/*
     初始化npm
  */
 function npmInit() {
@@ -103,6 +123,7 @@ async function installAction(templateName) {
     await copyTemplate(templateName);
     await npmInstall();
     renameGitIgnore();
+    await gitInit();
 }
 
 function main() {
