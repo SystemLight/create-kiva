@@ -121,9 +121,9 @@ async function installAction(templateName) {
     await npmInit();
     await install(templateName);
     await copyTemplate(templateName);
-    await npmInstall();
     renameGitIgnore();
     await gitInit();
+    await npmInstall();
 }
 
 function main() {
