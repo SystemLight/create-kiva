@@ -1,14 +1,16 @@
 {
-  // 配置参考：https://www.typescriptlang.org/zh/tsconfig
+  // 配置参考：https://www.typescriptlang.org/zh/tsconfig，Node版本V12.18.3
 
   // 包含目录或者文件，支持glob匹配
   "include": [
-    "types/**/*",
-    "src/shims-app.d.ts"
+    "src/**/*",
+    "types/**/*"
   ],
 
   // 排除目录或者文件，支持glob匹配
   "exclude": [
+    "src/assets/**/*",
+    "src/styles/**/*",
     "node_modules/**/*",
     "**/*.spec.ts"
   ],
@@ -20,7 +22,7 @@
     // "incremental": true,
 
     // 指定ecmascript目标版本：“es3”（默认），“es5”，“es2015”，“es2016”，“es2017”，“es2018”，“es2019”或“esnext”
-    "target": "esNext",
+    "target": "es2019",
 
     // 指定模块代码生成：“none”、“commonjs”、“amd”、“system”、“umd”、“es2015”或“ESNext”
     "module": "esNext",
@@ -34,8 +36,8 @@
     // 报告.js文件中的错误
     // "checkJs": true,
 
-    // 如何处理JSX语法，包含：react | react-jsx | react-jsxdev | preserve | react-native
-    "jsx": "preserve",
+    // 如何处理JSX语法，包含：react | react-jsx | react-jsxdev | preserve | react-native，设置react兼容ts-jest
+    "jsx": "react",
 
     // 生成类型生成文件
     "declaration": false,

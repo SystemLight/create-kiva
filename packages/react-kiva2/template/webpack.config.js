@@ -298,8 +298,12 @@ const getRules = function(isProduction) {
                 {
                     loader: "ts-loader",
                     options: {
+                        // https://github.com/TypeStrong/ts-loader#happypackmode
                         transpileOnly: true,
-                        happyPackMode: true
+                        happyPackMode: true,
+                        compilerOptions: {
+                            jsx: "preserve"
+                        }
                     }
                 }
             ]
@@ -383,6 +387,13 @@ const getPlugins = function(isProduction) {
             "process.env.WDS_SOCKET_HOST": JSON.stringify(process.env.WDS_SOCKET_HOST),
             "process.env.WDS_SOCKET_PORT": JSON.stringify(process.env.WDS_SOCKET_PORT),
             "process.env.WDS_SOCKET_PATH": JSON.stringify(process.env.WDS_SOCKET_PATH)
+        }),
+        // https://github.com/TypeStrong/ts-loader#usage-with-webpack-watch
+        new webpack.WatchIgnorePlugin({
+            paths: [
+                /\.js$/,
+                /\.d\.ts$/
+            ]
         })
     ];
 
