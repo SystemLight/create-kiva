@@ -16,7 +16,7 @@ const MockServer = require("./mocks/mock-server");
 
 /**
  * 获取开发服务器配置信息
- * 更多配置：https://webpack.js.org/configuration/dev-server/
+ * 更多配置：https://v4.webpack.docschina.org/configuration/dev-server/
  */
 const devServer = {
     // 当使用内联模式(inline mode)时，在开发工具(DevTools)的控制台(console)将显示消息
@@ -170,7 +170,7 @@ const devServer = {
 
 /**
  * 切割代码块规则配置
- * 更多配置：https://webpack.js.org/plugins/split-chunks-plugin/
+ * 更多配置：https://v4.webpack.js.org/plugins/split-chunks-plugin/#configuration
  */
 const splitChunks = {
     // 指定对哪些块进行分割优化
@@ -250,7 +250,7 @@ const splitChunks = {
 };
 
 /**
- * 获取加载Loader配置规则
+ * 获取加载Loader配置规则，https://v4.webpack.js.org/configuration/module/#rule
  * @param {boolean} isProduction
  * @return {any}
  */
@@ -358,7 +358,7 @@ const getRules = function(isProduction) {
 };
 
 /**
- * 根据开发环境获取相对插件
+ * 根据开发环境获取相对插件，https://v4.webpack.js.org/configuration/plugins/#plugins
  * @param {boolean} isProduction
  * @return {any}
  */

@@ -3,7 +3,10 @@ module.exports = {
         [
             "postcss-preset-env",
             {
-                "browsers": ["last 2 version", ">1%"]
+                "browsers": [
+                    "last 2 version",
+                    ">1%"
+                ]
             }
         ]
     ]
