@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const BASE_URL = "/";
+export const BASE_URL = '/';
 
 const service = axios.create({
     baseURL: BASE_URL

@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 
 const STATUS = {
-    HOVERED: "hovered",
-    NORMAL: "normal"
+    HOVERED: 'hovered',
+    NORMAL: 'normal'
 };
 
 const Link = ({page, children}) => {
@@ -19,7 +19,7 @@ const Link = ({page, children}) => {
     return (
         <a
             className={status}
-            href={page || "#"}
+            href={page || '#'}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >

@@ -1,11 +1,11 @@
 module.exports = {
     plugins: [
         [
-            "postcss-preset-env",
+            'postcss-preset-env',
             {
-                "browsers": [
-                    "last 2 version",
-                    ">1%"
+                'browsers': [
+                    'last 2 version',
+                    '>1%'
                 ]
             }
         ]

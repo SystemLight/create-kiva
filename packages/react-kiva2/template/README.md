@@ -28,8 +28,4 @@
 - 强化编译速度，移除臃肿模块
 - 引入stylelint配置
 - 引入plop进行快速文件生成
-
-## 未来计划
-
-- 引入dotenv
-- 引入webpack-chain
+- 回退webpack4，移除prettier配置

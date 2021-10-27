@@ -1,5 +1,5 @@
 const mocks = [
-    ...require("./user")
+    ...require('./user')
 ];
 
 module.exports = {

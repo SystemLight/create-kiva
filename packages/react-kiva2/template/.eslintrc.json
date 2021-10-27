@@ -28,19 +28,32 @@
     "eslint:recommended"
   ],
   "rules": {
-    "react/display-name": [
-      "off",
-      {
-        "ignoreTranspilerName": false
-      }
-    ],
-    "react/prop-types": 0,
-    "quotes": [
-      "error",
-      "double"
-    ],
+    "react/display-name": "off",
+    "react/prop-types": "off",
     "require-jsdoc": "off",
     "no-invalid-this": "off",
+    "linebreak-style": "off",
+    "max-len": "off",
+    "no-unused-vars": [
+      "off",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
     "comma-dangle": [
       "error",
       {
@@ -50,10 +63,6 @@
         "exports": "never",
         "functions": "never"
       }
-    ],
-    "linebreak-style": [
-      "off",
-      "windows"
     ],
     "indent": [
       "error",
@@ -65,15 +74,6 @@
     "padded-blocks": [
       "error",
       "never"
-    ],
-    "max-len": "off",
-    "no-unused-vars": [
-      "off",
-      {
-        "vars": "all",
-        "args": "after-used",
-        "ignoreRestSiblings": false
-      }
     ],
     "space-before-function-paren": [
       "error",

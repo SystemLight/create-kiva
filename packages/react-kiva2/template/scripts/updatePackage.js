@@ -1,8 +1,8 @@
-const childProcess = require("child_process");
+const childProcess = require('child_process');
 const packageJSON = require(`${process.cwd()}/package.json`);
 
-const devPackage = packageJSON["devDependencies"];
-const proPackage = packageJSON["dependencies"];
+const devPackage = packageJSON['devDependencies'];
+const proPackage = packageJSON['dependencies'];
 
 /*
     运行npm install命令安装给定名称依赖包
@@ -13,9 +13,9 @@ async function install(name, extraArg) {
             if (error) {
                 console.error(error);
             }
-        }).stdout.on("data", (data) => {
+        }).stdout.on('data', (data) => {
             console.log(data);
-        }).on("end", () => {
+        }).on('end', () => {
             resolve();
         });
     });
@@ -34,6 +34,6 @@ async function updatePackage(pack, extraArg) {
 /*
     版本更新器，自动更新所有包到最新版本
  */
-updatePackage(devPackage, "--save-dev").then(() => {
-    return updatePackage(proPackage, "--save");
+updatePackage(devPackage, '--save-dev').then(() => {
+    return updatePackage(proPackage, '--save');
 });

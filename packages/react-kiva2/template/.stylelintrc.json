@@ -7,7 +7,10 @@
     "stylelint-config-idiomatic-order"
   ],
   "rules": {
+    "no-empty-source": null,
+    "selector-list-comma-newline-after": null,
     "indentation": 4,
-    "no-empty-source": null
+    "color-hex-case": "upper",
+    "color-hex-length": "long"
   }
 }
