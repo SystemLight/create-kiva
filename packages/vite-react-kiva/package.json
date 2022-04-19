@@ -1,0 +1,12 @@
+{
+  "name": "vite-react-kiva",
+  "version": "1.0.0",
+  "description": "react流行技术项目模板",
+  "scripts": {},
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
