@@ -1,0 +1,25 @@
+{
+  "name": "webpack5-kiva",
+  "version": "1.0.0",
+  "keywords": [
+    "webpack5",
+    "create-kiva",
+    "template"
+  ],
+  "description": "Front end development template based on webpack5.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SystemLight/create-kiva.git",
+    "directory": "packages/vue3-mobile-kiva2"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.15.0"
+  },
+  "bugs": {
+    "url": "https://github.com/SystemLight/create-kiva/issues"
+  },
+  "files": [
+    "template"
+  ]
+}

@@ -20,25 +20,26 @@ create-kiva i <模板名称>
 
 - 下列模板并非所有都发行到npm上，有些模板由于暂不稳定所以未及时更新
 
-| 名称                   | 介绍                              | kiva构建                                | 类似模板 |
-|----------------------|---------------------------------|---------------------------------------| --- |
-| basic-kiva           | 基础规范集成模板                        | npx create-kiva i basic-kiva          | npx create-html5-boilerplate ./app  |
-| electron-kiva        | 桌面应用开发基础模板                      | npx create-kiva i basic-kiva          | [1] git clone https://github.com/electron/electron-quick-start <br/> [2] npx create-electron-app my-new-app    |
-| electron-reacte-kiva | electron集成React开发模板             | npx create-kiva i electron-react-kiva | null  |
-| node-kiva            | nodeJS应用程序开发模板                  | npx create-kiva i node-kiva           | null |
-| express-kiva         | express服务端开发模板                  | npx create-kiva i express-kiva        | npx express-generator ./app  |
-| koa2-kiva            | koa2服务端开发模板                     | npx create-kiva i koa2-kiva           | npx koa-generator ./app  |
-| react-huge-kiva      | react演示专用，重量级集成模板               | npx create-kiva i react-huge-kiva     | npx create-react-app ./app  |
-| react-kiva           | react前端浏览器项目基础模板                | npx create-kiva i react-kiva          | npx create-react-app ./app  |
-| react-kiva2          | 注重轻量和编译速度的第二代react开发模板          | npx create-kiva i react-kiva2         | npx create-react-app ./app  |
-| react-mobile-kiva    | react移动端项目模板                    | npx create-kiva i react-mobile-kiva   | npx create-react-app ./app  |
-| react-native-kiva    | react开发原生APP项目模板                | npx create-kiva i react-native-kiva   | npx react-native init ./app  |
-| react-ssr-kiva       | react服务端渲染（SSR）基础模板             | npx create-kiva i react-ssr-kiva      | null  |
-| react-umi-kiva       | 基于umiJS的react前端模板               | npx create-kiva i react-umi-kiva      |  npx @umijs/create-umi-app |
-| vue-kiva             | Vue前端浏览器项目基础模板                  | npx create-kiva i vue-kiva            | npx @vue/cli create ./app  |
-| vue-mobile-kiva      | Vue移动端浏览器项目基础模板                 | npx create-kiva i vue-mobile-kiva     | npx @vue/cli create ./app  |
-| vue3-kiva            | Vue3前端浏览器项目基础模板                 | npx create-kiva i vue3-kiva           | npx @vue/cli@next create ./app  |
-| vue3-kiva2           | 基于vue-cli@next构建的vue3基础前端PC开发模板 | npx create-kiva i vue3-kiva2          | npx @vue/cli@next create ./app  |
-| vite-vue3-kiva       | 基于vite构建vue3前端开发模板              | npx create-kiva i vite-vue3-kiva      | npm init vite@latest  |
-| vite-react-kiva      | 基于vite构建react前端开发模板             | npx create-kiva i vite-react-kiva     | npm create vite@latest  |
-| uniapp-kiva          | uniapp跨移动端项目开发模板                | npx create-kiva i uniapp-kiva         | npx @vue/cli create -p dcloudio/uni-preset-vue ./app  |
+| 名称                   | 介绍                              | kiva构建                                | 类似模板                                                                                                        |
+|----------------------|---------------------------------|---------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| basic-kiva           | 基础规范集成模板                        | npx create-kiva i basic-kiva          | npx create-html5-boilerplate ./app                                                                          |
+| electron-kiva        | 桌面应用开发基础模板                      | npx create-kiva i basic-kiva          | [1] git clone https://github.com/electron/electron-quick-start <br/> [2] npx create-electron-app my-new-app |
+| electron-reacte-kiva | electron集成React开发模板             | npx create-kiva i electron-react-kiva | null                                                                                                        |
+| node-kiva            | nodeJS应用程序开发模板                  | npx create-kiva i node-kiva           | null                                                                                                        |
+| express-kiva         | express服务端开发模板                  | npx create-kiva i express-kiva        | npx express-generator ./app                                                                                 |
+| koa2-kiva            | koa2服务端开发模板                     | npx create-kiva i koa2-kiva           | npx koa-generator ./app                                                                                     |
+| react-huge-kiva      | react演示专用，重量级集成模板               | npx create-kiva i react-huge-kiva     | npx create-react-app ./app                                                                                  |
+| react-kiva           | react前端浏览器项目基础模板                | npx create-kiva i react-kiva          | npx create-react-app ./app                                                                                  |
+| react-kiva2          | 注重轻量和编译速度的第二代react开发模板          | npx create-kiva i react-kiva2         | npx create-react-app ./app                                                                                  |
+| react-mobile-kiva    | react移动端项目模板                    | npx create-kiva i react-mobile-kiva   | npx create-react-app ./app                                                                                  |
+| react-native-kiva    | react开发原生APP项目模板                | npx create-kiva i react-native-kiva   | npx react-native init ./app                                                                                 |
+| react-ssr-kiva       | react服务端渲染（SSR）基础模板             | npx create-kiva i react-ssr-kiva      | null                                                                                                        |
+| react-umi-kiva       | 基于umiJS的react前端模板               | npx create-kiva i react-umi-kiva      | npx @umijs/create-umi-app                                                                                   |
+| vue-kiva             | Vue前端浏览器项目基础模板                  | npx create-kiva i vue-kiva            | npx @vue/cli create ./app                                                                                   |
+| vue-mobile-kiva      | Vue移动端浏览器项目基础模板                 | npx create-kiva i vue-mobile-kiva     | npx @vue/cli create ./app                                                                                   |
+| vue3-kiva            | Vue3前端浏览器项目基础模板                 | npx create-kiva i vue3-kiva           | npx @vue/cli@next create ./app                                                                              |
+| vue3-kiva2           | 基于vue-cli@next构建的vue3基础前端PC开发模板 | npx create-kiva i vue3-kiva2          | npx @vue/cli@next create ./app                                                                              |
+| vite-vue3-kiva       | 基于vite构建vue3前端开发模板              | npx create-kiva i vite-vue3-kiva      | npm init vite@latest                                                                                        |
+| vite-react-kiva      | 基于vite构建react前端开发模板             | npx create-kiva i vite-react-kiva     | npm create vite@latest                                                                                      |
+| uniapp-kiva          | uniapp跨移动端项目开发模板                | npx create-kiva i uniapp-kiva         | npx @vue/cli create -p dcloudio/uni-preset-vue ./app                                                        |
+| webpack5-kiva        | 基于webpack5搭建的前端开发模板             | npx create-kiva i webpack5-kiva       | null                                                                                                        |
