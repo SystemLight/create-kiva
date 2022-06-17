@@ -1,0 +1,40 @@
+{
+  "include": [
+    "src/**/*",
+    "types/**/*",
+    "tests/**/*"
+  ],
+  "exclude": [
+    "src/assets/**/*",
+    "src/styles/**/*",
+    "node_modules/**/*",
+    "**/*.spec.ts"
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "allowJs": false,
+    "declaration": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "removeComments": false,
+    "noEmit": false,
+    "isolatedModules": false,
+    "strict": true,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": false,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
+  }
+}
